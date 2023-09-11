@@ -1,10 +1,12 @@
 .Login {
+    background: linear-gradient(90deg, #ee964b , #f4d35e);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
     
     .log-in-box{
+        background-color: #faf0ca;
         display: flex;
         flex-direction: column;
         align-items: center;
@@ -35,6 +37,43 @@
                 
 
             }
+            .submit{
+                // background-color: var(--button-color);
+                width: fit-content;
+                padding: 10px 20px ;
+                margin: 10px auto;
+            }
         }
+        .signupLink{
+            margin-bottom: 10px;
+            padding-bottom: 20px;
+        }
+    }
+}
+.custom-shape-divider-top-1694344718 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+}
+
+.custom-shape-divider-top-1694344718 svg {
+    position: relative;
+    display: block;
+    width: calc(154% + 1.3px);
+    height: 252px;
+    transform: rotateY(180deg);
+}
+
+.custom-shape-divider-top-1694344718 .shape-fill {
+    fill: #faf0ca;
+}
+/** For mobile devices **/
+@media only screen and (max-width: 767px) {
+    .custom-shape-divider-top-1694344718 svg {
+        width: calc(154% + 1.3px);
+        height: 160px;
     }
 }

@@ -1,5 +1,4 @@
 import React, { useState } from 'react';
-import { Button } from 'antd';
 import './signup.scss'
 import { Link } from 'react-router-dom';
 import { axiosClient } from '../../Utils/axiosClient';

@@ -1,0 +1,44 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.UpdateProfile{
+    padding-top: 20px;
+
+    .container{
+        display: flex;
+
+        .UserImg{
+            height: 80px;
+            width: 80px;
+            border-radius: 50%;
+        }
+    }
+    .left-part{
+        flex: 1;
+    }
+    .right-part{
+        flex: 3;
+
+        input{
+            width: 100%;
+            display: block;
+            padding: 8px 16px;
+            margin-top: 16px;
+            border-radius: 5px;
+            border: none;
+            outline: none;
+            box-shadow: 2px 2px 7px ;
+        }
+        .btn-primary{
+            padding: 5px 10px;
+            width: fit-content;
+        }
+    }
+    .Delete-Account{
+        
+        padding: 5px 10px;
+        margin-top: 10px;
+    }
+
+}

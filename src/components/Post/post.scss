@@ -1,0 +1,46 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.Post{
+    border: 1px solid var(--border-color);
+    margin-top: 20px;
+    border-radius: 5px;
+    .heading{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        height: 60px;
+        padding: 20px;
+    }
+    .content{
+        height: 400px;
+        img{
+            height: 100%;
+            width: 100%;
+        }
+    }
+    .footer{
+        padding: 20px;
+
+        .likes{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin: 0;
+
+            .Icon{
+                font-size: 1.7rem;
+            }
+        }
+             .caption{
+                margin: 12px;
+
+             }
+
+             .caption-time{
+                margin: 12px;
+                color: #aaa;
+             }
+    }
+}

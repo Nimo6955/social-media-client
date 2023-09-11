@@ -1,0 +1,31 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.Feed{
+    margin-top: 60px;
+    .container{
+        display: flex;
+        gap: 20px;
+    }
+    .left-part{
+        flex: 2;
+        // overflow-y: auto;
+        // height: 960px;
+   
+    }
+    .right-part{
+        flex: 1;
+        margin-top: 20px;
+        
+    }
+
+    .Suggestions{
+        margin-top: 40px;
+
+    }
+
+    .title{
+        margin-bottom: 12px;
+    }
+}
