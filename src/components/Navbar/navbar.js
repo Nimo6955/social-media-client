@@ -1,38 +1,27 @@
 import React, { useRef, useState } from 'react'
 import './navbar.scss'
 import Avatar from '../Avatar/avatar'
-import { Link } from 'react-router-dom'
-import LoadingBar from 'react-top-loading-bar'
+import { Link, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
 
 
 function Navbar() {
 
-  const loadingRef = useRef()
+  const navigate = useNavigate()
 
-  const [loading, setLoading] = useState()
+  const myProfile = useSelector(state => state.appConfigReduser.myProfile)
 
-  function toggleLoadingbar(){
-    if(loading){
-      setLoading(false)
-      loadingRef.current.complete()
-    }else{
-      setLoading(true)
-      loadingRef.current.continuousStart()
-      
-    }
-  }
   return (
     <div className='Navbar'>
-        <LoadingBar height={3} color='#f11946' ref={loadingRef} />
         <div className='container'>
            <Link style={{textDecoration:'none', color:'black'}} to='/'> <h2 className="banner">Social Media</h2></Link>
 
             <div className="right-side">
-              <Link to='/Profile/dskjfs'>
-                <div onClick={toggleLoadingbar} className="profile">
-                    <Avatar/>
+              
+                <div className="profile" onClick={() =>navigate(`/profile/${myProfile?._id}`)}>
+                    <Avatar src={myProfile?.avatar?.url}/>
                 </div>
-              </Link>
+              
             </div>
         </div>
     </div>

@@ -4,6 +4,8 @@ import './login.scss'
 import { Link,useNavigate } from 'react-router-dom';
 import {axiosClient} from '../../Utils/axiosClient';
 import { KEY_ACCESS_TOKEN, setItem } from '../../Utils/localStoregeManager';
+// import Bg from '../../assets/bg.gif'
+
 
 
 
@@ -32,6 +34,7 @@ function Login() {
     return (
 
         <div className='Login'>
+            {/* <img src={Bg} alt="" /> */}
             <div className="log-in-box">
                 <h2 className="heading">Log In</h2>
                 <form className='log-in-form' onSubmit={handleSubmit}>

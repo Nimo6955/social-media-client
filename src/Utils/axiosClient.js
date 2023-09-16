@@ -1,5 +1,7 @@
 import axios from 'axios'
 import { KEY_ACCESS_TOKEN, getItem, removeItem, setItem } from './localStoregeManager'
+// import store from '../redux/store';
+// import { setLoading, showToast } from "../redux/slices/appConfigSlice";
 
 export const axiosClient = axios.create({
     baseURL: process.env.REACT_APP_SERVER_BASE_URL,
@@ -26,21 +28,32 @@ axiosClient.interceptors.response.use(
         const statusCode = data.statusCode;
         const error = data.error;
 
-        if(statusCode === 401 && orignalRequest.url === `${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`){
-            removeItem(KEY_ACCESS_TOKEN)
-            window.location.replace('./login', '_self');
-            return Promise.reject(error)
-        }
+        // if(statusCode === 401 && orignalRequest.url === `${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`){
+        //     removeItem(KEY_ACCESS_TOKEN)
+        //     window.location.replace('./login', '_self');
+        //     return Promise.reject(error)
+        // }
       
 
-        if(statusCode === 401){
-            const response = await axiosClient.get('/auth/refresh');
+        if(statusCode === 401 && !orignalRequest._retry){
+            orignalRequest._retry = true;
+
+            const response = await axios.create({
+                withCredentials: true,
+            }).get(`${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`);
             console.log('respons from backend' , response);
-            if(response.status === "ok"){
-                setItem(KEY_ACCESS_TOKEN, response.result.accessToken)
-                orignalRequest.headers['Authorization'] = `Bearer ${response.result.accessToken}`
+
+            if(response.data.status === "ok"){
+                setItem(KEY_ACCESS_TOKEN, response.data.result.accessToken)
+                orignalRequest.headers['Authorization'] = `Bearer ${response.data.result.accessToken}`
+
+                return axios(orignalRequest)
+            }else{
+                removeItem(KEY_ACCESS_TOKEN)
+                window.location.replace('./login', '_self');
+                return Promise.reject(error)
             }
-            return axios(orignalRequest)
+            // return axios(orignalRequest)
         }
 
         return Promise.reject(error)

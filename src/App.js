@@ -10,13 +10,33 @@ import {
   Routes,
   Route,
 } from "react-router-dom";
+import { useSelector } from "react-redux";
+import { useEffect, useRef } from "react";
+import LoadingBar from 'react-top-loading-bar'
+
 
 
 function App() {
+
+  const isLoading = useSelector(state => state.appConfigReduser.isLoading);
+  const loadingRef = useRef(null)
+
+  useEffect(() => {
+    if(isLoading){
+      loadingRef.current?.continuousStart()
+    }else{
+      
+      loadingRef.current?.complete()
+    }
+    
+  }, [isLoading])
+  
   return (
     <>
-      <Router>
+      {/* <Router> */}
+        <LoadingBar height={3} color='#f11946' ref={loadingRef} />
         <Routes>
+
 
           <Route element={<RequireUser />}>
             <Route path='/' element={<Home />}>
@@ -32,7 +52,7 @@ function App() {
 
         </Routes>
 
-      </Router>
+      {/* </Router> */}
 
     </>
   );
