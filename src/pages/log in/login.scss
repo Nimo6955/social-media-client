@@ -1,10 +1,10 @@
 .Login {
-    background: linear-gradient(90deg, #ee964b , #f4d35e);
+    background: linear-gradient(90deg, #ff7700 , #f4d35e);
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    
+
     .log-in-box{
         background-color: #faf0ca;
         display: flex;
@@ -50,30 +50,38 @@
         }
     }
 }
-.custom-shape-divider-top-1694344718 {
+.custom-shape-divider-top-1694858914 {
     position: absolute;
     top: 0;
     left: 0;
     width: 100%;
     overflow: hidden;
     line-height: 0;
+    transform: rotate(180deg);
 }
 
-.custom-shape-divider-top-1694344718 svg {
+.custom-shape-divider-top-1694858914 svg {
     position: relative;
     display: block;
-    width: calc(154% + 1.3px);
-    height: 252px;
-    transform: rotateY(180deg);
+    width: calc(100% + 1.3px);
+    height: 150px;
 }
 
-.custom-shape-divider-top-1694344718 .shape-fill {
-    fill: #faf0ca;
+.custom-shape-divider-top-1694858914 .shape-fill {
+    fill: #FFFFFF;
+}
+
+/** For mobile devices **/
+@media (max-width: 767px) {
+    .custom-shape-divider-top-1694858914 svg {
+        width: calc(100% + 1.3px);
+        height: 106px;
+    }
 }
 /** For mobile devices **/
-@media only screen and (max-width: 767px) {
-    .custom-shape-divider-top-1694344718 svg {
-        width: calc(154% + 1.3px);
-        height: 160px;
+@media (max-width: 767px) {
+    .custom-shape-divider-top-1694857747 svg {
+        width: calc(100% + 1.3px);
+        height: 106px;
     }
 }

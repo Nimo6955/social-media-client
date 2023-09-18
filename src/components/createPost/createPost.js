@@ -4,8 +4,9 @@ import Avatar from '../Avatar/avatar'
 import dummyBackground from '../../assets/mouse.jpg'
 import {BsCardImage} from 'react-icons/bs'
 import { axiosClient } from '../../Utils/axiosClient'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { setLoading } from '../../redux/slices/appConfigSlice'
+import { getUserProfile } from '../../redux/slices/postsSlice'
 
 
 function CreatePost() {
@@ -13,6 +14,8 @@ function CreatePost() {
     const [postImg, setPostImg] = useState('');
     const [caption, setCaption] = useState('')
     const dispatch = useDispatch()
+    const myProfile = useSelector(state => state.appConfigReduser.myProfile)
+
 
     const handleImageChange = (e) => {
         const file = e.target.files[0]
@@ -33,6 +36,9 @@ function CreatePost() {
                 postImg
             });
             console.log('post', result);
+            dispatch(getUserProfile({
+                userId: myProfile?._id
+            }))
         } catch (e) {
             
         }finally{

@@ -6,6 +6,7 @@ import { useNavigate, useParams } from 'react-router-dom'
 import CreatePost from '../createPost/createPost'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile } from '../../redux/slices/postsSlice'
+import post from '../Post/post'
 
 
 function Profile() {
@@ -32,10 +33,7 @@ useEffect(() =>{
       <div className="container">
         <div className="left-part">
           <CreatePost/>
-          <Post/>
-          <Post/>
-          <Post/>
-          <Post/>
+        {userProfile?.posts?.map(post => <Post key={post?._id} post={post}/>)}
         </div>
         <div className="right-part">
           <div className="profile-card">

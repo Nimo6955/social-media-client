@@ -26,7 +26,7 @@ axiosClient.interceptors.response.use(
 
         const orignalRequest = response.config;
         const statusCode = data.statusCode;
-        const error = data.error;
+        const error = data.massage;
 
         // if(statusCode === 401 && orignalRequest.url === `${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`){
         //     removeItem(KEY_ACCESS_TOKEN)
