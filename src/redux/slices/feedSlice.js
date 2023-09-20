@@ -45,15 +45,15 @@ const feedSlice = createSlice({
             const post = action?.payload;
 
 
-            const index = state?.feedData?.posts?.findIndex(item => item._id == post._id)
-            if(index != undefined && index != -1){
+            const index = state?.feedData?.posts?.findIndex(item => item._id === post._id)
+            if(index !== undefined && index !== -1){
                 state.feedData.posts[index] = post
             }
         })
        .addCase(folloAndUnfollowUser.fulfilled, (state, action)=>{
          const user = action?.payload;
          const index = state?.feedData?.followings?.findIndex(item => item._id === user._id)
-            if(index != -1){
+            if(index !== -1){
                 state?.feedData?.followings?.splice(index, 1)
 
             }else{

@@ -14,12 +14,15 @@ import { useSelector } from "react-redux";
 import { useEffect, useRef } from "react";
 import LoadingBar from 'react-top-loading-bar'
 import OnlyIfNotLoggedIn from "./components/onlyIfNotLoggedIn";
+import toast, { Toaster } from 'react-hot-toast';
 
 
-
+export const TOAST_SUCCESS = 'toast_success'
+export const TOAST_FAILURE = 'toast_failure'
 function App() {
 
   const isLoading = useSelector(state => state.appConfigReduser.isLoading);
+  const toastData = useSelector(state => state.appConfigReduser.toastData);
   const loadingRef = useRef(null)
 
   useEffect(() => {
@@ -31,11 +34,25 @@ function App() {
     }
     
   }, [isLoading])
+
+  useEffect(() => {
+   switch (toastData.type) {
+    case TOAST_SUCCESS:
+      toast.success(toastData.message)
+      break;
+      case TOAST_FAILURE:
+        toast.error(toastData.message)
+        break;
+     ;
+   }
+  }, [toastData])
+  
   
   return (
     <>
       {/* <Router> */}
         <LoadingBar height={3} color='#f11946' ref={loadingRef} />
+        <div><Toaster/></div>
         <Routes>
 
 

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import './createPost.scss'
 import Avatar from '../Avatar/avatar'
-import dummyBackground from '../../assets/mouse.jpg'
+// import dummyBackground from '../../assets/mouse.jpg'
 import {BsCardImage} from 'react-icons/bs'
 import { axiosClient } from '../../Utils/axiosClient'
 import { useDispatch, useSelector } from 'react-redux'
@@ -51,7 +51,7 @@ function CreatePost() {
   return (
     <div className='CreatePost'>
         <div className="left-partt">
-            <Avatar/>
+            <Avatar src={myProfile?.avatar?.url}/>
         </div>
         <div className="right-part">
             <input type="text" className="captionInput" placeholder='nice cation here ?' value={caption} onChange={(e) => setCaption(e.target.value)}/>

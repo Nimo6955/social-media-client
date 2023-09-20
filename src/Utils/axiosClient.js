@@ -1,7 +1,8 @@
 import axios from 'axios'
 import { KEY_ACCESS_TOKEN, getItem, removeItem, setItem } from './localStoregeManager'
 // import store from '../redux/store';
-// import { setLoading, showToast } from "../redux/slices/appConfigSlice";
+// import { TOAST_FAILURE } from '../App';
+// import   showToast  from "../redux/slices/appConfigSlice";
 
 export const axiosClient = axios.create({
     baseURL: process.env.REACT_APP_SERVER_BASE_URL,
@@ -28,11 +29,10 @@ axiosClient.interceptors.response.use(
         const statusCode = data.statusCode;
         const error = data.massage;
 
-        // if(statusCode === 401 && orignalRequest.url === `${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`){
-        //     removeItem(KEY_ACCESS_TOKEN)
-        //     window.location.replace('./login', '_self');
-        //     return Promise.reject(error)
-        // }
+        // store.dispatch(showToast({
+        //     type: TOAST_FAILURE,
+        //     message: error
+        // }))
       
 
         if(statusCode === 401 && !orignalRequest._retry){

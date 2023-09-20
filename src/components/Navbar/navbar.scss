@@ -4,6 +4,7 @@
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 2;
     .container{
         height: 100%;
         display: flex;
@@ -11,5 +12,25 @@
         align-items: center;
         background-color: aqua;
        
+        .right-side{
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            
+            .profile{
+            cursor: pointer;
+        }
+        .logOut{
+            
+            .logOut-button{
+                // height: 50px;
+                // // width: 50px;
+                font-size: 30px;
+                border-radius: 50%;
+                background-color: whitesmoke;
+            }
+        }
+        }
+        
     }
 }
