@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './profile.scss'
 import Post from '../Post/post'
+import ProfilePosts from '../profilePosts/profilePosts'
 // import UserImg from '../../assets/dog.jpg'
 import { useNavigate, useParams } from 'react-router-dom'
 import CreatePost from '../createPost/createPost'
@@ -8,6 +9,11 @@ import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile } from '../../redux/slices/postsSlice'
 // import post from '../Post/post'
 import { folloAndUnfollowUser } from '../../redux/slices/feedSlice'
+import { BsFillHouseFill } from 'react-icons/bs'
+import {BiUserCircle} from 'react-icons/bi'
+import {MdOutlineLogout} from 'react-icons/md'
+import {IoReorderThree} from 'react-icons/io5'
+
 
 
 function Profile() {
@@ -44,10 +50,19 @@ function handleUserFollow(){
 
   return (
     <div className='Profile'>
+      <div className="sideNavbar">
+      <div className='side-bar-routes'>
+
+        <button className="home hover-link  btn-primary3" onClick={() =>navigate('/')}> <BsFillHouseFill/> home</button>
+
+        <button className="profile hover-link  btn-primary2"> <BiUserCircle/> profile</button>
+      </div>
+
+      </div>
       <div className="container">
         <div className="left-part">
           {isMyProfile && <CreatePost/>}
-        {userProfile?.posts?.map(post => <Post  key={post?._id} post={post}/>)}
+        {userProfile?.posts?.map(post => <ProfilePosts  key={post?._id} post={post}/>)}
         </div>
         <div className="right-part">
           <div className="profile-card">

@@ -76,11 +76,11 @@ function UpdateProfile() {
                 </div>
                 <div className="right-part">
                     <form onSubmit={handleSubmit}>
-                        <input value={name} type="text" placeholder='Your Name' onChange={(e) => setName(e.target.value)} />
-                        <input value={bio} type="text" placeholder='Your Bio' onChange={(e) => setBio(e.target.value)}/>
-                        <input type="submit" className='btn-primary' onSubmit={handleSubmit}/>
+                        <input className='name-input' value={name} type="text" placeholder='Your Name' onChange={(e) => setName(e.target.value)} />
+                        <input className='bio-input' value={bio} type="text" placeholder='Your Bio' onChange={(e) => setBio(e.target.value)}/>
+                        <input type="submit" className='btn-primary hover-link' onSubmit={handleSubmit}/>
                     </form>
-                    <button onClick={DeleteAccount} className='Delete-Account btn-secondary'>Delete Account</button>
+                    <button onClick={DeleteAccount} className='Delete-Account btn-secondary hover-link'>Delete Account</button>
                 </div>
             </div>
         </div>

@@ -20,10 +20,25 @@ export const likeAndUnlikePost = createAsyncThunk("post/likeAndUnlike", async(bo
     try {
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.post('posts/like', body)
+            return response.result.post
+            
+        } catch (e) {
+            // console.log(e);
+            return Promise.reject(e)
+        }finally{
+            thankAPI.dispatch(setLoading(false));
+    }
+})
+export const deletePost = createAsyncThunk("post/deletePost", async(body, thankAPI) => {
+    try {
+        thankAPI.dispatch(setLoading(true));
+        const response = await axiosClient.delete('/posts/delete',{data: body})
+        console.log(response);
         return response.result.post
+
         
     } catch (e) {
-        // console.log(e);
+        console.log(e);
         return Promise.reject(e)
     }finally{
         thankAPI.dispatch(setLoading(false));
@@ -44,6 +59,14 @@ const postsSlice = createSlice({
             const index = state?.userProfile?.posts?.findIndex(item => item._id === post._id)
             if(index !== undefined && index !== -1){
                 state.userProfile.posts[index] = post
+            }
+        })
+        .addCase(deletePost.fulfilled, (state, action) => {
+            const post = action.payload;
+            const index = state?.userProfile?.posts?.findIndex(item => item._id === post._id)
+            if(index !== -1){
+                state?.userProfile?.posts?.splice(index, 1)
+
             }
         })
        

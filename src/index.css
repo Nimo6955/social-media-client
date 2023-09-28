@@ -14,7 +14,7 @@ code {
 
 :root{
   --border-color: #ddd;
-  --button-color: #e67e22
+  --button-color: #263238
 }
 h1,h2,h3,h4,h5,h6{
   color: #212121;
@@ -28,25 +28,26 @@ h3,h6{
   cursor: pointer;
 }
 
-.container{
-  max-width: 960px;
-  margin-inline: auto;
-}
+
 .btn-primary{
   border: none;
   outline: none;
   background-color: var(--button-color);
-  /* color: #ffffff; */
+  color: #ffffff;
   box-shadow: 1px 2px 7px gray;
-  border-radius: 5px;
+  border-radius: 30px;
+  padding: 10px 20px;
   
 }
 .btn-secondary{
   border: none;
-  border-radius: 5px;
   outline: none;
+  background-color: #ffffff;
   color: var(--button-color);
   box-shadow: 1px 2px 7px gray;
+  border-radius: 30px;
+  padding: 10px 20px;
+  border: 2px solid var(--button-color);
 
 }
 /* .b-ground{

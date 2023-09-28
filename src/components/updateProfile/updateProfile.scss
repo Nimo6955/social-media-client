@@ -3,10 +3,13 @@
     padding: 0;
 }
 .UpdateProfile{
+    margin-top: 60px;
     padding-top: 20px;
 
     .container{
         display: flex;
+        max-width: 960px;
+        margin-inline: auto;
 
         .UserImg{
             height: 80px;
@@ -45,18 +48,22 @@
         flex: 3;
 
         input{
-            width: 100%;
+            width: 70%;
             display: block;
             padding: 8px 16px;
             margin-top: 16px;
-            border-radius: 5px;
-            border: none;
+            // border-radius: 5px;
+            border-top: none;
+            border-left: none;
+            border-right: none;
+            // border: none;
             outline: none;
-            box-shadow: 2px 2px 7px ;
+            // box-shadow: 2px 2px 7px ;
         }
         .btn-primary{
-            padding: 5px 10px;
+            padding: 10px 20px;
             width: fit-content;
+            border-radius: 30px;
         }
     }
     .Delete-Account{

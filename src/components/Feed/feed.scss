@@ -2,21 +2,100 @@
     margin: 0;
     padding: 0;
 }
-.Feed{
+.logOut-button{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+}
+.big-Feed{
+    overflow-y: hidden;
+    height: 100vh;
+    display: flex;
+    background-color: black;
     margin-top: 60px;
+}
+.sideNavbar{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding-top: 60px;
+    align-items: center;
+    width: 15%;
+    margin-top: 50px;
+
+    .more-icon{
+        color: #ffffff;
+        margin-bottom: 40%;
+        display: flex;
+        align-items: center;
+    }
+
+    .side-bar-routes{
+        display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+ 
+   .btn-primary2{
+    border: none;
+    outline: none;
+    background-color: var(--button-color);
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    // flex-direction: co;
+    // box-shadow: 1px 2px 7px gray;
+    border-radius: 30px;
+    padding: 10px 47px 10px 10px;
+    margin-bottom: 10px;
+
+   }
+   
+   .btn-primary3{
+    border: none;
+    outline: none;
+    background-color: #ee7837;
+    color: black;
+    display: flex;
+    align-items: center;
+    // box-shadow: 1px 2px 7px gray;
+    border-radius: 30px;
+    padding: 10px 47px 10px 10px;
+    margin-bottom: 10px;
+   }
+   
+   
+   .btn-primary2:hover{
+    background-color: #ee7837;
+    color: black;
+   }
+}
+    
+ }
+.Feed{
+    display:flex;
+    
+    
     .container{
         display: flex;
         gap: 20px;
+        max-width: 960px;
+        margin-inline: auto;
+        flex: 2;
+        // background-color: green;
     }
     .left-part{
+        overflow-y: scroll;
         flex: 2;
-        // overflow-y: auto;
-        // height: 960px;
+        // width: 900px;
+        // background-color: blue;
    
     }
     .right-part{
         flex: 1;
         margin-top: 20px;
+        // background-colo  r: yellow;
         
     }
 
@@ -27,5 +106,19 @@
 
     .title{
         margin-bottom: 12px;
+        color: #fff;
     }
+}::-webkit-scrollbar-track{
+    background-color: black;
+    width: 20px ;    
+}
+::-webkit-scrollbar{
+    width: 30px;    
+    border: 2px;  
+}
+::-webkit-scrollbar-thumb{
+    background-color: #263238;
+    border: 10px solid black;
+     border-radius: 20px;
+    
 }

@@ -1,8 +1,21 @@
+*{
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+}
 .Signup {
     height: 100vh;
     display: flex;
     justify-content: center;
     align-items: center;
+    background-color: #ee7837;
+    gap: 40px;
+
+    img{
+        height: 500px;
+    }
     
     .sign-up-box{
         display: flex;
@@ -11,6 +24,25 @@
         width: 400px;
         box-shadow: 0 2px 10px;
         border-radius: 10px;
+        background-color: #ffffff;
+        z-index: 3;
+
+
+
+        .user{
+            width: 50px;
+            height: 50px;
+            padding: 20px;
+        }
+        .heading{
+            margin-bottom: 10px;
+        }
+        .heading-p{
+            text-align: center;
+            color: #455a64;
+            margin-bottom: 20px;
+        }
+
 
         .sign-up-form {
             display: flex;
@@ -19,29 +51,135 @@
             .email{
                 width: 270px;
                 padding-block: 7px;
-                border: 1px solid grey;
-                border-radius: 5px;
+                border-top: none;
+                border-left: none;
+                border-right: none;
                 padding-left: 10px;
+                margin-bottom: 30px;
                 outline: none;
                 
             }
             .password{
                 width: 270px;
                 padding-block: 7px;
-                border: 1px solid grey;
-                border-radius: 5px;
+                border-top: none;
+                border-left: none;
+                border-right: none;
                 padding-left: 10px;
                 outline: none;
+                margin-bottom: 30px;
+
             }
             .name{
                 width: 270px;
                 padding-block: 7px;
-                border: 1px solid grey;
-                border-radius: 5px;
+                border-top: none;
+                border-left: none;
+                border-right: none;
                 padding-left: 10px;
                 outline: none;
+                margin-bottom: 30px;
+
+
+            }
+            .submit{
+                margin: 10px auto;
+                margin-bottom: 20px;
+                // font-size: 1.2em;
+                font-weight: 600;
+            }
+            .submit:hover{
+                background-color: #455a64;
+                color: #ffffff;
+            }
+        }
+        .signinLink{
+            margin-bottom: 10px;
+            padding-bottom: 20px;
+            
+            .linkToLogIN{
+                text-decoration: none;
 
             }
         }
+    }
+}
+
+.custom-shape-divider-top-1694858914 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    overflow: hidden;
+    line-height: 0;
+    transform: rotate(180deg);
+}
+
+.custom-shape-divider-top-1694858914 svg {
+    position: relative;
+    display: block;
+    width: calc(100% + 1.3px);
+    height: 120px;
+}
+
+.custom-shape-divider-top-1694858914 .shape-fill {
+    fill: #263238;
+}
+
+@media (max-width: 900px) {
+    .custom-shape-divider-top-1694858914 svg{
+        // display: none;
+        width: 150%;
+    }
+
+    .Signup{
+        flex-direction: column;
+    }
+
+}
+@media (max-width: 767px) {
+    .custom-shape-divider-top-1694858914{
+        display: none;
+    }
+    .Signup{
+                flex-direction: column;
+                justify-content: flex-end;
+        
+                .sign-up-box{
+                    border-top-left-radius: 50%  20%;
+                    border-top-right-radius: 50% 20%;
+                    border-bottom-left-radius: 0;
+                    border-bottom-right-radius: 0;
+                    z-index: 4;
+                    width: 100%;
+                    // bottom: 0;  
+                    
+                    
+                }
+                
+                .b-ground{
+        
+                    img{
+                        height: 350px;
+                        // padding-top: 40%;
+                    }
+                }
+            }
+}
+@media (max-width: 400px){
+    .Signup{
+
+        .b-ground{
+
+        img{
+             height: 200px;
+            //  padding-top: 20%;
+            
+                                    
+        }
+        .sign-up-box{
+            height: 40%;
+        }
+    }
     }
 }

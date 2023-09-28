@@ -16,10 +16,10 @@ function Home() {
   return (
     <>
    <Navbar/>
-   <div style={{marginTop: '60px'}} className='outlet'>
+   {/* <div style={{marginTop: '60px'}} className='outlet'> */}
    <Outlet/>
 
-   </div>
+   {/* </div> */}
     </>
   )
 }
