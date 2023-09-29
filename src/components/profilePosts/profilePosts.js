@@ -1,17 +1,17 @@
-import React from 'react'
+import React ,{ useState }  from 'react'
 import './profilePosts.scss'
 import  Avatar  from '../../components/Avatar/avatar'
 import Heart_like from '../../assets/heart-like.png'
 import {AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
 import { useDispatch } from 'react-redux'
-import { deletePost, likeAndUnlikePost } from '../../redux/slices/postsSlice'
+import { deletePost, likeAndUnlikePost, updatePost } from '../../redux/slices/postsSlice'
 import {useNavigate} from 'react-router-dom'
 import {showToast} from '../../redux/slices/appConfigSlice'
 import { TOAST_SUCCESS } from '../../App'
 import {ImBin2} from 'react-icons/im'
 import {BsThreeDotsVertical} from 'react-icons/bs'
 import {FiEdit} from 'react-icons/fi'
-import { Button, Popover } from 'antd';
+import { Button, Popover, Modal  } from 'antd';
 
 
 
@@ -19,13 +19,36 @@ import { Button, Popover } from 'antd';
 
 function ProfilePosts({post}) {
 
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
     const content = (
         <div>
-        <p className='hover-link edit-delete'><FiEdit/> <p> Edit</p></p>
+        <p onClick={showModal} className='hover-link edit-delete'><FiEdit/> <p> Edit</p></p>
         <hr style={{marginBlock:'8px'}} />
         <p className='hover-link edit-delete' onClick={deleteMyPost}><ImBin2/> <p> Delete</p></p>
         </div>
         );
+
+
+        const [isModalOpen, setIsModalOpen] = useState(false);
+
+     
+      
+        const handleOk = async () => {
+          setIsModalOpen(false);
+          dispatch(updatePost({
+            caption: caption,
+            postImg: postImg,
+            postId: post._id
+          }))
+        };
+      
+        const handleCancel = () => {
+          setIsModalOpen(false);
+        };
 
   const dispatch = useDispatch()
   async function handlePostLikes(){
@@ -46,16 +69,33 @@ function ProfilePosts({post}) {
   }
 
   const navigate = useNavigate()
+
+  const [postImg, setPostImg] = useState('');
+  const [caption, setCaption] = useState('')
   
+  const handleImageChange = (e) => {
+    const file = e.target.files[0]
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = ()=>{
+         if(fileReader.readyState === fileReader.DONE){
+            setPostImg(fileReader.result)
+            const newimg = document.getElementById('updateAfterImg')
+            newimg.style.display = 'block'
+            const oldimg = document.getElementById('updateBeforeImg')
+            oldimg.style.display = 'none'
+         }
+    }
+}
 
   
   return (
+    <>
     <div className='Post'>
      
        
         <div className="heading" onClick={() => navigate(`/profile/${post.owner._id}`)}>
            <div className='userImg'>
-             {/* <Avatar  src={post?.owner?.avatar?.url}/> */}
              <img src={post?.owner?.avatar?.url} alt="" />
 
             <h4 className='userName'>{post?.owner?.name}</h4>
@@ -67,7 +107,6 @@ function ProfilePosts({post}) {
 
 </div>
              
-          {/* <ImBin2/> */}
         </div>
         <div className="content" >
             <img src={post?.image?.url} alt="content image" />
@@ -82,6 +121,15 @@ function ProfilePosts({post}) {
         </div>
 
     </div>
+    <Modal id='modal' style={{zIndex: '10'}} title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+      <label className='labelImg' htmlFor="updateInputImg" style={{height: '300px'}}>
+                       <img id='updateBeforeImg' style={{height: '200px  ', aspectRatio: '16/9'}} src={post?.image?.url} alt="" />
+                       <img id='updateAfterImg' style={{height: '200px  ', aspectRatio: '16/9', display:'none'}} src={postImg} alt="" />
+                        </label>
+      <input className='inputImg' id='updateInputImg' style={{display:'none'}} type="file" accept='image/*' onChange={handleImageChange} />
+      <input type="text" value={caption} onChange={(e) => setCaption(e.target.value)} />
+      </Modal>
+    </>
   )
 }
 

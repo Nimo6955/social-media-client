@@ -34,7 +34,7 @@ function Post({post}) {
     <div className='Post'>
      
        
-        <div className="heading" onClick={() => navigate(`/profile/${post.owner._id}`)}>
+        <div className="heading2" onClick={() => navigate(`/profile/${post.owner._id}`)}>
            <div className='userImg'>
              {/* <Avatar  src={post?.owner?.avatar?.url}/> */}
              <img src={post?.owner?.avatar?.url} alt="" />

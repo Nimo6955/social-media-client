@@ -44,6 +44,21 @@ export const deletePost = createAsyncThunk("post/deletePost", async(body, thankA
         thankAPI.dispatch(setLoading(false));
     }
 })
+export const updatePost = createAsyncThunk("post/updatePost", async(body, thankAPI) => {
+    try {
+        thankAPI.dispatch(setLoading(true));
+        const response = await axiosClient.put('/posts/', body)
+        console.log(response);
+        return response.result.post
+
+        
+    } catch (e) {
+        console.log(e);
+        return Promise.reject(e)
+    }finally{
+        thankAPI.dispatch(setLoading(false));
+    }
+})
 
 const postsSlice = createSlice({
     name: 'postsSlice',
@@ -67,6 +82,13 @@ const postsSlice = createSlice({
             if(index !== -1){
                 state?.userProfile?.posts?.splice(index, 1)
 
+            }
+        })
+        .addCase(updatePost.fulfilled , (state, action) =>{
+            const post = action.payload;
+            const index = state?.userProfile?.posts?.findIndex(item => item._id === post._id)
+            if(index !== undefined && index !== -1){
+                state.userProfile.posts[index] = post
             }
         })
        
