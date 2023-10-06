@@ -3,7 +3,7 @@ import './profilePosts.scss'
 import  Avatar  from '../../components/Avatar/avatar'
 import Heart_like from '../../assets/heart-like.png'
 import {AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
-import { useDispatch } from 'react-redux'
+import { useDispatch, useSelector } from 'react-redux'
 import { deletePost, likeAndUnlikePost, updatePost } from '../../redux/slices/postsSlice'
 import {useNavigate} from 'react-router-dom'
 import {showToast} from '../../redux/slices/appConfigSlice'
@@ -17,7 +17,10 @@ import { Button, Popover, Modal  } from 'antd';
 
 
 
+
 function ProfilePosts({post}) {
+
+  const { mode } = useSelector((state) => state.darkMode)
 
 
   const showModal = () => {
@@ -91,33 +94,33 @@ function ProfilePosts({post}) {
   
   return (
     <>
-    <div className='Post'>
+    <div className='PostProfile' style={{backgroundColor: mode? '' : 'whitesmoke', border: mode ? '' : '1px solid #2d3436'}}>
      
        
-        <div className="heading" onClick={() => navigate(`/profile/${post.owner._id}`)}>
+        <div style={{backgroundColor: mode ? '' : 'white'}} className="headingProfilePost" onClick={() => navigate(`/profile/${post.owner._id}`)}>
            <div className='userImg'>
              <img src={post?.owner?.avatar?.url} alt="" />
 
-            <h4 className='userName'>{post?.owner?.name}</h4>
+            <h4 style={{color: mode ? '' : 'black'}} className='userName'>{post?.owner?.name}</h4>
            </div>
            <div style={{ whiteSpace: 'nowrap' }}>
 <Popover  className='more-icon' placement="top" content={content} trigger="click">
-<Button style={{border: 'none', outline:'none', backgroundColor:'#263238'}}>< BsThreeDotsVertical style={{color: 'white'}}/></Button>
+<Button style={{border: 'none', outline:'none', backgroundColor: mode? '#263238' : 'white'}}>< BsThreeDotsVertical style={{color: mode?  'white' : 'black'}}/></Button>
 </Popover>
 
 </div>
              
         </div>
-        <div className="content" >
+        <div className="contentProfilePost" >
             <img src={post?.image?.url} alt="content image" />
         </div>
-        <div className="footer">
+        <div style={{backgroundColor: mode ? '' : 'white'}} className="footerProfilePost">
             <div className="likes hover-link" onClick={handlePostLikes}>
               {post?.isLiked ? <AiFillHeart  style={{color: 'red'}} className='Icon hover-link'/> : <AiOutlineHeart className='Icon hover-link'/>}
-            <h4 className='likes-text'>{`${post?.likesCount} likes`}</h4>
+            <h4 style={{color: mode ? '' : 'black'}} className='likes-text'>{`${post?.likesCount} likes`}</h4>
         </div>
-        <p className='caption'> <span className='userName-caption'> {post?.owner?.name}</span>  {post?.caption}</p>
-        <h5 className='caption-time'>{post?.timeAgo}</h5>
+        <p style={{color: mode ? '' : 'black'}} className='caption'> <span style={{color: mode ? '' : 'black'}} className='userName-caption'> {post?.owner?.name}</span>  {post?.caption}</p>
+        <h5 style={{color: mode ? '' : '#cccccc'}} className='caption-time'>{post?.timeAgo}</h5>
         </div>
 
     </div>

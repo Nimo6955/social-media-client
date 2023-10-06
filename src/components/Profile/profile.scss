@@ -2,19 +2,24 @@
     margin: 0;
     padding: 0;
 }
+.followInfoBox::-webkit-scrollbar {
+        display: none;
+     }
 .Profile{
 margin-top: 60px;
+height: calc(100vh - 60px);
 background-color: black;
 display: flex;
 
+
 .sideNavbar{
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    padding-top: 60px;
-    align-items: center;
-    width: 15%;
-    margin-top: 50px;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    // padding-top: 60px;
+    // align-items: center;
+    // width: 15%;
+    // margin-top: 50px;
 
 
      .side-bar-routes{
@@ -22,6 +27,28 @@ display: flex;
         flex-direction: column;
         align-items: center;
      
+        #active-btn-primary3{
+            background-color: white;
+            color: black;
+            font-size: 1.2em;
+            
+        }
+        #active-btn-primary2    {
+            background-color: #efefef;
+            font-size: 1.2em;
+            color: black;
+        }
+        #active-btn-primary2:hover {
+            background-color: #efefef;
+            font-size: 1.2em;
+            color: black;
+        }
+        #active-btn-primary3:hover {
+            background-color: #efefef;
+            font-size: 1.2em;
+            color: black;
+        }
+        
      
     .btn-primary1{
      border: none;
@@ -32,7 +59,7 @@ display: flex;
      align-items: center;
      // box-shadow: 1px 2px 7px gray;
      border-radius: 30px;
-     padding: 10px 40px 10px 10px;
+     padding: 10px 28px 10px 10px;
     }
     .btn-primary2{
      border: none;
@@ -81,9 +108,13 @@ display: flex;
         // margin-inline: auto;
 
         .left-part{
+            overflow-y: scroll;
             flex: 2;
             width: 50%;
         }
+        .left-part::-webkit-scrollbar {
+            display: none;
+         }
         .right-part{
             flex: 1;
             margin-top: 20px;
@@ -93,9 +124,16 @@ display: flex;
                 border-radius: 4px;
                 .user-img-name{
                     display: flex;
+                    align-items: center;
 
-                    .user-name{
-                        margin-block: auto;
+                    .user-name-And-bio{
+                    
+                        .user-name{
+                            margin-block: auto;
+                        }
+                        .user-Bio{
+                            margin-left: 10px;
+                        }
                     }
                 }
 
@@ -119,12 +157,61 @@ display: flex;
                     .followers{
                         display: flex;
                         flex-direction: column;
-                        text-align: center;
+                        text-align: center;  
+                        
+                        .animation{
+                            height: 3px;
+                            border-radius: 2px;
+                        }
+                    }
+                    .followers:hover{
+                        .animation{
+                            background-color: black;
+                            animation-name: line;
+                            animation-duration: 0.5s;
+                        }
+                        
+                        @keyframes line {
+                            0%{
+                        width: 0%;
+                            }
+                            50%{
+                        width: 50%;
+                            }
+                            100%{
+                                width: 100%;
+                            }
+                        }
                     }
                     .following{
                         display: flex;
                         flex-direction: column;
-                        text-align: center;
+                        text-align: center; 
+                        
+
+                        .animation{
+                            height: 3px;
+                            border-radius: 2px;
+                        }                       
+                    }
+                    .following:hover{
+                        .animation{
+                            background-color: black;
+                            animation-name: line;
+                            animation-duration: 0.5s;
+                        }
+                        
+                        @keyframes line {
+                            0%{
+                        width: 0%;
+                            }
+                            50%{
+                        width: 50%;
+                            }
+                            100%{
+                                width: 100%;
+                            }
+                        }
                     }
                 }
 

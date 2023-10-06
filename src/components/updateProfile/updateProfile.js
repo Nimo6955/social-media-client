@@ -18,6 +18,9 @@ function UpdateProfile() {
     const dispatch = useDispatch()
     const navigate = useNavigate()
 
+  const { mode } = useSelector((state) => state.darkMode)
+
+
     useEffect(() =>{
         setName(myProfile?.name || '')
         setBio(myProfile?.bio || '')
@@ -64,7 +67,7 @@ function UpdateProfile() {
         }
     }
     return (
-        <div className='UpdateProfile'>
+        <div className='UpdateProfile' style={{backgroundColor: mode ? '' : 'white'}}>
             <div className="container">
                 <div className="left-part">
                     <div className="input-user-img">
@@ -76,8 +79,8 @@ function UpdateProfile() {
                 </div>
                 <div className="right-part">
                     <form onSubmit={handleSubmit}>
-                        <input className='name-input' value={name} type="text" placeholder='Your Name' onChange={(e) => setName(e.target.value)} />
-                        <input className='bio-input' value={bio} type="text" placeholder='Your Bio' onChange={(e) => setBio(e.target.value)}/>
+                        <input style={{backgroundColor: mode? 'black' : '', color: mode ? 'white' : ''}} className='name-input' value={name} type="text" placeholder='Your Name' onChange={(e) => setName(e.target.value)} />
+                        <input style={{backgroundColor: mode? 'black' : '', color: mode ? 'white' : ''}} className='bio-input' value={bio} type="text" placeholder='Your Bio' onChange={(e) => setBio(e.target.value)}/>
                         <input type="submit" className='btn-primary hover-link' onSubmit={handleSubmit}/>
                     </form>
                     <button onClick={DeleteAccount} className='Delete-Account btn-secondary hover-link'>Delete Account</button>

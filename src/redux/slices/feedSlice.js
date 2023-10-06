@@ -30,6 +30,19 @@ export const folloAndUnfollowUser = createAsyncThunk('user/followAndUnfollow', a
         thankAPI.dispatch(setLoading(false));
     }
 })
+export const bookmarkPost = createAsyncThunk("post/bookmarkPost", async(body, thankAPI) => {
+    try {
+        thankAPI.dispatch(setLoading(true));
+        const response = await axiosClient.post('posts/bookmarkPost', body)
+        console.log(response);
+            return response.result.post
+            
+        } catch (e) {
+            return Promise.reject(e)
+        }finally{
+            thankAPI.dispatch(setLoading(false));
+    }
+})
 
 
 const feedSlice = createSlice({
@@ -60,7 +73,17 @@ const feedSlice = createSlice({
                 state?.feedData?.followings?.push(user)
 
             }
-       })
+       }).addCase(bookmarkPost.fulfilled, (state, action)=> {
+        const post = action.payload;
+        const index = state?.feedData?.bookmarks?.findIndex((item) => item._id === post?._id)
+        if(index !== -1){
+            state?.feedData?.bookmarks?.splice(index, 1)
+
+        }else{
+            state?.feedData?.bookmarks?.push(post)
+
+        }
+    })
     }
 
 })

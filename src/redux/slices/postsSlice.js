@@ -20,6 +20,7 @@ export const likeAndUnlikePost = createAsyncThunk("post/likeAndUnlike", async(bo
     try {
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.post('posts/like', body)
+        
             return response.result.post
             
         } catch (e) {

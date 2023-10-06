@@ -22,8 +22,9 @@
     .btn-primary1{
         border: none;
     outline: none;
-    background-color: #fbf768;
-    color: black;
+    // background-color: #fbf768;
+
+    color: blueviolet   ;
     // box-shadow: 1px 2px 7px gray;
     border-radius: 30px;
     padding: 10px 20px;
@@ -31,7 +32,7 @@
     cursor: pointer;
     }
     .btn-primary1:hover{
-        background-color: #fbf768;
+        background-color: #ee7837;
         color: black;
     }
 }

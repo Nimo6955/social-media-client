@@ -8,13 +8,14 @@ import { useDispatch, useSelector } from 'react-redux'
 
 
 function Navbar() {
-
+  
+  const { mode } = useSelector((state) => state.darkMode)
   const navigate = useNavigate()
   const myProfile = useSelector(state => state.appConfigReduser.myProfile)
 
 
   return (
-    <div className='Navbar'>
+    <div className='Navbar' style={{backgroundColor: mode ? 'black' : 'white'}}>
         <div className='container1'>
            <Link style={{textDecoration:'none', color:'black'}} to='/'> <h2 className="banner">Social Media</h2></Link>
 

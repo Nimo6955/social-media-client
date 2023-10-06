@@ -1,22 +1,34 @@
 import React, { useEffect, useState } from 'react'
 import './profile.scss'
-import Post from '../Post/post'
 import ProfilePosts from '../profilePosts/profilePosts'
-// import UserImg from '../../assets/dog.jpg'
 import { useNavigate, useParams } from 'react-router-dom'
 import CreatePost from '../createPost/createPost'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile } from '../../redux/slices/postsSlice'
-// import post from '../Post/post'
 import { folloAndUnfollowUser } from '../../redux/slices/feedSlice'
-import { BsFillHouseFill } from 'react-icons/bs'
-import {BiUserCircle} from 'react-icons/bi'
-import {MdOutlineLogout} from 'react-icons/md'
-import {IoReorderThree} from 'react-icons/io5'
+import { Modal } from 'antd';
+import Follower from '../follower/follower'
+import SideNavbar from '../sideNavbar/sideNavbar'
 
 
 
 function Profile() {
+  const { mode } = useSelector((state) => state.darkMode)
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const showModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleOk = () => {
+    setIsModalOpen(false);
+  };
+
+  const handleCancel = () => {
+    setIsModalOpen(false);
+  };
+
 
 const navigate = useNavigate()
 const params = useParams();
@@ -49,16 +61,8 @@ function handleUserFollow(){
 
 
   return (
-    <div className='Profile'>
-      <div className="sideNavbar">
-      <div className='side-bar-routes'>
-
-        <button className="home hover-link  btn-primary3" onClick={() =>navigate('/')}> <BsFillHouseFill/> home</button>
-
-        <button className="profile hover-link  btn-primary2"> <BiUserCircle/> profile</button>
-      </div>
-
-      </div>
+    <div className='Profile' style={{backgroundColor: mode ? '' : 'white'}}>
+      <SideNavbar/>
       <div className="container">
         <div className="left-part">
           {isMyProfile && <CreatePost/>}
@@ -68,19 +72,22 @@ function handleUserFollow(){
           <div className="profile-card">
             <div className='user-img-name'>
             <img src={userProfile?.avatar?.url} alt="" className="user-img" />
-            <h3 className="user-name">{userProfile?.name}</h3>
+            <div className='user-name-And-bio'>
+            <h3 className="user-name" style={{color: mode ? 'white' : 'black'}}>{userProfile?.name}</h3>
+              <h5 className='user-Bio'>{userProfile?.bio}</h5>
+            </div>
 
             </div>
             <div className="follower-info">
-              <div className="followers">
-                <h4>{userProfile?.followers?.length}</h4>
-              <h4>follower</h4>
-              
+              <div className="followers hover-link" onClick={showModal}>
+                <h3 style={{color: mode ? 'white' : 'black'}}>{userProfile?.followers?.length}</h3>
+              <h5 style={{color: mode ? 'white' : 'black'}}>follower</h5>
+              <div className='animation'></div>
               </div>
-              <div className="following">
-                <h4>{userProfile?.followings?.length}</h4>
-              <h4>following</h4>
-              
+              <div className="following hover-link" onClick={showModal}>
+                <h3 style={{color: mode ? 'white' : 'black'}} >{userProfile?.followings?.length}</h3>
+              <h5 style={{color: mode ? 'white' : 'black'}}>following</h5>
+              <div className='animation' ></div>
               </div>
 
             </div>
@@ -95,6 +102,18 @@ function handleUserFollow(){
           </div>
         </div>
       </div>
+      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <div style={{display: 'flex', justifyContent: 'space-evenly', textAlign: 'center', height: '300px', overflowY: 'scroll'}} className="followInfoBox">
+          <div>
+          <h2 style={{marginBottom: '10px'}}>followers</h2>
+          {feedData?.followers?.map(user => <Follower key={user._id} user={user}/>)}
+          </div>
+          <div>
+          <h2 style={{marginBottom: '10px' }}>followings</h2>
+          {feedData?.followings?.map(user => <Follower key={user._id} user={user}/>)}
+          </div>
+        </div>
+      </Modal>
     </div>
   )
 }

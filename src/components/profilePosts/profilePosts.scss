@@ -6,13 +6,13 @@
     gap: 5px;
 }
 
-.Post{
+.PostProfile{
     border: 2px solid var(--border-color);
     margin-top: 20px;
     border-radius: 10px;
     background-color: #b2bec3;
     
-    .heading{
+    .headingProfilePost{
         display: flex;
         align-items: center;
         gap: 20px;
@@ -36,20 +36,20 @@
                 height: 100%;
             }
         }
-
-
+        
+        
         .userName{
             color: #ecf0f1;
         }
     }
-    .content{
+    .contentProfilePost{
         height: 400px;
         img{
             height: 100%;
             width: 100%;
         }
     }
-    .footer{
+    .footerProfilePost{
         padding: 20px;
         background-color: #263238;
         border-bottom-right-radius: 10px;
