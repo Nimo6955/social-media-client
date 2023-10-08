@@ -69,22 +69,22 @@ function handleUserFollow(){
         {userProfile?.posts?.map(post => <ProfilePosts  key={post?._id} post={post}/>)}
         </div>
         <div className="right-part">
-          <div className="profile-card">
+          <div className="profile-card" style={{border: mode ? '' : '1px solid black'}}>
             <div className='user-img-name'>
             <img src={userProfile?.avatar?.url} alt="" className="user-img" />
             <div className='user-name-And-bio'>
             <h3 className="user-name" style={{color: mode ? 'white' : 'black'}}>{userProfile?.name}</h3>
-              <h5 className='user-Bio'>{userProfile?.bio}</h5>
+              <h6 className='user-Bio'style={{color: mode ? 'white' : 'black', marginTop: '5px'}}>{userProfile?.bio}</h6>
             </div>
 
             </div>
             <div className="follower-info">
-              <div className="followers hover-link" onClick={showModal}>
+              <div  id={`${mode ? 'followers' : ''}`}  className="followers hover-link" onClick={showModal}>
                 <h3 style={{color: mode ? 'white' : 'black'}}>{userProfile?.followers?.length}</h3>
               <h5 style={{color: mode ? 'white' : 'black'}}>follower</h5>
               <div className='animation'></div>
               </div>
-              <div className="following hover-link" onClick={showModal}>
+              <div  id={`${mode ? 'following' : ''}`}  className="following hover-link" onClick={showModal}>
                 <h3 style={{color: mode ? 'white' : 'black'}} >{userProfile?.followings?.length}</h3>
               <h5 style={{color: mode ? 'white' : 'black'}}>following</h5>
               <div className='animation' ></div>

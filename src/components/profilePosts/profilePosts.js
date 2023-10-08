@@ -23,8 +23,10 @@ function ProfilePosts({post}) {
   const { mode } = useSelector((state) => state.darkMode)
 
 
+  const [seed, setSeed] = useState(null)
   const showModal = () => {
     setIsModalOpen(true);
+    setSeed(Math.random())
   };
 
     const content = (
@@ -37,6 +39,7 @@ function ProfilePosts({post}) {
 
 
         const [isModalOpen, setIsModalOpen] = useState(false);
+
 
      
       
@@ -58,7 +61,7 @@ function ProfilePosts({post}) {
 
     dispatch(showToast({
       type: TOAST_SUCCESS,
-      message: `${post.isLiked ? 'unliked' : 'liked'}`
+      message: `${post.isLiked ? 'Unliked' : 'Liked'}`
     }))
     dispatch(likeAndUnlikePost({
           postId: post._id    
@@ -98,13 +101,16 @@ function ProfilePosts({post}) {
      
        
         <div style={{backgroundColor: mode ? '' : 'white'}} className="headingProfilePost" onClick={() => navigate(`/profile/${post.owner._id}`)}>
+           <div className='header-details'>
            <div className='userImg'>
              <img src={post?.owner?.avatar?.url} alt="" />
 
+           </div>
             <h4 style={{color: mode ? '' : 'black'}} className='userName'>{post?.owner?.name}</h4>
+
            </div>
            <div style={{ whiteSpace: 'nowrap' }}>
-<Popover  className='more-icon' placement="top" content={content} trigger="click">
+<Popover key={seed}  className='more-icon' placement="top" content={content} trigger="click">
 <Button style={{border: 'none', outline:'none', backgroundColor: mode? '#263238' : 'white'}}>< BsThreeDotsVertical style={{color: mode?  'white' : 'black'}}/></Button>
 </Popover>
 
@@ -124,13 +130,13 @@ function ProfilePosts({post}) {
         </div>
 
     </div>
-    <Modal id='modal' style={{zIndex: '10'}} title="Basic Modal" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+    <Modal id='modal' style={{zIndex: '10'}} title="update your post" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
       <label className='labelImg' htmlFor="updateInputImg" style={{height: '300px'}}>
-                       <img id='updateBeforeImg' style={{height: '200px  ', aspectRatio: '16/9'}} src={post?.image?.url} alt="" />
-                       <img id='updateAfterImg' style={{height: '200px  ', aspectRatio: '16/9', display:'none'}} src={postImg} alt="" />
+                       <img id='updateBeforeImg' style={{aspectRatio: '16/9',width:'100%'}} src={post?.image?.url} alt="" />
+                       <img id='updateAfterImg' style={{aspectRatio: '16/9',width:'100%', display:'none'}} src={postImg} alt="" />
                         </label>
       <input className='inputImg' id='updateInputImg' style={{display:'none'}} type="file" accept='image/*' onChange={handleImageChange} />
-      <input type="text" value={caption} onChange={(e) => setCaption(e.target.value)} />
+      <input id='updateInput' placeholder='update caption ?' type="text" value={caption} onChange={(e) => setCaption(e.target.value)} />
       </Modal>
     </>
   )

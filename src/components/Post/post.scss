@@ -39,13 +39,16 @@
         }
     }
     .footer{
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
         padding: 20px;
         background-color: #263238;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
+
+        .footerBox{
+            display: flex;
+        justify-content: space-between;
+        align-items: center;
+        
 
         .likes{
             display: flex;
@@ -74,5 +77,19 @@
                 margin: 12px;
                 color: #aaa;
              }
-    }
-}
+            }
+            }
+        }
+        #openComments{
+           height: 100px;
+           width: 100%;
+           background-color: white;
+
+           .commentsInput{
+            border-left: none;
+            border-top: none;
+            border-right: none;
+            width: 100%;
+            outline: none;
+           }
+        }

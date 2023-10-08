@@ -16,6 +16,8 @@ function CreatePost() {
     const dispatch = useDispatch()
     const myProfile = useSelector(state => state.appConfigReduser.myProfile)
 
+    const { mode } = useSelector((state) => state.darkMode)
+
 
     const handleImageChange = (e) => {
         const file = e.target.files[0]
@@ -49,7 +51,7 @@ function CreatePost() {
         }
     }
   return (
-    <div className='CreatePost'>
+    <div className='CreatePost' style={{border: mode ? '' : '1px solid black'}}>
         <div className="left-partt">
             <Avatar src={myProfile?.avatar?.url}/>
         </div>

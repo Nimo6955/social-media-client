@@ -5,7 +5,23 @@
     flex-direction: row;
     gap: 5px;
 }
-
+#updateBeforeImg{
+    border: 2px dashed black;
+    border-radius: 10px;
+    cursor: pointer;
+    padding: 2px;
+}
+#updateAfterImg{
+border-radius: 10px;
+}
+#updateInput{
+    width: 100%;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    margin-top: 20px;
+    outline: none;
+}
 .PostProfile{
     border: 2px solid var(--border-color);
     margin-top: 20px;
@@ -24,23 +40,25 @@
         cursor: pointer;
         background-color: #263238;
 
-        .userImg{
-            width: 60px;
-            height: 60px;
-            display: flex;
-            align-items: center;
-            gap: 20px;
-            img{
-                border-radius: 50%;
-                width: 100%;
-                height: 100%;
-            }
-        }
-        
-        
-        .userName{
-            color: #ecf0f1;
-        }
+       .header-details{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+           .userImg{
+               width: 60px;
+               height: 60px;
+               img{
+                   border-radius: 50%;
+                   width: 100%;
+                   height: 100%;
+               }
+           }
+           
+           
+           .userName{
+               color: #ecf0f1;
+           }
+       } 
     }
     .contentProfilePost{
         height: 400px;

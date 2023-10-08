@@ -57,12 +57,12 @@ function SideNavbar() {
     setIsModalOpen(false);
   
 };
-const myProfile = useSelector(state => state.appConfigReduser.myProfile)
 
-  const handleCancel = () => {
+const handleCancel = () => {
     setIsModalOpen(false);
-  
+    
   }
+  const myProfile = useSelector(state => state.appConfigReduser.myProfile)
   return (
     <div className="sideNavbar">
         <div className='side-bar-routes'>
