@@ -4,12 +4,12 @@ import  Avatar  from '../../components/Avatar/avatar'
 import Heart_like from '../../assets/heart-like.png'
 import {AiFillHeart, AiOutlineHeart} from 'react-icons/ai'
 import { useDispatch, useSelector } from 'react-redux'
-import { commentOnPost, likeAndUnlikePost } from '../../redux/slices/postsSlice'
+import { likeAndUnlikePost } from '../../redux/slices/postsSlice'
 import {useNavigate} from 'react-router-dom'
 import {showToast} from '../../redux/slices/appConfigSlice'
 import { TOAST_SUCCESS } from '../../App'
 import {PiBookmarkSimpleFill, PiBookmarkSimple} from 'react-icons/pi'
-import { bookmarkPost } from '../../redux/slices/feedSlice'
+import { bookmarkPost, commentOnPost } from '../../redux/slices/feedSlice'
 import { Modal } from 'antd';
 import {FaRegComment} from 'react-icons/fa'
 import Comments from '../comments/comments'
@@ -19,22 +19,12 @@ import Comments from '../comments/comments'
 
 
 function Post({post}) {
-  const [isModalOpen, setIsModalOpen] = useState(false);
   const [OpenComment, setOpenComment] = useState(false);
   const [comment, setComment] = useState('');
 
-  const showModal = () => {
-    setIsModalOpen(true);
-  };
 
-  const handleOk = () => {
-    setIsModalOpen(false);
-    
-  
-};
 
 const handleCancel = () => {
-    setIsModalOpen(false);
     setOpenComment(false);
     
   }
@@ -47,9 +37,10 @@ const handleCancel = () => {
     dispatch(commentOnPost({
       postId: post._id,
       comment: comment,
-      image:  post.owner.avatar.url,
-      name: post.owner.name
-    }))
+      commentsImage:  feedData?.avatar?.url,
+      commentsName: feedData.name,
+    }));
+    setComment('')
   };
 
   
@@ -101,35 +92,37 @@ const handleCancel = () => {
             <img src={post?.image?.url} alt="content image" />
         </div>
         <div style={{backgroundColor: mode ? '' : 'white'}} className="footer">
-          <div className="footerBox">
           <div>
+            <div className='likes-comments'>
+
             <div className="likes hover-link" onClick={handlePostLikes}>
               {post?.isLiked ? <AiFillHeart  style={{color: 'red'}} className='Icon hover-link'/> : <AiOutlineHeart className='Icon hover-link'/>}
-            <h4 style={{color: mode ? '' : 'black'}} className='likes-text'>{`${post?.likesCount} likes`}</h4>
+            <h5 style={{color: mode ? '' : 'black'}} className='likes-text'>{`${post?.likesCount}`}</h5>
         </div>
-              <FaRegComment style={{fontSize: '1.7rem'}} onClick={CommentModal}/>
+        <div className='comments'>
+              <FaRegComment style={{fontSize: '1.5rem', marginLeft:'10px'}} onClick={CommentModal}/>
+              <h5>{post?.comments?.length}</h5>
+        </div>
+        </div>
         <p style={{color: mode ? '' : 'black'}}  className='caption'> <span style={{color: mode ? '' : 'black'}}  className='userName-caption'> {post?.owner?.name}</span>  {post?.caption}</p>
         <h5 style={{color: mode ? '' : '#cccccc'}}  className='caption-time'>{post?.timeAgo}</h5>
-        <h5 onClick={showModal}>comments</h5>
           </div>
           <div  onClick={bookmarkMyPost} >
             
         {index ? <PiBookmarkSimpleFill className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: 'black'}}/> :   <PiBookmarkSimple className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',}} />}
           </div>
 
-          </div>
+
         
         </div>
-        <Modal   open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        {feedData?.posts?.[findPost]?.comments?.map(comments => <Comments key={comments._id} comments={comments}/>)}
-        
-      </Modal>
-        <Modal open={OpenComment} onOk={postComment} onCancel={handleCancel}>
-        <div id='openComments' >
-        <Avatar  src={post?.owner?.avatar?.url}/> 
-          <h4>comment as {post?.owner?.name} </h4>
-        <br />
-        <input placeholder='nice Comment ?' className='commentsInput' type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
+        <Modal okText='Post' okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={OpenComment} onOk={postComment} onCancel={handleCancel} cancelButtonProps={{ style: {borderRadius: '30px'}}}>
+
+          <div className='allComments' style={{height: '300px', overflowY: 'scroll'}}>
+        {feedData?.posts?.[findPost]?.comments?.map(comments => <Comments key={comments._id} postId={post._id} comments={comments}/>)}
+          </div>
+        <div id='openComments'>
+          <h4>comment as {feedData?.name} </h4>
+        <input placeholder='Add a comment...' id='commentsInput' className='commentsInput' type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
         </div>
       </Modal>
     </div>

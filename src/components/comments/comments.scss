@@ -1,0 +1,24 @@
+.edit-delete{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+}
+.AllComments{
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+   
+
+    .comment-details{
+        display: flex;
+        align-items: center;
+    .commentsName{
+        margin-left: 10px;
+        font-weight: 550;
+    }
+    .comment{
+        margin-left: 5px;
+    }
+}
+}

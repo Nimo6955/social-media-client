@@ -30,20 +30,6 @@ export const likeAndUnlikePost = createAsyncThunk("post/likeAndUnlike", async(bo
             thankAPI.dispatch(setLoading(false));
     }
 })
-export const commentOnPost = createAsyncThunk("post/commentOnPost", async(body, thankAPI) => {
-    try {
-        thankAPI.dispatch(setLoading(true));
-        const response = await axiosClient.post('posts/commentOnPost', body)
-        
-            return response.result.post
-            
-        } catch (e) {
-            // console.log(e);
-            return Promise.reject(e)
-        }finally{
-            thankAPI.dispatch(setLoading(false));
-    }
-})
 export const deletePost = createAsyncThunk("post/deletePost", async(body, thankAPI) => {
     try {
         thankAPI.dispatch(setLoading(true));
