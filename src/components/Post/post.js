@@ -21,6 +21,7 @@ import Comments from '../comments/comments'
 function Post({post}) {
   const [OpenComment, setOpenComment] = useState(false);
   const [comment, setComment] = useState('');
+  // const [seed , setSeed] = useState(null)
 
 
 
@@ -41,6 +42,12 @@ const handleCancel = () => {
       commentsName: feedData.name,
     }));
     setComment('')
+    dispatch(showToast({
+      type: TOAST_SUCCESS,
+      message: 'Comment Added'
+    }))
+    setOpenComment(false);
+
   };
 
   
@@ -99,9 +106,9 @@ const handleCancel = () => {
               {post?.isLiked ? <AiFillHeart  style={{color: 'red'}} className='Icon hover-link'/> : <AiOutlineHeart className='Icon hover-link'/>}
             <h5 style={{color: mode ? '' : 'black'}} className='likes-text'>{`${post?.likesCount}`}</h5>
         </div>
-        <div className='comments'>
+        <div className='comments hover-link'>
               <FaRegComment style={{fontSize: '1.5rem', marginLeft:'10px'}} onClick={CommentModal}/>
-              <h5>{post?.comments?.length}</h5>
+              <h5 style={{color: mode ? '' : 'black'}} className="comments-text">{post?.comments?.length}</h5>
         </div>
         </div>
         <p style={{color: mode ? '' : 'black'}}  className='caption'> <span style={{color: mode ? '' : 'black'}}  className='userName-caption'> {post?.owner?.name}</span>  {post?.caption}</p>

@@ -14,12 +14,13 @@ import { axiosClient } from '../../Utils/axiosClient'
 import { KEY_ACCESS_TOKEN, removeItem } from '../../Utils/localStoregeManager'
 import { Modal } from 'antd';
 import './sideNavbar.scss'
+import { getFeedData } from '../../redux/slices/feedSlice'
 
 
 
 function SideNavbar() {
   const feedData = useSelector(state => state.feedDataReducer.feedData)
-
+  const userProfile = useSelector(state => state.postsReducer.userProfile)
 
     const navigate = useNavigate()
 
@@ -51,6 +52,7 @@ function SideNavbar() {
 
   const showModal = () => {
     setIsModalOpen(true);
+    dispatch(getFeedData())
   };
 
   const handleOk = () => {
@@ -78,7 +80,7 @@ const handleCancel = () => {
 </Popover>
 
 </div>
-<Modal style={{height: '90vh', width:'1000px'}}  open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+<Modal okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' }}}  style={{height: '90vh', width:'1000px'}}  cancelButtonProps={{style: {display: 'none'}}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
       <div className='book-post' style={{ overflowY: 'scroll'}} >
 
     {feedData?.bookmarks?.map((post) => <BookmarkPost key={post._id} post={post}/>)}

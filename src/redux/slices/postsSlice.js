@@ -60,6 +60,23 @@ export const updatePost = createAsyncThunk("post/updatePost", async(body, thankA
         thankAPI.dispatch(setLoading(false));
     }
 })
+export const deleteMyPostComment = createAsyncThunk("post/deleteMyComment", async(body, thankAPI) => {
+    try {
+        thankAPI.dispatch(setLoading(true));
+        const response = await axiosClient.delete('posts/deleteComment',{data: body})
+        
+        console.log('Body', body);
+        console.log('comment', response);
+            return response.result.post
+            
+        } catch (e) {
+            // console.log(e);
+            return Promise.reject(e)
+        }finally{
+            thankAPI.dispatch(setLoading(false));
+    }
+})
+
 
 const postsSlice = createSlice({
     name: 'postsSlice',
@@ -92,6 +109,24 @@ const postsSlice = createSlice({
                 state.userProfile.posts[index] = post
             }
         })
+        .addCase(deleteMyPostComment.fulfilled, (state, action)=> {
+            const post = action.payload;
+            // console.log('comments',comments);
+    
+            
+            const comment = action?.meta?.arg;
+            console.log('comment',comment);
+    
+            const currentPost = state?.userProfile?.posts?.findIndex((item) => item._id === post?._id)
+            console.log('currentPost',currentPost);
+    
+            const index = state?.userProfile?.posts?.[currentPost]?.comments?.findIndex(item => item._id === comment.commentsId)
+            console.log('index',index);
+            if(index !== -1){
+                state?.userProfile?.posts?.[currentPost]?.comments?.splice(index, 1)
+            }
+        })
+        
        
     }
 

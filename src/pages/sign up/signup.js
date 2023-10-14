@@ -52,7 +52,7 @@ function Signup() {
                 <p className='heading-p'>We'll create an account if you <div></div> don't have one</p>
                 <form className='sign-up-form' onSubmit={handleSubmit}>
                     {/* <label style={{ fontWeight: '650', marginBottom: '10px' }} htmlFor="email">Name</label> */}
-                    <input type="name" className='name' id='name' placeholder='Name' onChange={(e)=>setName(e.target.value)}/>
+                    <input type="name" required={true} className='name' id='name' placeholder='Name' onChange={(e)=>setName(e.target.value)}/>
                     
                     {/* <label style={{ fontWeight: '650', marginBlock: '10px' }} htmlFor="email">Email</label> */}
                     <input type="email" className='email' id='email' placeholder='Email' onChange={(e)=>setEmail(e.target.value)}/>

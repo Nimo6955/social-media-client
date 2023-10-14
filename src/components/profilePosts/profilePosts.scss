@@ -67,26 +67,42 @@ border-radius: 10px;
             width: 100%;
         }
     }
-    .footerProfilePost{
+    .footerProfilePost{display: flex;
+        justify-content: space-between;
+        align-items: center;
         padding: 20px;
         background-color: #263238;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
-
-        .likes{
+          
+        .likes-comments{
             display: flex;
-            align-items: center;
-            gap: 10px;
-            margin: 0;
-
-            .Icon{
-                font-size: 1.7rem;
+            
+            .likes{
+                display: flex;
+                align-items: center;
+                gap: 3px;
+                margin: 0;
+                
+                .Icon{
+                    font-size: 1.7rem;
+                }
+                .likes-text{
+                    color: white;
+                }
             }
-            .likes-text{
-                color: white;
+            .comments{
+                margin-left: 10px;
+                display: flex;
+                align-items: center;
+                gap: 5px;
+                margin: 0;
+                .comments-text{
+                    color: white;
+                }
             }
         }
-             .caption{
+            .caption{
                 margin: 12px;
                 color: #dfe6e9;
 
@@ -101,4 +117,22 @@ border-radius: 10px;
                 color: #aaa;
              }
     }
-}
+        }
+    
+            #openComments{
+            //    height: 100px;
+               width: 100%;
+               background-color: white;
+    
+               .commentsInput{
+                margin-top: 10px;
+                border-left: none;
+                border-top: none;
+                border-right: none;
+                width: 100%;
+                outline: none;
+               }
+        }
+        .allComments::-webkit-scrollbar{
+            display: none;
+        }

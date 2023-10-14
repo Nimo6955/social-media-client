@@ -56,7 +56,7 @@ function CreatePost() {
             <Avatar src={myProfile?.avatar?.url}/>
         </div>
         <div className="right-part">
-            <input type="text" className="captionInput" placeholder='nice cation here ?' value={caption} onChange={(e) => setCaption(e.target.value)}/>
+            <input type="text" style={{backgroundColor: mode ? 'black' : ''}} className="captionInput" placeholder='nice cation here ?' value={caption} onChange={(e) => setCaption(e.target.value)}/>
            {postImg &&  (<div className="img-container">
                 <img className='post-img' src={postImg} alt="post image" />
                 

@@ -9,6 +9,7 @@ import { folloAndUnfollowUser } from '../../redux/slices/feedSlice'
 import { Modal } from 'antd';
 import Follower from '../follower/follower'
 import SideNavbar from '../sideNavbar/sideNavbar'
+import ProfileFollowerFollowing from '../profileFollowerFollowing/profileFollowerFollowing'
 
 
 
@@ -18,8 +19,10 @@ function Profile() {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const showModal = () => {
-    setIsModalOpen(true);
-  };
+  if(isMyProfile || isfollowing){
+      setIsModalOpen(true);
+    };
+  }
 
   const handleOk = () => {
     setIsModalOpen(false);
@@ -82,12 +85,12 @@ function handleUserFollow(){
               <div  id={`${mode ? 'followers' : ''}`}  className="followers hover-link" onClick={showModal}>
                 <h3 style={{color: mode ? 'white' : 'black'}}>{userProfile?.followers?.length}</h3>
               <h5 style={{color: mode ? 'white' : 'black'}}>follower</h5>
-              <div className='animation'></div>
+              {isMyProfile || isfollowing ? <div className='animation' ></div> :''}
               </div>
               <div  id={`${mode ? 'following' : ''}`}  className="following hover-link" onClick={showModal}>
                 <h3 style={{color: mode ? 'white' : 'black'}} >{userProfile?.followings?.length}</h3>
               <h5 style={{color: mode ? 'white' : 'black'}}>following</h5>
-              <div className='animation' ></div>
+              {isMyProfile || isfollowing ? <div className='animation' ></div> :''} 
               </div>
 
             </div>
@@ -102,15 +105,15 @@ function handleUserFollow(){
           </div>
         </div>
       </div>
-      <Modal open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
-        <div style={{display: 'flex', justifyContent: 'space-evenly', textAlign: 'center', height: '300px', overflowY: 'scroll'}} className="followInfoBox">
+      <Modal okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} cancelButtonProps={{style: {display: 'none'}}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <div style={{display: 'flex', justifyContent: 'space-evenly', textAlign: 'center', height: '300px', overflowY: 'scroll', width: 'cover'}} className="followInfoBox">
           <div>
           <h2 style={{marginBottom: '10px'}}>followers</h2>
-          {feedData?.followers?.map(user => <Follower key={user._id} user={user}/>)}
+          {userProfile?.followers?.map(user => <ProfileFollowerFollowing key={user._id} user={user}/>)}
           </div>
           <div>
           <h2 style={{marginBottom: '10px' }}>followings</h2>
-          {feedData?.followings?.map(user => <Follower key={user._id} user={user}/>)}
+          {userProfile?.followings?.map(user => <ProfileFollowerFollowing key={user._id} user={user}/>)}
           </div>
         </div>
       </Modal>

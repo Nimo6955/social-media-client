@@ -109,8 +109,8 @@ display: flex;
 
         .left-part{
             overflow-y: scroll;
-            flex: 2;
-            width: 50%;
+            flex: 1.5;
+            // width: 50%; 
         }
         .left-part::-webkit-scrollbar {
             display: none;
