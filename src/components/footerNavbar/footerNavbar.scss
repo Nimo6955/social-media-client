@@ -1,0 +1,18 @@
+.FooterNavbar{
+
+    ul{
+        background-color: white;
+        border-top: 1px solid gray;
+        height: 50px;
+        display: flex;
+        align-items: center;
+        justify-content: space-evenly;
+        li{
+
+            list-style: none;
+        }
+    }
+}
+.ant-btn-default{
+    padding: 0 !important;
+}

@@ -26,17 +26,19 @@
             .profile{
             cursor: pointer;
         }
-        .logOut{
-            
-            .logOut-button{
-                // height: 50px;
-                // // width: 50px;
-                font-size: 30px;
-                border-radius: 50%;
-                background-color: whitesmoke;
-            }
-        }
         }
         
+    }
+}
+@media only screen and (max-width: 700px) {
+    .Navbar{
+        .container1{
+            width: 100%;
+        padding-inline: 0px;
+        justify-content: space-around;
+        border-bottom-left-radius: 0px;
+        border-bottom-right-radius: 0px;
+
+        }
     }
 }

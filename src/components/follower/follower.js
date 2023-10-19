@@ -8,6 +8,10 @@ import { useNavigate } from 'react-router-dom'
 
 
 function Follower({user}) {
+
+  const { mode } = useSelector((state) => state.darkMode)
+
+
   const dispatch = useDispatch()
   const navigate = useNavigate()
 
@@ -28,7 +32,7 @@ function Follower({user}) {
     <div className='Follower'>
         <div className="user-info" onClick={() => navigate(`/profile/${user._id}`)}>
         <Avatar src={user?.avatar?.url}/>
-        <h4 className="name">{user?.name}</h4>
+        <h4 className="name" style={{color: mode ? 'white' : 'black'}}>{user?.name}</h4>
         </div>
         <h5 onClick={handleUserFollow} className={isfollowing ? "hover-link follow-link" : 'btn-primary1'}>{isfollowing ? 'Unfollow' : 'follow'}</h5>
     </div>

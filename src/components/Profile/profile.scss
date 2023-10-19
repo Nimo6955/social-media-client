@@ -74,7 +74,9 @@ display: flex;
      margin-bottom: 10px
      ;
     }
-    
+    .searchButton{
+        display: none;
+       }
     .btn-primary3{
      border: none;
      outline: none;
@@ -162,7 +164,7 @@ display: flex;
                         .animation{
                             height: 3px;
                             border-radius: 2px;
-                        }
+                        }   
                     }
                     .followers:hover{
                         .animation{
@@ -277,4 +279,45 @@ display: flex;
 
         }
     }
+}
+
+@media only screen and (max-width: 1000px){
+
+    .Profile{
+        
+        .sideNavbar{
+        .side-bar-routes{
+            .btn-primary2{
+                padding: 0px 0px 0px 0px;
+                color: #ee7837;
+                background-color: black;
+                margin-bottom: 15px;
+
+
+                p{
+                    display: none;
+                }
+            }
+            .btn-primary3,
+            .btn-primary1{
+                padding: 0px 0px 0px 0px;
+                background-color: black;
+                margin-bottom: 15px;
+
+
+                p{
+                    display: none;
+                }
+            }
+            .btn-primary1:hover{
+                background-color: black;
+                color: #ee7837;
+               }
+            .btn-primary3:hover{
+                background-color: black;
+                color: #ee7837;
+               }
+        }
+    }
+}
 }

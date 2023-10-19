@@ -108,3 +108,12 @@
         .allComments::-webkit-scrollbar{
             display: none;
         }
+
+        @media only screen and (max-width: 900px) {
+            .Post{
+                .content{
+                    height: 350px;
+                    width:  calc(fit-content + 10px);
+                }
+            }
+        }

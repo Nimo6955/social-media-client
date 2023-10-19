@@ -38,12 +38,23 @@
         font-size: 1.2em;
         color: black;
     }
+    #active-btn-primary4    {
+        background-color: white;
+        font-size: 1.2em;
+        color: black;
+    }
     #active-btn-primary2:hover {
         background-color: #efefef;
         font-size: 1.2em;
         color: black;
     }
     #active-btn-primary1:hover {
+        background-color: #efefef;
+        font-size: 1.2em;
+        color: black;
+        
+    }
+    #active-btn-primary4:hover {
         background-color: #efefef;
         font-size: 1.2em;
         color: black;
@@ -89,7 +100,9 @@
     margin-bottom: 10px;
    }
    
-   
+   .searchButton{
+    display: none;
+   }
    .btn-primary2:hover{
     background-color: #ee7837;
     color: black;
@@ -101,3 +114,85 @@
 }
     
  }
+ @media only screen and (max-width: 1150px) {
+.sideNavbar{
+    width: 12%;
+
+}
+ }
+ @media only screen and (max-width: 1000px){
+    .sideNavbar{
+        .side-bar-routes{
+            .btn-primary3{
+                padding: 0px 0px 0px 0px;
+                color: #ee7837;
+                background-color: black;
+                margin-bottom: 15px;
+
+
+                p{
+                    display: none;
+                }
+            }
+            .btn-primary2,
+            .btn-primary1{
+                padding: 0px 0px 0px 0px;
+                background-color: black;
+                margin-bottom: 15px;
+
+
+                p{
+                    display: none;
+                }
+            }
+            .btn-primary1:hover{
+                background-color: black;
+                color: #ee7837;
+               }
+            .btn-primary2:hover{
+                background-color: black;
+                color: #ee7837;
+               }
+               #active-btn-primary1{
+                
+                padding: 0px 0px 0px 7px;
+                
+            }
+               #active-btn-primary2{
+                
+                padding: 0px 0px 0px 7px;
+                
+            }
+               #active-btn-primary3{
+                
+                padding: 0px 0px 0px 7px;
+                
+            }
+               #active-btn-primary4{
+                
+                padding: 0px 0px 0px 7px;
+                
+            }
+        }
+    }
+
+    .more-icon{
+        p{
+            display: none;
+        }
+    }
+ }
+ @media only screen and (max-width: 900px) {
+.sideNavbar{
+    .side-bar-routes{
+        .searchButton{
+            display: block;
+        }
+    }
+} 
+}
+ @media only screen and (max-width: 700px) {
+ .sideNavbar{
+    display: none;
+ }
+}

@@ -1,9 +1,28 @@
 
+.searchInput{
+    border-right: none;
+    border-left: none;
+    border-top: none;
+    width: 100%;
+    margin-top: 20px;
+    outline: none;
+}
+.searchBox::-webkit-scrollbar {
+    display: none;
+ }
 .logOut-button{
     display: flex;
     align-items: center;
     flex-direction: row;
     gap: 5px;
+    margin-left: 10px;
+}
+.darkMode-button{
+    display: flex;
+    align-items: center;
+    flex-direction: row;
+    gap: 5px;
+
 }
 .big-Feed{
     overflow-y: hidden;
@@ -11,6 +30,15 @@
     display: flex;
     background-color: black;
     margin-top: 60px;
+
+    .mobileNavbar{
+        width: 100vw;
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        transform: translate(-50%);
+        display: none;
+    }
     
  }
 .Feed{
@@ -28,6 +56,7 @@
     .left-part{
         overflow-y: scroll;
         flex: 1.5;
+        padding-bottom: 60px;
         // width: 50%;
 
         // width: 900px;
@@ -50,8 +79,112 @@
     }
 
     .title{
+        display: flex;
+        justify-content: space-between;
+        margin-right: 60px;
         margin-bottom: 12px;
         color: #fff;
+
+        .searchButton{
+            width: 60px;
+            display: flex;
+            flex-direction: column;
+            text-align: center; 
+            justify-content: center;
+            .searchIcon{
+                margin-inline: auto;
+                padding-bottom: 5px;
+            }
+            .animation{
+            border-radius: 2px;
+            height: 3px;
+            // background-color: black;
+        }
+    }
+    
+    
+    .searchButton:hover{
+        .animation{
+                width: 60px; 
+                background-color: black;
+                animation-name: line;
+                animation-duration: 0.5s;
+            }
+            
+            @keyframes line {
+                0%{
+            width: 0%;
+                }
+                50%{
+            width: 50%;
+                }
+                100%{
+                    width: 100%;
+                }
+            }
+        }
+        #searchButton:hover{
+                        .animation{
+                            background-color: white;
+                            animation-name: line;
+                            animation-duration: 0.5s;
+                        }
+                        
+                        @keyframes line {
+                            0%{
+                        width: 0%;
+                            }
+                            50%{
+                        width: 50%;
+                            }
+                            100%{
+                                width: 100%;
+                            }
+                        }
+                    }
+    }
+}
+@media only screen and (max-width: 1000px) {
+    .big-Feed{
+        .Feed{
+            .right-part{
+                flex: 0.2;
+
+                .Suggestions{
+                    .title{
+                        p{
+
+                            font-size: 0.8em;
+                        }
+                    }
+                    
+                }
+            
+            }
+        }
     }
 }
     
+@media only screen and (max-width: 900px) {
+    .big-Feed{
+        padding-left: 5%;
+        .Feed{
+
+            .right-part{
+
+                display: none;
+            }
+            
+        }
+    }
+}
+@media only screen and (max-width: 700px) {
+    .big-Feed{
+    justify-content: center;
+    padding-left: 0px;
+
+    .mobileNavbar{
+        display: block;
+    }
+    }
+}
