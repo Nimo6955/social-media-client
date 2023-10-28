@@ -1,0 +1,101 @@
+.userInfoSelect{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: black;
+
+}
+.user{
+    height: 70px;
+    width: 70px;
+    margin: 10px;
+    margin-inline: auto;
+    img{
+        width: 100%;
+        height: 100%;
+    }
+}
+
+.allAvatars{    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    .Avatar{
+        height: 50px;
+        width: 50px;
+        margin: 10px;
+        cursor: pointer;
+        img{
+            width: 100%;
+            height: 100%;
+        }
+    }
+}
+.uploadAvtar{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    .AvatarButton2{
+        width: fit-content;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border-radius: 30px;
+        outline: none;
+        border: none;
+        background-color: #263238;
+        color: white;
+    }
+    .AvatarButton1{
+        width: fit-content;
+        padding: 10px 20px;
+        margin-top: 10px;
+        border-radius: 30px;
+        outline: none;
+        border: none;
+        background-color: #ee7837;
+    }
+}
+.bio{
+
+    
+    
+    .bioInput{
+        border-top: none;
+        border-left: none;
+        border-right: none;
+        outline: none;
+        width: 100%;
+        margin-top: 10px;
+
+    }
+    .biobuttons{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;  
+        gap: 20px; 
+        .BioButton1{
+            width: fit-content;
+            padding: 10px 20px;
+            margin-top: 10px;
+            border-radius: 30px;
+            outline: none;
+            border: none;
+            background-color: #263238;
+            color: white;
+        } 
+        .BioButton2{
+            // width: fit-content;
+            padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 30px;
+            outline: none;
+            border: none;
+            background-color: #ee7837;
+        }
+    }
+}

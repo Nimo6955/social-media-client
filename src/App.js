@@ -15,6 +15,7 @@ import { useEffect, useRef } from "react";
 import LoadingBar from 'react-top-loading-bar'
 import OnlyIfNotLoggedIn from "./components/onlyIfNotLoggedIn";
 import toast, { Toaster } from 'react-hot-toast';
+import UserInfoSelect from "./pages/userInfoSelect/userInfoSelect";
 
 
 export const TOAST_SUCCESS = 'toast_success'
@@ -66,6 +67,7 @@ function App() {
           <Route element= {<OnlyIfNotLoggedIn/>}>
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
+          <Route path="/userInfoSelect" element={<UserInfoSelect/>}/>
           </Route>
 
         </Routes>
