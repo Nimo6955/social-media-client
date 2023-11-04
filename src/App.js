@@ -61,13 +61,13 @@ function App() {
             <Route path='/' element={<Home />}>
             <Route path="/" element={<Feed />} />
             <Route path="/profile/:userId" element={<Profile />} />
+          <Route path="/userInfoSelect/:userId" element={<UserInfoSelect/>}/>
             <Route path="/updateProfile" element={<UpdateProfile />} />
           </Route>
           </Route>
           <Route element= {<OnlyIfNotLoggedIn/>}>
           <Route path='/login' element={<Login />} />
           <Route path='/signup' element={<Signup />} />
-          <Route path="/userInfoSelect" element={<UserInfoSelect/>}/>
           </Route>
 
         </Routes>

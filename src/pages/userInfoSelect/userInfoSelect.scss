@@ -7,8 +7,8 @@
 
 }
 .user{
-    height: 70px;
-    width: 70px;
+    height: 80px;
+    width: 80px;
     margin: 10px;
     margin-inline: auto;
     img{
@@ -33,6 +33,10 @@
             height: 100%;
         }
     }
+    .Avatar:hover{
+        transform: scale(1.2);
+        box-shadow: 2px 5px 5px gray;
+    }
 }
 .uploadAvtar{
     display: flex;
@@ -50,6 +54,9 @@
         background-color: #263238;
         color: white;
     }
+    .AvatarButton2:hover{
+        transform: scale(1.05);
+    }
     .AvatarButton1{
         width: fit-content;
         padding: 10px 20px;
@@ -58,6 +65,10 @@
         outline: none;
         border: none;
         background-color: #ee7837;
+    }
+    .AvatarButton1:hover{
+        transform: scale(1.05);
+        background-color: #f77027;
     }
 }
 .bio{
@@ -88,6 +99,9 @@
             background-color: #263238;
             color: white;
         } 
+        .BioButton1:hover{
+            transform: scale(1.05);
+        }
         .BioButton2{
             // width: fit-content;
             padding: 10px 20px;
@@ -97,5 +111,21 @@
             border: none;
             background-color: #ee7837;
         }
+        .BioButton2:hover{
+            transform: scale(1.05);
+            background-color: #f77027;
+        }
     }
+}
+.skipButton{
+    padding: 10px 20px;
+            margin-top: 20px;
+            border-radius: 30px;
+            outline: none;
+            border: none;
+            background-color: #ee7837;
+}
+.skipButton:hover{
+    transform: scale(1.05);
+    background-color: #f77027;
 }

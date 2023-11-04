@@ -1,11 +1,10 @@
-
-.Post{
+.Post {
     border: 2px solid var(--border-color);
     margin-top: 20px;
     border-radius: 10px;
     background-color: #b2bec3;
-    
-    .heading2{
+
+    .heading2 {
         display: flex;
         align-items: center;
         gap: 20px;
@@ -16,10 +15,11 @@
         cursor: pointer;
         background-color: #263238;
 
-        .userImg{
+        .userImg {
             width: 60px;
             height: 60px;
-            img{
+
+            img {
                 border-radius: 50%;
                 width: 100%;
                 height: 100%;
@@ -27,18 +27,22 @@
         }
 
 
-        .userName{
+        .userName {
             color: #ecf0f1;
         }
     }
-    .content{
+
+    .content {
         height: 400px;
-        img{
+        width: 500px;
+
+        img {
             height: 100%;
             width: 100%;
         }
     }
-    .footer{
+
+    .footer {
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -46,74 +50,144 @@
         background-color: #263238;
         border-bottom-right-radius: 10px;
         border-bottom-left-radius: 10px;
-          
-        .likes-comments{
+
+        .likes-comments {
             display: flex;
-            
-            .likes{
+
+            .likes {
                 display: flex;
                 align-items: center;
                 gap: 3px;
                 margin: 0;
-                
-                .Icon{
+
+                .Icon {
                     font-size: 1.7rem;
                 }
-                .likes-text{
+
+                .likes-text {
                     color: white;
                 }
             }
-            .comments{
+
+            .comments {
                 margin-left: 10px;
                 display: flex;
                 align-items: center;
                 gap: 5px;
                 margin: 0;
-                .comments-text{
+
+                .commentsIcon{
+                    font-size: 1.5rem;
+                }
+                .comments-text {
                     color: white;
                 }
             }
         }
-            .caption{
-                margin: 12px;
-                color: #dfe6e9;
 
-                .userName-caption{
-                    color: white;
-                    font-weight: 600;
-                }
-             }
+        .caption {
+            margin: 12px;
+            color: #dfe6e9;
 
-             .caption-time{
-                margin: 12px;
-                color: #aaa;
-             }
+            .userName-caption {
+                color: white;
+                font-weight: 600;
+            }
+        }
+
+        .caption-time {
+            margin: 12px;
+            color: #aaa;
+        }
     }
-        }
-    
-            #openComments{
-            //    height: 100px;
-               width: 100%;
-               background-color: white;
-    
-               .commentsInput{
-                margin-top: 10px;
-                border-left: none;
-                border-top: none;
-                border-right: none;
-                width: 100%;
-                outline: none;
-               }
-        }
-        .allComments::-webkit-scrollbar{
-            display: none;
+}
+
+#openComments {
+    //    height: 100px;
+    width: 100%;
+    background-color: white;
+
+    .commentsInput {
+        margin-top: 10px;
+        border-left: none;
+        border-top: none;
+        border-right: none;
+        width: 100%;
+        outline: none;
+    }
+}
+
+.allComments::-webkit-scrollbar {
+    display: none;
+}
+
+
+@media only screen and (max-width: 500px) {
+
+    .Post {
+        .heading2 {
+            .userImg {
+                width: 40px;
+                height: 40px;
+
+                img {
+                    border-radius: 50%;
+                    width: 100%;
+                    height: 100%;
+                }
+            }
+            .userName{
+                font-size: small;
+            }
         }
 
-        @media only screen and (max-width: 900px) {
-            .Post{
-                .content{
-                    height: 350px;
-                    width:  calc(fit-content + 10px);
+        .content {
+            height: 300px;
+            width: 400px;
+        }
+        .footer{
+            .likes-comments{
+                .likes{
+                    .Icon{
+                       font-size: 1.3rem; 
+                    }
+                }
+                .comments{
+                    .commentsIcon{
+                        font-size: 1.1rem;
+                    }
+                }
+            }
+            .caption{
+                font-size: 0.7rem;
+                .userName-caption{
+                    font-weight: 600;
+                    font-size: 0.9rem;
                 }
             }
         }
+    }
+
+}
+
+@media only screen and (max-width: 400px) {
+
+    .Post {
+        .content {
+            height: 200px;
+            width: 320px;
+        }
+    }
+
+}
+
+@media only screen and (max-width: 320px) {
+
+    .Post {
+        .content {
+            height: 160px;
+            width: 280px;
+        }
+    }
+
+}

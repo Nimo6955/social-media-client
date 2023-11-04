@@ -1,0 +1,51 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.signupSuggestions{
+    display: flex;
+    justify-content: space-between;
+    margin-right: 50px;
+    align-items: center;
+    height: 60px;
+
+    .user-info{
+        display: flex;
+        align-items: center;
+        gap: 20px;
+        cursor: pointer;
+    }
+
+    .follow-link{
+        color: blueviolet;
+        // display: none;
+    }
+    
+    .btn-primary1{
+        border: none;
+    outline: none;
+    // background-color: #fbf768;
+
+    color: blueviolet   ;
+    // box-shadow: 1px 2px 7px gray;
+    border-radius: 30px;
+    padding: 10px 20px;
+    // margin-bottom: 10px;
+    cursor: pointer;
+    }
+    .btn-primary1:hover{
+        background-color: #ee7837;
+        color: black;
+    }
+}
+
+@media only screen and (max-width: 1000px) {
+.Follower{
+    .user-info{
+        
+        .name{
+            font-size: 0.8em;
+        }
+    }
+}
+}

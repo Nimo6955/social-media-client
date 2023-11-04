@@ -1,43 +1,41 @@
 import React, { useEffect, useState } from 'react'
 import  Avatar  from '../../components/Avatar/avatar'
-import './follower.scss'
+import './signupSuggestions.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { folloAndUnfollowUser, getFeedData } from '../../redux/slices/feedSlice'
-import { useNavigate } from 'react-router-dom'
 
 
-
-function Follower({user}) {
-
-  const { mode } = useSelector((state) => state.darkMode)
+function SignupSuggestions({user}) {
+    const { mode } = useSelector((state) => state.darkMode)
 
 
   const dispatch = useDispatch()
-  const navigate = useNavigate()
 
   const feedData = useSelector(state => state.feedDataReducer.feedData)
 
   const [isfollowing, setIsfollowing] = useState();
-
   useEffect(() => {
     setIsfollowing(feedData?.followings?.find(item => item._id === user._id))
   },[dispatch])
 
-  function handleUserFollow() {
+  function handleUserFollow(e){
+    dispatch(getFeedData())
     dispatch(folloAndUnfollowUser({
       userIdToFollow: user._id
-    }))
-    dispatch(getFeedData())
+    }));
+    
   }
   return (
-    <div className='Follower'>
-        <div className="user-info" onClick={() => navigate(`/profile/${user._id}`)}>
+    <div className='signupSuggestions'>
+        <div className="user-info">
         <Avatar src={user?.avatar?.url}/>
+
         <h4 className="name" style={{color: mode ? 'white' : 'black'}}>{user?.name}</h4>
+
         </div>
-        <h5 onClick={handleUserFollow} className={isfollowing ? "hover-link follow-link" : 'btn-primary1'}>{isfollowing ? 'Unfollow' : 'follow'}</h5>
+        <h5 onClick={handleUserFollow} id="follow-link" className={isfollowing ? "hover-link follow-link" : 'btn-primary1'}>{isfollowing ? 'Unfollow' : 'follow'}</h5>
     </div>
   )
 }
 
-export default Follower
+export default SignupSuggestions

@@ -10,6 +10,9 @@ import { Modal } from 'antd';
 import Follower from '../follower/follower'
 import SideNavbar from '../sideNavbar/sideNavbar'
 import ProfileFollowerFollowing from '../profileFollowerFollowing/profileFollowerFollowing'
+import user from '../../assets/sugnUpUser.png'
+import FooterNavbar from '../footerNavbar/footerNavbar'
+
 
 
 
@@ -68,13 +71,18 @@ function handleUserFollow(){
       <SideNavbar/>
       <div className="container">
         <div className="left-part">
-          {isMyProfile && <CreatePost/>}
+          <div className="creatPosts">
+            {isMyProfile && <CreatePost/>}
+          </div>
         {userProfile?.posts?.map(post => <ProfilePosts  key={post?._id} post={post}/>)}
         </div>
         <div className="right-part">
           <div className="profile-card" style={{border: mode ? '' : '1px solid black'}}>
+          <div className='userInfo2'>
+
+          
             <div className='user-img-name'>
-            <img src={userProfile?.avatar?.url} alt="" className="user-img" />
+            <img src={userProfile?.avatar?.url || user} alt="" className="user-img" />
             <div className='user-name-And-bio'>
             <h3 className="user-name" style={{color: mode ? 'white' : 'black'}}>{userProfile?.name}</h3>
               <h6 className='user-Bio'style={{color: mode ? 'white' : 'black', marginTop: '5px'}}>{userProfile?.bio}</h6>
@@ -93,6 +101,7 @@ function handleUserFollow(){
               {isMyProfile || isfollowing ? <div className='animation' ></div> :''} 
               </div>
 
+              </div>
             </div>
             <div className='profile-buttons'>
               {!isMyProfile && <button onClick={handleUserFollow}  className={isfollowing ? "hover-link follow-link btn-primary" : 'btn-secondary'}>{isfollowing ? 'Unfollow' : 'follow'}</button>
@@ -117,6 +126,9 @@ function handleUserFollow(){
           </div>
         </div>
       </Modal>
+      <div className="mobileNavbar">
+      <FooterNavbar/>
+      </div>
     </div>
   )
 }

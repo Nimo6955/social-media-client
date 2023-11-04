@@ -28,7 +28,7 @@ function Signup() {
                 email,password,name
             })
             setItem(KEY_ACCESS_TOKEN, response.result.accessToken)
-            navigate(`/profile/${response?.result?.user?._id}`)
+            navigate(`/userInfoSelect/${response?.result?.user?._id}`)
             
             console.log(response);
         } catch (error) {

@@ -166,14 +166,14 @@ function bookmarkMyPost(){
         </div>
         <div style={{backgroundColor: mode ? '' : 'white'}} className="footerProfilePost">
         <div>
-            <div className='likes-comments'>
+            <div className='likes-comments  '>
 
             <div className="likes hover-link" onClick={handlePostLikes}>
-              {post?.isLiked ? <AiFillHeart  style={{color: 'red'}} className='Icon hover-link'/> : <AiOutlineHeart className='Icon hover-link'/>}
+              {post?.isLiked ? <AiFillHeart  style={{color: 'red'}} className='Icon hover-link'/> : <AiOutlineHeart className='Icon hover-link' style={{color: mode ? 'white' : 'black'}}/>}
             <h5 style={{color: mode ? '' : 'black'}} className='likes-text'>{`${post?.likesCount}`}</h5>
         </div>
         <div className='comments hover-link'>
-              <FaRegComment style={{fontSize: '1.5rem', marginLeft:'10px'}} onClick={CommentModal}/>
+              <FaRegComment className='commentsIcon' style={{ marginLeft:'10px',color: mode ? 'white' : 'black'}} onClick={CommentModal}/>
               <h5 style={{color: mode ? '' : 'black'}} className="comments-text">{post?.comments?.length}</h5>
         </div>
         </div>
@@ -182,12 +182,12 @@ function bookmarkMyPost(){
           </div>
           <div  onClick={bookmarkMyPost} >
             
-        {index ? <PiBookmarkSimpleFill className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: 'black'}}/> :   <PiBookmarkSimple className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',}} />}
+        {index ? <PiBookmarkSimpleFill className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: 'black'}}/> :   <PiBookmarkSimple className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: mode ? 'white' : 'black'}} />}
           </div>   
           
        </div>
 
-       <Modal okText='Post' okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={OpenComment} onOk={postComment} onCancel={handleCancel} cancelButtonProps={{ style: {borderRadius: '30px'}}}>
+       <Modal closable={false} okText='Post'  okButtonProps={{disabled: comment === '' ?  true : false, style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={OpenComment} onOk={postComment} onCancel={handleCancel} cancelButtonProps={{ style: {borderRadius: '30px'}}}>
 
 <div className='allComments' style={{height: '300px', overflowY: 'scroll'}}>
 {userProfile?.posts?.[findPost]?.comments?.map(comments => <ProfileComments key={comments._id} postId={post._id} comments={comments}/>)}

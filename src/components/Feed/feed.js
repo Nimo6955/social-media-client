@@ -40,7 +40,7 @@ function Feed() {
   },[dispatch])
 
   function fetchData(e){
-    const Data = feedData?.suggestions
+    const Data = feedData?.AllUsers
     // const newData = Data.json()
     const result =
     Data.filter((user) => {
@@ -60,6 +60,7 @@ function Feed() {
     <div className='Feed'>
         <div  className="container">
             <div className="left-part">
+              <h5>{feedData?.posts?.length === 0 && 'Follow people to see there posts'}</h5>
               {feedData?.posts?.map((post) => <Post key={post._id} post={post}/>)}
             </div>
             <div className="right-part">

@@ -43,7 +43,7 @@ const myProfile = useSelector(state => state.appConfigReduser.myProfile)
       </div>
       {myProfile?.name === comments?.commentsName ? <div style={{ whiteSpace: 'nowrap' }}>
 <Popover key={seed}  className='more-icon' placement="top" content={content} trigger="click">
-<Button style={{border: 'none', outline:'none', backgroundColor: mode? '#263238' : 'white'}}>< BsThreeDotsVertical style={{color: mode?  'white' : 'black'}}/></Button>
+<Button style={{border: 'none', outline:'none',}}>< BsThreeDotsVertical /></Button>
 </Popover>
 
 </div> : ''}

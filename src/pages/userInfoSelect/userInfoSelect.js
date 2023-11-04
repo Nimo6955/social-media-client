@@ -11,15 +11,33 @@ import icon7 from '../../assets/icon7.png'
 import icon8 from '../../assets/icon8.png'
 import icon9 from '../../assets/icon9.png'
 import user from '../../assets/sugnUpUser.png'
+import { useDispatch, useSelector } from 'react-redux';
+import Follower from '../../components/follower/follower';
+import { updateMyProfile } from '../../redux/slices/appConfigSlice';
+import { useNavigate } from 'react-router-dom';
+import SignupSuggestions from '../../components/signupSuggestions/signupSuggestions';
+import { getFeedData } from '../../redux/slices/feedSlice';
 
 
 
 function UserInfoSelect() {
-    const [isAvatarOpen, setAvatarOpen] = useState(false);
 
+  const navigate = useNavigate()
+  const [seed, setSeed] = useState(null)
+  const myProfile = useSelector(state => state.appConfigReduser.myProfile)
+
+  // const userProfile = useSelector(state => state.postsReducer.userProfile)
+const feedData = useSelector(state => state.feedDataReducer.feedData)
+
+const [bio, setBio] = useState('');
+
+
+    const [isAvatarOpen, setAvatarOpen] = useState(false);
     function showAvatarModal(){
      setAvatarOpen(true);
      setBioOpen(false);
+     setFollowerOpen(false);
+
 
    }
 
@@ -32,16 +50,38 @@ function UserInfoSelect() {
     
    const [displayAvatar, setDisplayAvatar] = useState('')
 
-   function selectAvatar(event){
-    // console.dir(event.target.src)
+   async function selectAvatar(event){
     const src = event.target.src
     setDisplayAvatar(src)
+    const base64 = await fetch(src)
+  .then(response => response.blob())
+  .then(blob => {
+    const reader = new FileReader();
+    reader.readAsDataURL(blob);
+    return new Promise((res) => {
+      reader.onloadend = () => {
+      res(reader.result);
+    }})
+  })
+  setDisplayAvatar(base64);
+    
    }
+
+   const dispatch = useDispatch()
+function handleSubmit(){
+  // e.preventDefault()
+  dispatch(updateMyProfile({
+      userImg : displayAvatar,
+      bio: bio
+
+  }))
+}
    useEffect(() => {
     let ignore = false;
     
     if (!ignore)  showAvatarModal()
     return () => { ignore = true; }
+  
     },[])
     
 // bio Modal
@@ -51,6 +91,8 @@ function UserInfoSelect() {
     function showBioModal(){
      setBioOpen(true);
      setAvatarOpen(false);
+     setFollowerOpen(false);
+   
 
    }
 
@@ -60,33 +102,55 @@ function UserInfoSelect() {
    function handleBioCancel(){
      setBioOpen(false);
    };
+
+  //  follower Modal
+
+   const [isFollowerOpen, setFollowerOpen] = useState(false);
+
+    function showFollowerModal(){
+      handleSubmit()
+      // setTimeout(() => {
+        dispatch(getFeedData())
+        setFollowerOpen(true);
+      // }, 300);
+     setAvatarOpen(false);
+     setBioOpen(false);
+
+
+   }
+
+   function handleFollowerOk() {
+     setFollowerOpen(false);
+   };
+   function handleFollowerCancel(){
+     setFollowerOpen(false);
+   };
     
   return (
     <div>
         <div className="userInfoSelect">
             <div className="dummyDiv">
                 
-        <Modal keyboard={false} maskClosable={false} closable={false} okButtonProps={{ style: { display: 'none' } }} cancelButtonProps={{style: {display: 'none'}}} open={isAvatarOpen} onOk={handleAvatarOk} onCancel={handleAvatarCancel}>
+        <Modal keyboard={false} maskClosable={false} maskStyle={{background: 'black'}} closable={false} okButtonProps={{ style: { display: 'none' } }} cancelButtonProps={{style: {display: 'none'}}} open={isAvatarOpen} onOk={handleAvatarOk} onCancel={handleAvatarCancel}>
         <div className="user">
-    
-                <img src={displayAvatar ||user} alt="" id='user'/>
+                <img src={displayAvatar || user} alt="" id='user'/>
             </div>
         <h3 style={{textAlign:'center'}}>Choose Your Avatar</h3>
         <hr/>
         <div className='allAvatars'>
             <div className="box1">
 
-            <div className="Avatar1 Avatar" onClick={selectAvatar}>
+            <div className="Avatar1 Avatar" id='icon1' onClick={selectAvatar}>
     
                 <img src={icon1} alt="" />
             </div>
 
-            <div className="Avatar2 Avatar" onClick={selectAvatar}>
+            <div className="Avatar2 Avatar" id='icon2' onClick={selectAvatar}>
                 
                 <img src={icon2}  alt="" />
             </div>
 
-            <div className="Avatar3 Avatar" onClick={selectAvatar}>
+            <div className="Avatar3 Avatar" id='icon3' onClick={selectAvatar}>
                 
                 <img src={icon3}  alt="" />
             </div>
@@ -94,17 +158,17 @@ function UserInfoSelect() {
 
             <div className="box2">
 
-            <div className="Avatar4 Avatar" onClick={selectAvatar}>
+            <div className="Avatar4 Avatar" id='icon4' onClick={selectAvatar}>
                 
                 <img src={icon4}  alt="" />
             </div>
 
-            <div className="Avatar5 Avatar" onClick={selectAvatar}>
+            <div className="Avatar5 Avatar" id='icon5' onClick={selectAvatar}>
                 
                 <img src={icon5}  alt="" />
             </div>
 
-            <div className="Avatar6 Avatar" onClick={selectAvatar}>
+            <div className="Avatar6 Avatar" id='icon6' onClick={selectAvatar}>
                 
                 <img src={icon6}  alt="" />
             </div>
@@ -113,17 +177,17 @@ function UserInfoSelect() {
 
             <div className="box3">
 
-            <div className="Avatar7 Avatar" onClick={selectAvatar}>
+            <div className="Avatar7 Avatar" id='icon7' onClick={selectAvatar}>
                 
                 <img src={icon7}  alt="" />
             </div>
 
-            <div className="Avatar8 Avatar" onClick={selectAvatar}>
+            <div className="Avatar8 Avatar" id='icon8' onClick={selectAvatar}>
                 
                 <img src={icon8}  alt="" />
             </div>
 
-            <div className="Avatar9 Avatar" onClick={selectAvatar}>
+            <div className="Avatar9 Avatar" id='icon9' onClick={selectAvatar}>
                 
                 <img src={icon9}  alt="" />
             </div>
@@ -137,16 +201,23 @@ function UserInfoSelect() {
         <button className='AvatarButton2 hover-link' onClick={showBioModal}>NEXT</button>
         </div>
       </Modal>
-      <Modal  keyboard={false} maskClosable={false} closable={false} okButtonProps={{ style: { display: 'none' } }} cancelButtonProps={{style: {display: 'none'}}} open={isBioOpen} onOk={handleBioOk} onCancel={handleBioCancel}>
+      <Modal  keyboard={false} maskClosable={false} maskStyle={{background: 'black'}} closable={false} okButtonProps={{ style: { display: 'none' } }} cancelButtonProps={{style: {display: 'none'}}} open={isBioOpen} onOk={handleBioOk} onCancel={handleBioCancel}>
       <div className="bio">
         <h3>UPDATE YOUR BIO !</h3>
-        <input type="text" placeholder='Write bio here...' className='bioInput' />
+        <input type="text" placeholder='Write your bio here...' value={bio} className='bioInput' onChange={(e) => setBio(e.target.value)}/>
         <div className="biobuttons">
 
         <button className='BioButton1 hover-link' onClick={showAvatarModal}>GO BACK</button>
-        <button className='BioButton2 hover-link'>SAVE</button>
+        <button className='BioButton2 hover-link' onClick={showFollowerModal}>SAVE</button>
         </div>
       </div>
+      </Modal>
+      <Modal keyboard={false} maskClosable={false}  maskStyle={{background: 'black'}} closable={false} okButtonProps={{ style: { display: 'none' } }} cancelButtonProps={{style: {display: 'none'}}} open={isFollowerOpen} onOk={handleFollowerOk} onCancel={handleFollowerCancel}>
+      <div >
+          <h2 style={{marginBottom: '10px'}}>Suggested peaple you can follow</h2>
+          {feedData?.signUpSuggestions?.map(user => <SignupSuggestions key={user._id} user={user} />)}
+          </div>
+          <button className='skipButton'onClick={() =>navigate(`/profile/${myProfile?._id}`)}>SKIP</button>
       </Modal>
 
             </div>
