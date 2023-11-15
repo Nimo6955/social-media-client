@@ -46,7 +46,7 @@ const handleCancel = () => {
       type: TOAST_SUCCESS,
       message: 'Comment Added'
     }))
-    setOpenComment(false);
+    // setOpenComment(false);
 
   };
 
@@ -122,7 +122,7 @@ const handleCancel = () => {
 
         
         </div>
-        <Modal okText='Post' closable={false} okButtonProps={{disabled: comment === '' ?  true : false, style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={OpenComment} onOk={postComment} onCancel={handleCancel} cancelButtonProps={{ style: {borderRadius: '30px'}}}>
+        <Modal okText='Post' closable={false} okButtonProps={{disabled: comment === '' ?  true : false, style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={OpenComment} onOk={postComment} onCancel={handleCancel} cancelButtonProps={{ style: {borderRadius: '30px',width: '80px'}}}>
 
           <div className='allComments' style={{height: '300px', overflowY: 'scroll'}}>
         {feedData?.posts?.[findPost]?.comments?.map(comments => <Comments key={comments._id} postId={post._id} comments={comments}/>)}

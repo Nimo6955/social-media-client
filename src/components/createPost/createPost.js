@@ -56,7 +56,7 @@ function CreatePost() {
             <Avatar src={myProfile?.avatar?.url}/>
         </div>
         <div className="right-part">
-            <input type="text" style={{backgroundColor: mode ? 'black' : ''}} className="captionInput" placeholder='nice cation here ?' value={caption} onChange={(e) => setCaption(e.target.value)}/>
+            <input type="text" style={{backgroundColor: mode ? 'black' : '', color: mode ? 'white' : ''}} className="captionInput" placeholder='nice cation here ?' value={caption} onChange={(e) => setCaption(e.target.value)}/>
            {postImg &&  (<div className="img-container">
                 <img className='post-img' src={postImg} alt="post image" />
                 
@@ -69,7 +69,7 @@ function CreatePost() {
                         </label>
                         <input className='inputImg' id='inputImg' type="file" accept='image/*' onChange={handleImageChange} />
                 </div>
-                <button className='post-btn btn-primary' onClick={handlePostSubmit}>Post</button>
+                <button className='post-btn' onClick={handlePostSubmit}>Post</button>
             </div>
         </div>
     </div>

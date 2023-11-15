@@ -1,167 +1,186 @@
-*{
+* {
     margin: 0;
     padding: 0;
 }
+
 .followInfoBox::-webkit-scrollbar {
-        display: none;
-     }
-
-     
-.Profile{
-margin-top: 60px;
-height: calc(100vh - 60px);
-background-color: black;
-display: flex;
-
-.mobileNavbar{
-    width: 100vw;
-    position: absolute;
-    bottom: 0px;
-    left: 50%;
-    transform: translate(-50%);
     display: none;
 }
 
 
-.sideNavbar{
-    // display: flex;
-    // flex-direction: column;
-    // justify-content: space-between;
-    // padding-top: 60px;
-    // align-items: center;
-    // width: 15%;
-    // margin-top: 50px;
+.Profile {
+    margin-top: 60px;
+    height: calc(100vh - 60px);
+    background-color: black;
+    display: flex;
 
-
-     .side-bar-routes{
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-     
-        #active-btn-primary3{
-            background-color: white;
-            color: black;
-            font-size: 1.2em;
-            
-        }
-        #active-btn-primary2    {
-            background-color: #efefef;
-            font-size: 1.2em;
-            color: black;
-        }
-        #active-btn-primary2:hover {
-            background-color: #efefef;
-            font-size: 1.2em;
-            color: black;
-        }
-        #active-btn-primary3:hover {
-            background-color: #efefef;
-            font-size: 1.2em;
-            color: black;
-        }
-        
-     
-    .btn-primary1{
-     border: none;
-     outline: none;
-     background-color: var(--button-color);
-     color: #ffffff;
-     display: flex;
-     align-items: center;
-     // box-shadow: 1px 2px 7px gray;
-     border-radius: 30px;
-     padding: 10px 28px 10px 10px;
-    }
-    .btn-primary2{
-     border: none;
-     outline: none;
-     background-color: #ee7837;
-     color: black;
-     display: flex;
-     align-items: center;
-     // box-shadow: 1px 2px 7px gray;
-     border-radius: 30px;
-     padding: 10px 47px 10px 10px;
-     margin-bottom: 10px
-     ;
-    }
-    .searchButton{
+    .MobileCreatePost {
         display: none;
-       }
-    .btn-primary3{
-     border: none;
-     outline: none;
-     background-color: var(--button-color);
-     color: #ffffff;
-     display: flex;
-     align-items: center;
-     // box-shadow: 1px 2px 7px gray;
-     border-radius: 30px;
-     padding: 10px 47px 10px 10px;
-     margin-bottom: 10px
-     ;
     }
-    
-    .btn-primary1:hover{
-        background-color: #ee7837;
-        color: black;
+
+    .mobileNavbar {
+        width: 100vw;
+        position: absolute;
+        bottom: 0px;
+        left: 50%;
+        transform: translate(-50%);
+        display: none;
     }
-    
-    .btn-primary3:hover{
-     background-color: #ee7837;
-     color: black;
+
+
+    .sideNavbar {
+        // display: flex;
+        // flex-direction: column;
+        // justify-content: space-between;
+        // padding-top: 60px;
+        // align-items: center;
+        // width: 15%;
+        // margin-top: 50px;
+
+
+        .side-bar-routes {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+
+            #active-btn-primary3 {
+                background-color: white;
+                color: black;
+                font-size: 1.2em;
+
+            }
+
+            #active-btn-primary2 {
+                background-color: #efefef;
+                font-size: 1.2em;
+                color: black;
+            }
+
+            #active-btn-primary2:hover {
+                background-color: #efefef;
+                font-size: 1.2em;
+                color: black;
+            }
+
+            #active-btn-primary3:hover {
+                background-color: #efefef;
+                font-size: 1.2em;
+                color: black;
+            }
+
+
+            .btn-primary1 {
+                border: none;
+                outline: none;
+                background-color: var(--button-color);
+                color: #ffffff;
+                display: flex;
+                align-items: center;
+                // box-shadow: 1px 2px 7px gray;
+                border-radius: 30px;
+                padding: 10px 28px 10px 10px;
+            }
+
+            .btn-primary2 {
+                border: none;
+                outline: none;
+                background-color: #ee7837;
+                color: black;
+                display: flex;
+                align-items: center;
+                // box-shadow: 1px 2px 7px gray;
+                border-radius: 30px;
+                padding: 10px 47px 10px 10px;
+                margin-bottom: 10px;
+            }
+
+            .searchButton {
+                display: none;
+            }
+
+            .btn-primary3 {
+                border: none;
+                outline: none;
+                background-color: var(--button-color);
+                color: #ffffff;
+                display: flex;
+                align-items: center;
+                // box-shadow: 1px 2px 7px gray;
+                border-radius: 30px;
+                padding: 10px 47px 10px 10px;
+                margin-bottom: 10px;
+            }
+
+            .btn-primary1:hover {
+                background-color: #ee7837;
+                color: black;
+            }
+
+            .btn-primary3:hover {
+                background-color: #ee7837;
+                color: black;
+            }
+
+        }
     }
-     
-  }
-}
-    .container{
+
+    .container {
         display: flex;
         gap: 20px;
         max-width: 960px;
         // margin-inline: auto;
 
-        .left-part{
+        .left-part {
             overflow-y: scroll;
             flex: 1.5;
             // width: 50%; 
+            .creatPosts{
+                 width: 500px;
+                
+            }
         }
+
         .left-part::-webkit-scrollbar {
             display: none;
-         }
-        .right-part{
+        }
+
+        .right-part {
             // flex: 1;
             margin-top: 20px;
 
-            .profile-card{
+            .profile-card {
                 border: 1px solid #d2d2d2;
                 border-radius: 4px;
 
-                
-                .user-img-name{
+
+                .user-img-name {
                     display: flex;
                     align-items: center;
 
-                    .user-name-And-bio{
-                    
-                        .user-name{
+                    .user-name-And-bio {
+
+                        .user-name {
                             margin-block: auto;
                         }
-                        .user-Bio{
+
+                        .user-Bio {
                             margin-left: 10px;
                         }
                     }
                 }
 
-                .user-img{
+                .user-img {
                     width: 80px;
                     height: 80px;
                     border-radius: 50%;
                     padding: 10px;
                 }
-                .user-name{
+
+                .user-name {
                     margin: 12px;
                 }
-                .follower-info{
+
+                .follower-info {
                     margin: 12px;
                     display: flex;
                     justify-content: space-evenly;
@@ -169,124 +188,141 @@ display: flex;
                     margin-bottom: 20px;
 
 
-                    .followers{
+                    .followers {
                         display: flex;
                         flex-direction: column;
-                        text-align: center; 
-                        margin-right: 20px; 
-                        
-                        .animation{
-                            height: 3px;
-                            border-radius: 2px;
-                        }   
-                    }
-                    .followers:hover{
-                        .animation{
-                            background-color: black;
-                            animation-name: line;
-                            animation-duration: 0.5s;
-                        }
-                        
-                        @keyframes line {
-                            0%{
-                        width: 0%;
-                            }
-                            50%{
-                        width: 50%;
-                            }
-                            100%{
-                                width: 100%;
-                            }
-                        }
-                    }
-                    #followers:hover{
-                        .animation{
-                            background-color: white;
-                            animation-name: line;
-                            animation-duration: 0.5s;
-                        }
-                        
-                        @keyframes line {
-                            0%{
-                        width: 0%;
-                            }
-                            50%{
-                        width: 50%;
-                            }
-                            100%{
-                                width: 100%;
-                            }
-                        }
-                    }
-                    .following{
-                        display: flex;
-                        flex-direction: column;
-                        text-align: center; 
-                        
+                        text-align: center;
+                        margin-right: 20px;
 
-                        .animation{
+                        .animation {
                             height: 3px;
                             border-radius: 2px;
-                        }                       
+                        }
                     }
-                    .following:hover{
-                        .animation{
+
+                    .followers:hover {
+                        .animation {
                             background-color: black;
                             animation-name: line;
                             animation-duration: 0.5s;
                         }
-                        
+
                         @keyframes line {
-                            0%{
-                        width: 0%;
+                            0% {
+                                width: 0%;
                             }
-                            50%{
-                        width: 50%;
+
+                            50% {
+                                width: 50%;
                             }
-                            100%{
+
+                            100% {
                                 width: 100%;
                             }
                         }
                     }
-                    #following:hover{
-                        .animation{
+
+                    #followers:hover {
+                        .animation {
                             background-color: white;
                             animation-name: line;
                             animation-duration: 0.5s;
                         }
-                        
+
                         @keyframes line {
-                            0%{
-                        width: 0%;
+                            0% {
+                                width: 0%;
                             }
-                            50%{
-                        width: 50%;
+
+                            50% {
+                                width: 50%;
                             }
-                            100%{
+
+                            100% {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .following {
+                        display: flex;
+                        flex-direction: column;
+                        text-align: center;
+
+
+                        .animation {
+                            height: 3px;
+                            border-radius: 2px;
+                        }
+                    }
+
+                    .following:hover {
+                        .animation {
+                            background-color: black;
+                            animation-name: line;
+                            animation-duration: 0.5s;
+                        }
+
+                        @keyframes line {
+                            0% {
+                                width: 0%;
+                            }
+
+                            50% {
+                                width: 50%;
+                            }
+
+                            100% {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    #following:hover {
+                        .animation {
+                            background-color: white;
+                            animation-name: line;
+                            animation-duration: 0.5s;
+                        }
+
+                        @keyframes line {
+                            0% {
+                                width: 0%;
+                            }
+
+                            50% {
+                                width: 50%;
+                            }
+
+                            100% {
                                 width: 100%;
                             }
                         }
                     }
                 }
-            
+
 
             }
-            .profile-buttons{
+
+            .profile-buttons {
                 margin-bottom: 10px;
                 display: flex;
                 justify-content: center;
 
-                .follow{
+                .follow {
                     padding: 5px 10px;
                 }
-                .btn-primary{
+
+                .btn-primary {
                     padding: 5px 10px;
                 }
-                .btn-secondary{
+
+                .btn-secondary {
                     padding: 5px 10px;
-                    
+
                 }
-                .btn-secondary:hover{
+
+                .btn-secondary:hover {
                     color: white;
                     background-color: var(--button-color);
                 }
@@ -295,84 +331,208 @@ display: flex;
         }
     }
 }
-@media only screen and (max-width: 900px){
-    .Profile{
+
+@media only screen and (max-width: 900px) {
+    .Profile {
         padding-left: 5%;
     }
 }
 
-@media only screen and (max-width: 1000px){
+@media only screen and (max-width: 1000px) {
 
-    .Profile{
-        .sideNavbar{
-        .side-bar-routes{
-            .btn-primary2{
-                padding: 0px 0px 0px 0px;
-                color: #ee7837;
-                background-color: black;
-                margin-bottom: 15px;
+    .Profile {
+        .MobileCreatePost {
+            display: block;
+            display: flex;
+            height: 60px;
+            width: 60px;
+            background-color: #ee7837;
+            border-radius: 50%;
+            justify-content: center;
+            align-items: center;
+            position: absolute;
+            bottom: 10%;
+            right: 5%;
+
+            h2 {
+                font-size: 2.5rem;
+                margin-top: 10px;
+            }
+        }
+
+        .sideNavbar {
+            .side-bar-routes {
+                .btn-primary2 {
+                    padding: 0px 0px 0px 0px;
+                    color: #ee7837;
+                    background-color: black;
+                    margin-bottom: 15px;
 
 
-                p{
+                    p {
+                        display: none;
+                    }
+                }
+
+                .btn-primary3,
+                .btn-primary1 {
+                    padding: 0px 0px 0px 0px;
+                    background-color: black;
+                    margin-bottom: 15px;
+
+
+                    p {
+                        display: none;
+                    }
+                }
+
+                .btn-primary1:hover {
+                    background-color: black;
+                    color: #ee7837;
+                }
+
+                .btn-primary3:hover {
+                    background-color: black;
+                    color: #ee7837;
+                }
+            }
+        }
+
+        .container {
+            flex-direction: column-reverse;
+
+            .left-part {
+                .creatPosts {
                     display: none;
                 }
             }
-            .btn-primary3,
-            .btn-primary1{
-                padding: 0px 0px 0px 0px;
-                background-color: black;
-                margin-bottom: 15px;
 
+            .right-part {
+                .profile-card {
+                    .userInfo2 {
+                        display: flex;
+                        justify-content: space-between;
 
-                p{
-                    display: none;
-                }
-            }
-            .btn-primary1:hover{
-                background-color: black;
-                color: #ee7837;
-               }
-            .btn-primary3:hover{
-                background-color: black;
-                color: #ee7837;
-               }
-        }
-    }
-    .container{
-        flex-direction: column-reverse;
-
-        .left-part{
-            .creatPosts{
-                display: none;
-            }
-        }
-        .right-part{
-            .profile-card{
-                .userInfo2{
-                    display: flex;
-                    justify-content: space-between;
-                
-                .user-img-name{
-                    .user-img{
-                        width: 50px;
-                    height: 50px;
-                    border-radius: 50%;
-                    padding: 10px;
+                        .user-img-name {
+                            .user-img {
+                                width: 50px;
+                                height: 50px;
+                                border-radius: 50%;
+                                padding: 10px;
+                            }
+                        }
                     }
                 }
             }
-            }
         }
     }
 }
-}
-@media only screen and (max-width: 700px) {
-    .Profile{
-    justify-content: center;
-    padding-left: 0px;
 
-    .mobileNavbar{
-        display: block;
-    }
+@media only screen and (max-width: 700px) {
+    .Profile {
+        justify-content: center;
+        padding-left: 0px;
+
+        .mobileNavbar {
+            display: block;
+        }
     }
 }
+// mobile create post
+.CreatePost2 {
+    display: flex;
+    border: 1px solid #d2d2d2;
+    border-radius: 5px;
+    padding: 20px;
+    gap: 20px;
+    margin-top: 20px;
+
+
+
+    .left-partt {
+        flex-grow: 0;
+        flex-shrink: 0;
+        flex-basis: content;
+    }
+
+    .right-part {
+        flex-grow: 1;
+
+        input {
+            width: 95%;
+            padding: 8px 16px;
+            border-top: none;
+            border-right: none;
+            border-left: none;
+            outline: none;
+        }
+
+        .img-container {
+            margin-top: 20px;
+
+            .post-img {
+                // height: 100%;
+                width: 100%;
+                aspect-ratio: 16/9;
+            }
+        }
+
+    }
+
+    .bottom-part {
+        display: flex;
+        margin-top: 20px;
+        justify-content: space-between;
+        align-items: center;
+
+
+        .input-post-img {
+            display: flex;
+            flex-direction: column;
+
+            .labelImg {
+                display: inline-block;
+                background-color: aqua;
+                color: white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                cursor: pointer;
+
+            }
+
+            .inputImg {
+                display: none;
+            }
+        }
+
+        .post-btn {
+            padding: 10px 20px;
+            border: none;
+            outline: none;
+            background-color: #ee7837;
+            color: black;
+            border-radius: 30px;
+            padding: 10px 20px;
+        }
+    }
+
+}
+// .driver-popover{
+    // background-color: #fde047 !important;
+    // color: #000 !important;
+//   }
+  .driver-popover-next-btn {
+    background-color: #ee7837 !important;
+    color: black !important;
+    text-align: center !important;
+    background-color: #ee7837 !important;
+    color: black !important;
+    text-shadow: none !important;
+    font-size: 14px !important;
+    padding: 5px 20px !important;
+    border-radius: 30px !important;
+  }

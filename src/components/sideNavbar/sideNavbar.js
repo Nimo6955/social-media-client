@@ -103,11 +103,11 @@ const handleCancel = () => {
 
         <button id={`${mode ? '' : 'active-btn-primary2'}`} className="profile hover-link  btn-primary2" onClick={() =>navigate(`/profile/${myProfile?._id}`)}> <FaRegUser style={{fontSize: '1rem', marginRight: '7px', height: mode ? '' : '20px'}}/> <p> Profile</p></button>
         <button id={`${mode ? '' : 'active-btn-primary4'}`} className='btn-primary1 searchButton'onClick={showSearchModal}><BsSearch  style={{fontSize: '1rem', marginRight: '7px'}} className='hover-link searchIcon' /></button> 
-        <button id={`${mode ? '' : 'active-btn-primary1'}`} onClick={showModal} className="profile hover-link btn-primary1" > <BsBookmark style={{fontSize: '1rem', marginRight: '7px', height: mode ? '' : '20px'}}/> <p> Bookmark</p></button>
+        <button id={`${mode ? '' : 'active-btn-primary1'}`} onClick={showModal} className="profile hover-link btn-primary1 bookmarkbtn" > <BsBookmark style={{fontSize: '1rem', marginRight: '7px', height: mode ? '' : '20px'}}/> <p> Bookmark</p></button>
 
         </div>
-        <div style={{ whiteSpace: 'nowrap' }}>
-<Popover  className='more-icon' placement="bottom" content={content} trigger="click">
+        <div style={{ whiteSpace: 'nowrap' }} id='more-icon'>
+<Popover  className='more-icon'  placement="bottom" content={content} trigger="click">
 <Button style={{border: 'none', outline:'none', backgroundColor: mode ? 'black' : 'white  '}}><IoReorderThree style={{fontSize: '2rem', marginRight: '7px',color: mode ? 'white' : 'black'}}/> <p style={{color: mode ? 'white' : 'black'}}>MORE</p></Button>
 </Popover>
 

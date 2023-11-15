@@ -102,9 +102,9 @@ function FooterNavbar() {
         <ul className="FooterNavbarBox" style={{backgroundColor: mode ? 'black' : ''}}>
             <li className='hover-link' onClick={() =>navigate('/')}><FaHouse  style={{color: mode ? 'white' : 'black'}}/></li>
             <li className='hover-link'  onClick={() =>navigate(`/profile/${myProfile?._id}`)}><FaRegUser  style={{color: mode ? 'white' : 'black'}}/></li>
-            <li className='hover-link' onClick={showSearchModal}><BsSearch  style={{color: mode ? 'white' : 'black'}}/></li>
-            <li className='hover-link' onClick={showModal}><BsBookmark  style={{color: mode ? 'white' : 'black'}}/></li>
-            <div style={{ whiteSpace: 'nowrap' }}>
+            <li className='hover-link' id='searchBtnM' onClick={showSearchModal}><BsSearch  style={{color: mode ? 'white' : 'black'}}/></li>
+            <li className='hover-link' id='bookmarkBtnM' onClick={showModal}><BsBookmark  style={{color: mode ? 'white' : 'black'}}/></li>
+            <div style={{ whiteSpace: 'nowrap' }} id='more-IconM'>
 <Popover  className='more-icon' placement="bottom" content={content} trigger="click">
 <Button style={{border: 'none', outline:'none', backgroundColor: mode ? 'black' : 'white', padding: 'none'}}><VscThreeBars style={{color: mode ? 'white' : 'black'}}/></Button>
 </Popover>

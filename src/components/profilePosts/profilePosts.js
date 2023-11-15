@@ -187,7 +187,7 @@ function bookmarkMyPost(){
           
        </div>
 
-       <Modal closable={false} okText='Post'  okButtonProps={{disabled: comment === '' ?  true : false, style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={OpenComment} onOk={postComment} onCancel={handleCancel} cancelButtonProps={{ style: {borderRadius: '30px'}}}>
+       <Modal closable={false} okText='Post'  okButtonProps={{disabled: comment === '' ?  true : false, style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={OpenComment} onOk={postComment} onCancel={handleCancel} cancelButtonProps={{ style: {borderRadius: '30px', width: '80px'}}}>
 
 <div className='allComments' style={{height: '300px', overflowY: 'scroll'}}>
 {userProfile?.posts?.[findPost]?.comments?.map(comments => <ProfileComments key={comments._id} postId={post._id} comments={comments}/>)}

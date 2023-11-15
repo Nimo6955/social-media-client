@@ -14,7 +14,7 @@ import user from '../../assets/sugnUpUser.png'
 import { useDispatch, useSelector } from 'react-redux';
 import Follower from '../../components/follower/follower';
 import { updateMyProfile } from '../../redux/slices/appConfigSlice';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import SignupSuggestions from '../../components/signupSuggestions/signupSuggestions';
 import { getFeedData } from '../../redux/slices/feedSlice';
 
@@ -22,6 +22,7 @@ import { getFeedData } from '../../redux/slices/feedSlice';
 
 function UserInfoSelect() {
 
+  const location = useLocation()
   const navigate = useNavigate()
   const [seed, setSeed] = useState(null)
   const myProfile = useSelector(state => state.appConfigReduser.myProfile)
@@ -217,7 +218,7 @@ function handleSubmit(){
           <h2 style={{marginBottom: '10px'}}>Suggested peaple you can follow</h2>
           {feedData?.signUpSuggestions?.map(user => <SignupSuggestions key={user._id} user={user} />)}
           </div>
-          <button className='skipButton'onClick={() =>navigate(`/profile/${myProfile?._id}`)}>SKIP</button>
+          <button className='skipButton'onClick={() =>navigate(`/profile/${myProfile?._id}`,{state: { from : location}})}>SKIP</button>
       </Modal>
 
             </div>

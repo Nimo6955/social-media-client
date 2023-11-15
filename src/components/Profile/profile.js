@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import './profile.scss'
 import ProfilePosts from '../profilePosts/profilePosts'
-import { useNavigate, useParams } from 'react-router-dom'
+import { useLocation, useNavigate, useParams } from 'react-router-dom'
 import CreatePost from '../createPost/createPost'
 import { useDispatch, useSelector } from 'react-redux'
 import { getUserProfile } from '../../redux/slices/postsSlice'
@@ -12,11 +12,24 @@ import SideNavbar from '../sideNavbar/sideNavbar'
 import ProfileFollowerFollowing from '../profileFollowerFollowing/profileFollowerFollowing'
 import user from '../../assets/sugnUpUser.png'
 import FooterNavbar from '../footerNavbar/footerNavbar'
+import { BsPlusLg } from 'react-icons/bs'
+import { setLoading } from '../../redux/slices/appConfigSlice'
+import { axiosClient } from '../../Utils/axiosClient'
+import Avatar from '../Avatar/avatar'
+import {BsCardImage} from 'react-icons/bs'
+import {driver } from "driver.js";
+import "driver.js/dist/driver.css";
+import popoverImg from '../../assets/Questions.gif'
+import popoverImg2 from '../../assets/Enthusiastic.gif'
+
 
 
 
 
 function Profile() {
+
+  const [postImg2, setPostImg2] = useState('');
+  const [caption2, setCaption2] = useState('')
   const { mode } = useSelector((state) => state.darkMode)
 
   const [isModalOpen, setIsModalOpen] = useState(false);
@@ -33,6 +46,23 @@ function Profile() {
 
   const handleCancel = () => {
     setIsModalOpen(false);
+  };
+
+
+  const [isCreateModalOpen, setCreateIsModalOpen] = useState(false);
+
+  const showCreateModal = () => {
+  if(isMyProfile || isfollowing){
+      setCreateIsModalOpen(true);
+    };
+  }
+
+  const handleCreateOk = () => {
+    setCreateIsModalOpen(false);
+  };
+
+  const handleCreateCancel = () => {
+    setCreateIsModalOpen(false);
   };
 
 
@@ -64,6 +94,194 @@ function handleUserFollow(){
     userIdToFollow: params.userId
   }))
 }
+var  width = document.body.offsetWidth
+
+const handleImageChange2 = (e) => {
+  const file = e.target.files[0]
+  const fileReader = new FileReader()
+  fileReader.readAsDataURL(file)
+  fileReader.onload = ()=>{
+       if(fileReader.readyState === fileReader.DONE){
+          setPostImg2(fileReader.result)
+       }
+  }
+}
+
+const handlePostSubmit2 = async () => {
+  try {
+      dispatch(setLoading(true))
+      const result = await axiosClient.post('/posts', {
+          caption : caption2,
+          postImg : postImg2
+      });
+      console.log('post', result);
+      dispatch(getUserProfile({
+          userId: myProfile?._id
+      }))
+  } catch (e) {
+      
+  }finally{
+      dispatch(setLoading(false))
+      setCaption2('')
+      setPostImg2('')
+
+  }
+}
+var  width = document.body.offsetWidth
+const location = useLocation()
+let from = location?.state?.from?.pathname
+
+if (width > 1000 && from){
+const driverObj = driver({
+  showButtons: [
+    'next',
+    // 'previous',
+    'close'
+  ],
+  overlayColor: 'gray',
+  onPopoverRender: (popover, { config, state }) => {
+    const firstButton = document.getElementsByClassName("driver-popover-next-btn")[0];
+    if( popover.footerButtons.innerText === "Done"){
+
+        driverObj.destroy();
+        setTimeout(() =>{
+          navigate('/')
+        },200)  
+    }
+  
+    if(popover.title.innerText === 'App tour'){
+
+      const imgpop = document.createElement("img");
+          imgpop.src = popoverImg
+          imgpop.setAttribute("style", "height:200px")
+          popover.description.appendChild(imgpop);
+    }
+    if(popover.title.innerText === 'YaY !'){
+
+      const imgpop2 = document.createElement("img");
+          imgpop2.src = popoverImg2
+          imgpop2.setAttribute("style", "height:200px")
+          popover.description.appendChild(imgpop2);
+    }
+  
+  },
+  allowClose: false,
+  disableActiveInteraction: true,
+  steps: [
+    { popover: { title: 'App tour', description: 'Have a look, what You can do !!', nextBtnText: 'Start'}},
+    { element: '#creatPosts', popover: { title: 'Create Post', description: 'You can create a post by uploading an image and caption here...', nextBtnText: 'Next'} },
+    { element: '#profile-card .follower-info', popover: { title: 'Followers', description: 'Your followers and following will appear here...', nextBtnText: 'Next'} },
+    { element: '#profile-card .profile-buttons .update-profile', popover: { title: 'Update Profile', description: 'You can update your NAME, AVATAR & BIO here...',nextBtnText: 'Next'} },
+    { element: '.Profile .sideNavbar .side-bar-routes .bookmarkbtn', popover: { title: 'Bookmarks', description: 'Your bookmarked posts will appear here...',nextBtnText: 'Next'} },
+    { element: '#more-icon', popover: { title: 'Log Out & DarkMode', description: 'You can toggle to darkmode and log out of your profile from here...', nextBtnText: 'Next'} },
+    { popover: { title: 'YaY !', description: 'You can now see posts of Your followings !!', nextBtnText: 'Go to Home'}},
+    { popover: { title: 'Title', description: 'Description', nextBtnText: 'Done'}}
+  ]
+})
+   driverObj.drive()
+}
+
+if ( width > 700 && width < 1000 && from){
+const driverObj2 = driver({
+  showButtons: [
+    'next',
+    // 'previous',
+    'close'
+  ],
+  overlayColor: 'gray',
+  onPopoverRender: (popover, { config, state }) => {
+    const firstButton = document.getElementsByClassName("driver-popover-next-btn")[0];
+    if( popover.footerButtons.innerText === "Done"){
+
+        driverObj2.destroy();
+        setTimeout(() =>{
+
+          navigate('/')
+        },200)
+    }
+    if(popover.title.innerText === 'App tour'){
+
+      const imgpop = document.createElement("img");
+          imgpop.src = popoverImg
+          imgpop.setAttribute("style", "height:200px")
+          popover.description.appendChild(imgpop);
+    }
+    if(popover.title.innerText === 'YaY !'){
+
+      const imgpop2 = document.createElement("img");
+          imgpop2.src = popoverImg2
+          imgpop2.setAttribute("style", "height:200px")
+          popover.description.appendChild(imgpop2);
+    }
+
+  },
+  allowClose: false,
+  disableActiveInteraction: true,
+  steps: [
+    { popover: { title: 'App tour', description: 'Have a look, what You can do !!', nextBtnText: 'Start'}},
+    { element: '.MobileCreatePost', popover: { title: 'Create Post', description: 'You can create a post by uploading an image and caption here...', nextBtnText: 'Next'} },
+    { element: '#profile-card .follower-info', popover: { title: 'Followers', description: 'Your followers and following will appear here...', nextBtnText: 'Next'} },
+    { element: '#profile-card .profile-buttons .update-profile', popover: { title: 'Update Profile', description: 'You can update your NAME, AVATAR & BIO here...',nextBtnText: 'Next'} },
+    { element: '.Profile .sideNavbar .side-bar-routes .bookmarkbtn', popover: { title: 'Bookmarks', description: 'Your bookmarked posts will appear here...',nextBtnText: 'Next'} },
+    { element: '#more-icon', popover: { title: 'Log Out & DarkMode', description: 'You can toggle to darkmode and log out of your profile from here...', nextBtnText: 'Next'} },
+    { popover: { title: 'YaY !', description: 'You can now see posts of Your followings !!', nextBtnText: 'Go to Home'}},
+    { popover: { title: 'Title', description: 'Description', nextBtnText: 'Done'}}
+  ]
+})
+    driverObj2.drive();
+}
+
+if ( width < 700 && from){
+const driverObj3 = driver({
+  showButtons: [
+    'next',
+    // 'previous',
+    'close'
+  ],
+  overlayColor: 'gray',
+  onPopoverRender: (popover, { config, state }) => {
+    const firstButton = document.getElementsByClassName("driver-popover-next-btn")[0];
+    if( popover.footerButtons.innerText === "Done"){
+
+        driverObj3.destroy();
+        setTimeout(() =>{
+
+          navigate('/')
+        },200)
+    }
+    
+    if(popover.title.innerText === 'App tour'){
+
+      const imgpop = document.createElement("img");
+          imgpop.src = popoverImg
+          imgpop.setAttribute("style", "height:200px")
+          popover.description.appendChild(imgpop);
+    }
+    if(popover.title.innerText === 'YaY !'){
+
+      const imgpop2 = document.createElement("img");
+          imgpop2.src = popoverImg2
+          imgpop2.setAttribute("style", "height:200px")
+          popover.description.appendChild(imgpop2);
+    }
+  },
+  allowClose: false,
+  disableActiveInteraction: true,
+  steps: [
+    { popover: { title: 'App tour', description: 'Have a look, what You can do !!', nextBtnText: 'Start'}},
+    { element: '.MobileCreatePost', popover: { title: 'Create Post', description: 'You can create a post by uploading an image and caption here...', nextBtnText: 'Next'} },
+    { element: '#profile-card .follower-info', popover: { title: 'Followers', description: 'Your followers and following will appear here...', nextBtnText: 'Next'} },
+    { element: '#profile-card .profile-buttons .update-profile', popover: { title: 'Update Profile', description: 'You can update your NAME, AVATAR & BIO here...',nextBtnText: 'Next'} },
+    { element: '#searchBtnM', popover: { title: 'Search', description: 'Search for Your friends...',nextBtnText: 'Next'} },
+    { element: '#bookmarkBtnM', popover: { title: 'Bookmarks', description: 'Your bookmarked posts will appear here...',nextBtnText: 'Next'} },
+    { element: '#more-IconM', popover: { title: 'Log Out & DarkMode', description: 'You can toggle to darkmode and log out of your profile from here...', nextBtnText: 'Next'} },
+    { popover: { title: 'YaY !', description: 'You can now see posts of Your followings !!', nextBtnText: 'Go to Home'}},
+    { popover: { title: 'Title', description: 'Description', nextBtnText: 'Done'}}
+  ]
+})
+    driverObj3.drive();
+}
+
 
 
   return (
@@ -71,13 +289,16 @@ function handleUserFollow(){
       <SideNavbar/>
       <div className="container">
         <div className="left-part">
-          <div className="creatPosts">
+          {/* {width > 1000 ?  */}
+          <div className="creatPosts" id='creatPosts'>
             {isMyProfile && <CreatePost/>}
-          </div>
+          </div> 
+          {/* : '' */}
+          {/* } */}
         {userProfile?.posts?.map(post => <ProfilePosts  key={post?._id} post={post}/>)}
         </div>
         <div className="right-part">
-          <div className="profile-card" style={{border: mode ? '' : '1px solid black'}}>
+          <div className="profile-card" id='profile-card' style={{border: mode ? '' : '1px solid black'}}>
           <div className='userInfo2'>
 
           
@@ -128,6 +349,35 @@ function handleUserFollow(){
       </Modal>
       <div className="mobileNavbar">
       <FooterNavbar/>
+      </div>
+      <Modal okText="POST" okButtonProps={{ style: { display: 'none' } }} cancelButtonProps={{style: {display: 'none'}}} open={isCreateModalOpen} onOk={handleCreateOk} onCancel={handleCreateCancel}>
+      {/* <CreatePost/> */}
+      <div className='CreatePost2' style={{border: mode ? '' : '1px solid black'}}>
+        <div className="left-partt">
+            <Avatar src={myProfile?.avatar?.url}/>
+        </div>
+        <div className="right-part">
+            <input type="text"  className="captionInput" placeholder='nice cation here ?' value={caption2} onChange={(e) => setCaption2(e.target.value)}/>
+           {postImg2 &&  (<div className="img-container">
+                <img className='post-img' src={postImg2} alt="post image" />
+                
+            </div>)}
+           
+            <div className="bottom-part">
+                <div className="input-post-img">
+                <label className='labelImg' htmlFor="inputImg">
+                        <BsCardImage/>
+                        </label>
+                        <input className='inputImg' id='inputImg' type="file" accept='image/*' onChange={handleImageChange2} />
+                </div>
+                <button className='post-btn' onClick={handlePostSubmit2}>Post</button>
+            </div>
+        </div>
+    </div>
+      
+      </Modal>
+      <div className="MobileCreatePost hover-link" onClick={showCreateModal}>
+        <h2><BsPlusLg style={{color: 'black'}}/></h2>
       </div>
     </div>
   )
