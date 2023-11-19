@@ -6,7 +6,7 @@ import { KEY_ACCESS_TOKEN, setItem } from '../../Utils/localStoregeManager';
 // import user from '../../assets/sugnUpUser.png'
 import Bg from '../../assets/Signup.gif'
 import user from '../../assets/user.png'
-
+import { FaRegEye, FaRegEyeSlash  } from "react-icons/fa";
 
 
 
@@ -37,6 +37,23 @@ function Signup() {
     }
 
 
+    function displayFaRegEyeSlash(){
+            const FaRegEye = document.getElementById('FaRegEye')
+            FaRegEye.style.display = 'block'
+            const FaRegEyeSlash = document.getElementById('FaRegEyeSlash')
+            FaRegEyeSlash.style.display = 'none'
+            const input = document.getElementById('password')
+            input.setAttribute('type', 'text')
+
+    }
+    function displayFaRegEye(){
+            const FaRegEye = document.getElementById('FaRegEye')
+            FaRegEye.style.display = 'none'
+            const FaRegEyeSlash = document.getElementById('FaRegEyeSlash')
+            FaRegEyeSlash.style.display = 'block'
+            const input = document.getElementById('password')
+            input.setAttribute('type', 'password')
+    }   
 
   
 
@@ -59,6 +76,8 @@ function Signup() {
                     
                     {/* <label style={{ fontWeight: '650', marginBottom: '10px', marginTop: '8px' }} htmlFor="password">Password</label> */}
                     <input type="password" className='password' id='password' placeholder='Password' onChange={(e)=>setPassword(e.target.value)}/>
+                    <FaRegEye color='#455a64' className='FaRegEye' id='FaRegEye' style={{display: 'none'}} onClick={displayFaRegEye}/>
+                    <FaRegEyeSlash  color='#455a64' className='FaRegEye' id='FaRegEyeSlash' onClick={displayFaRegEyeSlash}/>
                     <button type="submit" className='submit btn-primary'onClick={handleSubmit}>Sign Up</button>
 
                 </form>

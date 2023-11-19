@@ -5,8 +5,9 @@ import Avatar from '../Avatar/avatar'
 import {BsCardImage} from 'react-icons/bs'
 import { axiosClient } from '../../Utils/axiosClient'
 import { useDispatch, useSelector } from 'react-redux'
-import { setLoading } from '../../redux/slices/appConfigSlice'
+import { setLoading, showToast } from '../../redux/slices/appConfigSlice'
 import { getUserProfile } from '../../redux/slices/postsSlice'
+import { TOAST_FAILURE } from '../../App'
 
 
 function CreatePost() {
@@ -33,14 +34,23 @@ function CreatePost() {
     const handlePostSubmit = async () => {
         try {
             dispatch(setLoading(true))
-            const result = await axiosClient.post('/posts', {
-                caption,
-                postImg
-            });
-            console.log('post', result);
-            dispatch(getUserProfile({
-                userId: myProfile?._id
-            }))
+            if(!caption || !postImg){   
+                // showToast
+                dispatch(showToast({
+                    type: TOAST_FAILURE,
+                    message: 'All feilds are required'
+                  }))
+            }
+            else if (caption && postImg){
+                const result = await axiosClient.post('/posts', {
+                    caption,
+                    postImg
+                });
+                console.log('post', result);
+                dispatch(getUserProfile({
+                    userId: myProfile?._id
+                }))
+            }
         } catch (e) {
             
         }finally{
@@ -56,7 +66,7 @@ function CreatePost() {
             <Avatar src={myProfile?.avatar?.url}/>
         </div>
         <div className="right-part">
-            <input type="text" style={{backgroundColor: mode ? 'black' : '', color: mode ? 'white' : ''}} className="captionInput" placeholder='nice cation here ?' value={caption} onChange={(e) => setCaption(e.target.value)}/>
+            <input type="text" style={{backgroundColor: mode ? 'black' : '', color: mode ? 'white' : ''}} className="captionInput" placeholder='Nice caption here ?' value={caption} onChange={(e) => setCaption(e.target.value)}/>
            {postImg &&  (<div className="img-container">
                 <img className='post-img' src={postImg} alt="post image" />
                 

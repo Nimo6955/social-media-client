@@ -9,13 +9,14 @@ import { Button, Popover } from 'antd';
 import BookmarkPost from '../bookmarkpost/bookmarkPost'
 import { toggleDarkMode } from '../../redux/slices/darkModeSlice'
 import { useNavigate } from 'react-router-dom'
-import { setLoading } from '../../redux/slices/appConfigSlice'
+import { setLoading, showToast } from '../../redux/slices/appConfigSlice'
 import { axiosClient } from '../../Utils/axiosClient'
 import { KEY_ACCESS_TOKEN, removeItem } from '../../Utils/localStoregeManager'
 import { Modal } from 'antd';
 import './sideNavbar.scss'
 import { getFeedData } from '../../redux/slices/feedSlice'
 import ProfileFollowerFollowing from '../profileFollowerFollowing/profileFollowerFollowing'
+import { TOAST_SUCCESS } from '../../App'
 
 
 
@@ -42,7 +43,10 @@ function SideNavbar() {
 
   const content = (
     <div>
-    <p className='hover-link darkMode-button' onClick={() => dispatch(toggleDarkMode())}>{mode ? <BsFillSunFill/> :  <BsFillMoonFill/>}<p>{mode? 'Light Mode' : 'Dark Mode'}</p></p>
+    <p className='hover-link darkMode-button' onClick={() => dispatch(toggleDarkMode())}>{mode ? <BsFillSunFill /> :  <BsFillMoonFill/>}<p onClick={() => dispatch(showToast({
+      type: TOAST_SUCCESS,
+      message: mode ? 'Light Mode Activated' : 'Dark Mode Activated'
+    }))}>{mode? 'Light Mode' : 'Dark Mode'}</p></p>
     <hr style={{marginBlock:'8px'}} />
     <p className='logOut-button hover-link' onClick={handleLogOut}> <MdOutlineLogout /> <p> log Out</p></p>
     </div>
@@ -82,7 +86,7 @@ const handleCancel = () => {
     setSearchOpen(false);
   };
   function fetchData(e){
-    const Data = feedData?.suggestions
+    const Data = feedData?.AllUsers
     // const newData = Data.json()
     const result =
     Data.filter((user) => {
@@ -112,10 +116,10 @@ const handleCancel = () => {
 </Popover>
 
 </div>
-<Modal okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' }}}  style={{height: '90vh', width:'1000px'}}  cancelButtonProps={{style: {display: 'none'}}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+<Modal okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' }}}  cancelButtonProps={{style: {display: 'none'}}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
       <h2>{feedData?.bookmarks?.length === 0 || 'Your Bookmarks'}</h2>
       <h2>{feedData?.bookmarks?.length === 0 && 'No bookmarks to display'}</h2>
-      <div className='book-post' style={{ overflowY: 'scroll'}} >
+      <div className='book-post' style={{ overflowY: 'scroll',height: feedData?.bookmarks?.length === 0 ? '100px' : '70vh'}} >
     {feedData?.bookmarks?.map((post) => <BookmarkPost key={post._id} post={post}/>)}
       </div>
         

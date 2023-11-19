@@ -116,7 +116,13 @@ const handleCancel = () => {
           </div>
           <div  onClick={bookmarkMyPost} >
             
-        {index ? <PiBookmarkSimpleFill className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: 'black'}}/> :   <PiBookmarkSimple className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: mode ? 'white' : 'black'}} />}
+        {index ? <PiBookmarkSimpleFill onClick={() => dispatch(showToast({
+      type: TOAST_SUCCESS,
+      message: 'Post removed from Bookmarks'
+    }))}  className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: 'black'}}/> :   <PiBookmarkSimple onClick={() => dispatch(showToast({
+      type: TOAST_SUCCESS,
+      message: 'Post Added to Bookmarks'
+    }))} className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: mode ? 'white' : 'black'}} />}
           </div>
 
 

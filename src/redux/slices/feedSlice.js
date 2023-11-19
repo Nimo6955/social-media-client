@@ -99,11 +99,15 @@ const feedSlice = createSlice({
        .addCase(folloAndUnfollowUser.fulfilled, (state, action)=>{
          const user = action?.payload;
          const index = state?.feedData?.followings?.findIndex(item => item._id === user._id)
+         const index2 = state?.feedData?.signUpSuggestions?.findIndex(item => item._id === user._id)
+         console.log('slice' , user._id);
+         console.log('indexSlice' , index2);
             if(index !== -1){
                 state?.feedData?.followings?.splice(index, 1)
-
+                
             }else{
                 state?.feedData?.followings?.push(user)
+                state?.feedData?.signUpSuggestions?.splice(index2, 1)
 
             }
        }).addCase(bookmarkPost.fulfilled, (state, action)=> {

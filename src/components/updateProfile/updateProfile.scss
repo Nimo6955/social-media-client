@@ -50,11 +50,11 @@
     .right-part{
         flex: 3;
 
-        input{
+        .name-input,.bio-input{
             width: 70%;
             display: block;
             padding: 8px 16px;
-            margin-top: 16px;
+            margin-bottom: 20px;
             // border-radius: 5px;
             border-top: none;
             border-left: none;
@@ -63,16 +63,51 @@
             outline: none;
             // box-shadow: 2px 2px 7px ;
         }
-        .btn-primary{
+        .submitBtn{
+            border-top: none;
+            border-left: none;
+            border-right: none;
             padding: 10px 20px;
+            outline: none;
             width: fit-content;
             border-radius: 30px;
+            background-color: #263238;
+            color: white;
         }
     }
     .Delete-Account{
         
-        padding: 5px 10px;
-        margin-top: 10px;
+        padding: 10px 20px;
+            border: none;
+            outline: none;
+            background-color: #ee7837;
+            color: black;
+            border-radius: 30px;
+            padding: 10px 20px;
+            cursor: pointer;
+            margin-top: 10px;
     }
 
+}
+
+@media only screen and (max-width : 600px) {
+    .UpdateProfile{
+        .container{
+            // display: block;
+            flex-direction: column;
+
+            .right-part{
+                flex: none;
+                margin-left: 50px;
+            }
+            .left-part{
+                .input-user-img{
+                    .labelImg{
+                        height: 150px;
+                        width: 150px;
+                    }
+                }
+            }
+        }
+    }
 }

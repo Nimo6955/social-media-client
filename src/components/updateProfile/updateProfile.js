@@ -79,11 +79,13 @@ function UpdateProfile() {
                 </div>
                 <div className="right-part">
                     <form onSubmit={handleSubmit}>
+                        <label htmlFor="" style={{color: mode ? 'white' : '', textDecoration: 'underline', marginBottom: '5px'}}>Name</label>
                         <input style={{backgroundColor: mode? 'black' : '', color: mode ? 'white' : ''}} className='name-input' value={name} type="text" placeholder='Your Name' onChange={(e) => setName(e.target.value)} />
+                        <label htmlFor="" style={{color: mode ? 'white' : '', textDecoration: 'underline', marginBottom: '5px'}}>Bio</label>
                         <input style={{backgroundColor: mode? 'black' : '', color: mode ? 'white' : ''}} className='bio-input' value={bio} type="text" placeholder='Your Bio' onChange={(e) => setBio(e.target.value)}/>
-                        <input type="submit" className='btn-primary hover-link' onSubmit={handleSubmit}/>
+                        <input type="submit" className='submitBtn hover-link' onSubmit={handleSubmit}/>
                     </form>
-                    <button onClick={DeleteAccount} className='Delete-Account btn-secondary hover-link'>Delete Account</button>
+                    <button onClick={DeleteAccount} className='Delete-Account hover-link'>Delete Account</button>
                 </div>
             </div>
         </div>

@@ -109,9 +109,9 @@ function handleSubmit(){
    const [isFollowerOpen, setFollowerOpen] = useState(false);
 
     function showFollowerModal(){
+      dispatch(getFeedData())
       handleSubmit()
       // setTimeout(() => {
-        dispatch(getFeedData())
         setFollowerOpen(true);
       // }, 300);
      setAvatarOpen(false);
@@ -215,7 +215,7 @@ function handleSubmit(){
       </Modal>
       <Modal keyboard={false} maskClosable={false}  maskStyle={{background: 'black'}} closable={false} okButtonProps={{ style: { display: 'none' } }} cancelButtonProps={{style: {display: 'none'}}} open={isFollowerOpen} onOk={handleFollowerOk} onCancel={handleFollowerCancel}>
       <div >
-          <h2 style={{marginBottom: '10px'}}>Suggested peaple you can follow</h2>
+          <h2 style={{marginBottom: '10px'}}>Suggested people you can follow</h2>
           {feedData?.signUpSuggestions?.map(user => <SignupSuggestions key={user._id} user={user} />)}
           </div>
           <button className='skipButton'onClick={() =>navigate(`/profile/${myProfile?._id}`,{state: { from : location}})}>SKIP</button>

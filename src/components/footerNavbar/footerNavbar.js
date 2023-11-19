@@ -84,7 +84,7 @@ function FooterNavbar() {
   };
   
   function fetchData(e){
-    const Data = feedData?.suggestions
+    const Data = feedData?.AllUsers
     // const newData = Data.json()
     const result =
     Data.filter((user) => {
@@ -112,10 +112,10 @@ function FooterNavbar() {
 </div>
         </ul>
 
-        <Modal okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' }}}  style={{height: '90vh', width:'1000px'}}  cancelButtonProps={{style: {display: 'none'}}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+        <Modal okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' }}} cancelButtonProps={{style: {display: 'none'}}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
       <h2>{feedData?.bookmarks?.length === 0 && 'No bookmarks to display'}</h2>
       <h2>{feedData?.bookmarks?.length === 0 || 'Your Bookmarks'}</h2>
-      <div className='book-post' style={{ overflowY: 'scroll'}} >
+      <div className='book-post' style={{ overflowY: 'scroll',height: feedData?.bookmarks?.length === 0 ? '100px' : '70vh'}} >
     {feedData?.bookmarks?.map((post) => <BookmarkPost key={post._id} post={post}/>)}
       </div>
         

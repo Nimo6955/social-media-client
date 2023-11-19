@@ -19,10 +19,11 @@ function SignupSuggestions({user}) {
   },[dispatch])
 
   function handleUserFollow(e){
-    dispatch(getFeedData())
+    // dispatch(getFeedData())
     dispatch(folloAndUnfollowUser({
       userIdToFollow: user._id
     }));
+    console.log( 'signup',user._id)
     
   }
   return (
@@ -30,7 +31,7 @@ function SignupSuggestions({user}) {
         <div className="user-info">
         <Avatar src={user?.avatar?.url}/>
 
-        <h4 className="name" style={{color: mode ? 'white' : 'black'}}>{user?.name}</h4>
+        <h4 className="name">{user?.name}</h4>
 
         </div>
         <h5 onClick={handleUserFollow} id="follow-link" className={isfollowing ? "hover-link follow-link" : 'btn-primary1'}>{isfollowing ? 'Unfollow' : 'follow'}</h5>

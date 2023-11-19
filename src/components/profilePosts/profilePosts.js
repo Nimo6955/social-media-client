@@ -25,6 +25,11 @@ import ProfileComments from '../profileComments/profileComments'
 
 function ProfilePosts({post}) {
 
+// const feedData = useSelector(state => state.feedDataReducer.feedData)
+const myProfile = useSelector(state => state.appConfigReduser.myProfile)
+// console.log(myProfile?.name, myProfile?.avatar);
+
+
   const [OpenComment, setOpenComment] = useState(false);
   const [comment, setComment] = useState('');
 
@@ -40,8 +45,8 @@ function ProfilePosts({post}) {
     dispatch(commentOnPost({
       postId: post._id,
       comment: comment,
-      commentsImage:  userProfile?.avatar?.url,
-      commentsName: userProfile.name,
+      commentsImage:  myProfile?.avatar?.url,
+      commentsName: myProfile?.name,
     }));
     setComment('')
     dispatch(showToast({

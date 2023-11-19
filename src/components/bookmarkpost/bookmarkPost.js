@@ -4,6 +4,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import {BsBookmark} from 'react-icons/bs'
 import {PiBookmarkSimpleFill} from 'react-icons/pi'
 import { bookmarkPost } from '../../redux/slices/feedSlice'
+import { showToast } from '../../redux/slices/appConfigSlice'
+import { TOAST_SUCCESS } from '../../App'
 var ta = require('time-ago')
 
 
@@ -16,6 +18,10 @@ function BookmarkPost({post}) {
     function unBookmarkMyPost(){
       dispatch(bookmarkPost({
         postId: post._id
+      }));
+      dispatch(showToast({
+        type: TOAST_SUCCESS,
+        message: 'Post removed from Bookmarks'
       }))
     }
   return (

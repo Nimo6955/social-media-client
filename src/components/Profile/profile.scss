@@ -151,6 +151,8 @@
             .profile-card {
                 border: 1px solid #d2d2d2;
                 border-radius: 4px;
+                // min-width: 2%;
+                padding-right: 10px;
 
 
                 .user-img-name {
@@ -317,8 +319,15 @@
                     padding: 5px 10px;
                 }
 
-                .btn-secondary {
-                    padding: 5px 10px;
+                .update-profile {
+                    padding: 8px 20px;
+                    border: none;
+                    outline: none;
+                    background-color: #ee7837;
+                    color: black;
+                    border-radius: 30px;
+                    padding: 10px 20px;
+                    cursor: pointer;
 
                 }
 
@@ -521,16 +530,10 @@
     }
 
 }
-// .driver-popover{
-    // background-color: #fde047 !important;
-    // color: #000 !important;
-//   }
-  .driver-popover-next-btn {
+  .driver-popover-next-btn{
     background-color: #ee7837 !important;
     color: black !important;
     text-align: center !important;
-    background-color: #ee7837 !important;
-    color: black !important;
     text-shadow: none !important;
     font-size: 14px !important;
     padding: 5px 20px !important;

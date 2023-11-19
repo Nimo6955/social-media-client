@@ -47,6 +47,7 @@
         .sign-up-form {
             display: flex;
             flex-direction: column;
+            position: relative;
 
             .email{
                 width: 270px;
@@ -68,7 +69,6 @@
                 padding-left: 10px;
                 outline: none;
                 margin-bottom: 30px;
-
             }
             .name{
                 width: 270px;
@@ -91,6 +91,12 @@
             .submit:hover{
                 background-color: #455a64;
                 color: #ffffff;
+            }
+            .FaRegEye{
+                position: absolute;
+                top: 130px;
+                right: 5px;
+                cursor: pointer;
             }
         }
         .signinLink{

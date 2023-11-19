@@ -40,6 +40,7 @@
         .log-in-form {
             display: flex;
             flex-direction: column;
+            position: relative;
 
             .email{
                 width: 270px;
@@ -70,6 +71,12 @@
             }
             .submit:hover{
                 background-color: #455a64;
+            }
+            .FaRegEye{
+                position: absolute;
+                top: 70px;
+                right: 5px;
+                cursor: pointer;
             }
         }
         .signupLink{

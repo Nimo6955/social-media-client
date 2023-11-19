@@ -10,7 +10,8 @@ import { Modal } from 'antd';
 import Follower from '../follower/follower'
 import SideNavbar from '../sideNavbar/sideNavbar'
 import ProfileFollowerFollowing from '../profileFollowerFollowing/profileFollowerFollowing'
-import user from '../../assets/sugnUpUser.png'
+import user from '../../assets/user.png'
+import user2 from '../../assets/user2.png'
 import FooterNavbar from '../footerNavbar/footerNavbar'
 import { BsPlusLg } from 'react-icons/bs'
 import { setLoading } from '../../redux/slices/appConfigSlice'
@@ -134,13 +135,15 @@ let from = location?.state?.from?.pathname
 if (width > 1000 && from){
 const driverObj = driver({
   showButtons: [
+        
     'next',
+    
     // 'previous',
     'close'
   ],
   overlayColor: 'gray',
   onPopoverRender: (popover, { config, state }) => {
-    const firstButton = document.getElementsByClassName("driver-popover-next-btn")[0];
+
     if( popover.footerButtons.innerText === "Done"){
 
         driverObj.destroy();
@@ -150,11 +153,20 @@ const driverObj = driver({
     }
   
     if(popover.title.innerText === 'App tour'){
-
       const imgpop = document.createElement("img");
           imgpop.src = popoverImg
           imgpop.setAttribute("style", "height:200px")
           popover.description.appendChild(imgpop);
+
+
+          const firstButton = document.createElement("button");
+    firstButton.innerHTML = 'Go to Home'
+    firstButton.setAttribute('style', 'background-color: #ee7837;color: black ;text-align: center ;text-shadow: none ;font-size: 14px ;padding: 5px 20px ;border-radius: 30px')
+    popover.footerButtons.appendChild(firstButton)
+    firstButton.addEventListener("click", () => {
+      driverObj.destroy()
+      navigate('/');
+    })
     }
     if(popover.title.innerText === 'YaY !'){
 
@@ -205,6 +217,15 @@ const driverObj2 = driver({
           imgpop.src = popoverImg
           imgpop.setAttribute("style", "height:200px")
           popover.description.appendChild(imgpop);
+
+          const firstButton = document.createElement("button");
+    firstButton.innerHTML = 'Go to Home'
+    firstButton.setAttribute('style', 'background-color: #ee7837;color: black ;text-align: center ;text-shadow: none ;font-size: 14px ;padding: 5px 20px ;border-radius: 30px')
+    popover.footerButtons.appendChild(firstButton)
+    firstButton.addEventListener("click", () => {
+      driverObj2.destroy()
+      navigate('/');
+    })
     }
     if(popover.title.innerText === 'YaY !'){
 
@@ -256,6 +277,15 @@ const driverObj3 = driver({
           imgpop.src = popoverImg
           imgpop.setAttribute("style", "height:200px")
           popover.description.appendChild(imgpop);
+
+          const firstButton = document.createElement("button");
+    firstButton.innerHTML = 'Go to Home'
+    firstButton.setAttribute('style', 'background-color: #ee7837;color: black ;text-align: center ;text-shadow: none ;font-size: 14px ;padding: 5px 20px ;border-radius: 30px')
+    popover.footerButtons.appendChild(firstButton)
+    firstButton.addEventListener("click", () => {
+      driverObj3.destroy()
+      navigate('/');
+    })
     }
     if(popover.title.innerText === 'YaY !'){
 
@@ -303,10 +333,10 @@ const driverObj3 = driver({
 
           
             <div className='user-img-name'>
-            <img src={userProfile?.avatar?.url || user} alt="" className="user-img" />
+            <img src={userProfile?.avatar?.url || user2} alt="" className="user-img" />
             <div className='user-name-And-bio'>
             <h3 className="user-name" style={{color: mode ? 'white' : 'black'}}>{userProfile?.name}</h3>
-              <h6 className='user-Bio'style={{color: mode ? 'white' : 'black', marginTop: '5px'}}>{userProfile?.bio}</h6>
+              <h6 className='user-Bio'style={{color: mode ? 'white' : 'black', marginTop: '5px'}}>{userProfile?.bio?.length > 60 ? `${userProfile?.bio?.substring(0, 40)}. . .` : userProfile?.bio}</h6>
             </div>
 
             </div>
@@ -328,7 +358,7 @@ const driverObj3 = driver({
               {!isMyProfile && <button onClick={handleUserFollow}  className={isfollowing ? "hover-link follow-link btn-primary" : 'btn-secondary'}>{isfollowing ? 'Unfollow' : 'follow'}</button>
 }
            
-              {isMyProfile &&  <button className='update-profile btn-secondary hover-link' onClick={()=> {navigate('/updateProfile')}}>Update profile</button>}
+              {isMyProfile &&  <button className='update-profile hover-link' onClick={()=> {navigate('/updateProfile')}}>Update profile</button>}
            
 
             </div>
@@ -357,7 +387,7 @@ const driverObj3 = driver({
             <Avatar src={myProfile?.avatar?.url}/>
         </div>
         <div className="right-part">
-            <input type="text"  className="captionInput" placeholder='nice cation here ?' value={caption2} onChange={(e) => setCaption2(e.target.value)}/>
+            <input type="text"  className="captionInput" placeholder='Nice caption here ?' value={caption2} onChange={(e) => setCaption2(e.target.value)}/>
            {postImg2 &&  (<div className="img-container">
                 <img className='post-img' src={postImg2} alt="post image" />
                 
@@ -376,9 +406,13 @@ const driverObj3 = driver({
     </div>
       
       </Modal>
+      {isMyProfile ? 
       <div className="MobileCreatePost hover-link" onClick={showCreateModal}>
         <h2><BsPlusLg style={{color: 'black'}}/></h2>
-      </div>
+      </div> 
+      : ''
+      
+      }
     </div>
   )
 }

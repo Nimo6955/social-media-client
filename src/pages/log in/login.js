@@ -6,6 +6,7 @@ import {axiosClient} from '../../Utils/axiosClient';
 import { KEY_ACCESS_TOKEN, setItem } from '../../Utils/localStoregeManager';
 import Bg from '../../assets/Signin.gif'
 import user from '../../assets/user.png'
+import { FaRegEye, FaRegEyeSlash  } from "react-icons/fa";
 
 
 
@@ -31,6 +32,23 @@ function Login() {
         }
     }
 
+    function displayFaRegEyeSlash(){
+        const FaRegEye = document.getElementById('FaRegEye')
+        FaRegEye.style.display = 'block'
+        const FaRegEyeSlash = document.getElementById('FaRegEyeSlash')
+        FaRegEyeSlash.style.display = 'none'
+        const input = document.getElementById('password')
+        input.setAttribute('type', 'text')
+
+}
+function displayFaRegEye(){
+        const FaRegEye = document.getElementById('FaRegEye')
+        FaRegEye.style.display = 'none'
+        const FaRegEyeSlash = document.getElementById('FaRegEyeSlash')
+        FaRegEyeSlash.style.display = 'block'
+        const input = document.getElementById('password')
+        input.setAttribute('type', 'password')
+}
     return (
 
         <div className='Login'>
@@ -46,7 +64,8 @@ function Login() {
                     <input type="email" className='email' id='email' placeholder='Email' onChange={(e)=>setEmail(e.target.value)} />
                     {/* <label style={{ fontWeight: '650', marginBottom: '10px', marginTop: '8px' }} htmlFor="password">Password</label> */}
                     <input type="password" className='password' id='password' placeholder='Password' onChange={(e)=>setPassword(e.target.value)}/>
-              
+                    <FaRegEye color='#455a64' className='FaRegEye' id='FaRegEye' style={{display: 'none'}} onClick={displayFaRegEye}/>
+                    <FaRegEyeSlash  color='#455a64' className='FaRegEye' id='FaRegEyeSlash' onClick={displayFaRegEyeSlash}/>
                 <button type="submit" className='submit btn-primary'onClick={handleSubmit}>Log in</button>
                 </form>
                 <p className='signupLink'>Don't have an account ?<Link className='linkToSignUp' to="/signup"> Sign up</Link></p>

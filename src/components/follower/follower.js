@@ -4,6 +4,8 @@ import './follower.scss'
 import { useDispatch, useSelector } from 'react-redux'
 import { folloAndUnfollowUser, getFeedData } from '../../redux/slices/feedSlice'
 import { useNavigate } from 'react-router-dom'
+import { showToast } from '../../redux/slices/appConfigSlice'
+import { TOAST_SUCCESS } from '../../App'
 
 
 
@@ -27,7 +29,11 @@ function Follower({user}) {
     dispatch(folloAndUnfollowUser({
       userIdToFollow: user._id
     }))
-    dispatch(getFeedData())
+    dispatch(getFeedData());
+    dispatch(showToast({
+      type: TOAST_SUCCESS,
+      message: `You are now following ${user?.name}`
+    }))
   }
   return (
     <div className='Follower'>
