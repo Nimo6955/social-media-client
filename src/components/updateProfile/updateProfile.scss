@@ -111,3 +111,13 @@
         }
     }
 }
+.deleteAccountImg{
+    height: 40vh;
+}
+@media only screen and (max-width: 500px) {
+    
+    .deleteAccountImg{
+        height: 30vh;
+    }
+    
+}

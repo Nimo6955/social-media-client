@@ -43,7 +43,7 @@ function Feed() {
     const Data = feedData?.AllUsers
     // const newData = Data.json()
     const result =
-    Data.filter((user) => {
+    Data?.filter((user) => {
           return e && user.name?.toLowerCase().includes(e)
       });
       setResults(result)

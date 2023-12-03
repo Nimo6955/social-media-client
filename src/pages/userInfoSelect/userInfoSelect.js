@@ -77,13 +77,13 @@ function handleSubmit(){
 
   }))
 }
-   useEffect(() => {
-    let ignore = false;
+    useEffect(() => {
+      let ignore = false;
+      
+      if (!ignore)  showAvatarModal()
+      return () => { ignore = true; }
     
-    if (!ignore)  showAvatarModal()
-    return () => { ignore = true; }
-  
-    },[])
+      },[])
     
 // bio Modal
 
@@ -127,12 +127,24 @@ function handleSubmit(){
      setFollowerOpen(false);
    };
     
+   function handleImageChange(e){
+    const file = e.target.files[0]
+    const fileReader = new FileReader()
+    fileReader.readAsDataURL(file)
+    fileReader.onload = ()=>{
+         if(fileReader.readyState === fileReader.DONE){
+          setDisplayAvatar(fileReader.result)
+         }
+    }
+
+
+}
   return (
     <div>
         <div className="userInfoSelect">
             <div className="dummyDiv">
-                
         <Modal keyboard={false} maskClosable={false} maskStyle={{background: 'black'}} closable={false} okButtonProps={{ style: { display: 'none' } }} cancelButtonProps={{style: {display: 'none'}}} open={isAvatarOpen} onOk={handleAvatarOk} onCancel={handleAvatarCancel}>
+       <h3 style={{textAlign: 'center'}}>Let's take a few seconds to set up your profile !!</h3>         
         <div className="user">
                 <img src={displayAvatar || user} alt="" id='user'/>
             </div>
@@ -198,13 +210,16 @@ function handleSubmit(){
 
         <div className="uploadAvtar">
 
-        <button className='AvatarButton1 hover-link'>UPLOAD FROM GALLERY</button>
+<label htmlFor="inputImg" className='AvatarButton1'>UPLOAD FROM GALLERY
+        {/* <button className='AvatarButton1 hover-link' id='inputImg'>UPLOAD FROM GALLERY</button> */}
+</label>
+<input className='hover-link' id='inputImg' type="file" accept='image/*' onChange={handleImageChange} style={{display: 'none'}}/>
         <button className='AvatarButton2 hover-link' onClick={showBioModal}>NEXT</button>
         </div>
       </Modal>
       <Modal  keyboard={false} maskClosable={false} maskStyle={{background: 'black'}} closable={false} okButtonProps={{ style: { display: 'none' } }} cancelButtonProps={{style: {display: 'none'}}} open={isBioOpen} onOk={handleBioOk} onCancel={handleBioCancel}>
       <div className="bio">
-        <h3>UPDATE YOUR BIO !</h3>
+        <h3>Update your bio !</h3>
         <input type="text" placeholder='Write your bio here...' value={bio} className='bioInput' onChange={(e) => setBio(e.target.value)}/>
         <div className="biobuttons">
 

@@ -35,11 +35,47 @@
     .content {
         height: 400px;
         width: 500px;
+        position: relative;
 
-        img {
+        .contentImg {
             height: 100%;
             width: 100%;
         }
+        .likedImg{
+            position: absolute;
+            top: 50px;
+            left: 15%;
+            transform: translate(-50%,-50%);
+            filter: drop-shadow(2px 5px 10px black);
+            animation: like 1s  ;
+            // display: none;
+            opacity: 0;
+
+        }
+        @keyframes like {
+            0%{
+                transform: scale(1);
+            opacity: 1;
+
+            }
+            33%{
+                transform: scale(1.5);
+                opacity: 1;
+
+            }
+
+            66%{
+                transform: scale(1);
+            opacity: 1;
+
+            }
+            100%{
+                transform: scale(1);
+            opacity: 0;
+
+            }
+          }
+        
     }
 
     .footer {
@@ -86,8 +122,15 @@
         }
 
         .caption {
-            margin: 12px;
+            margin-block: 12px;
             color: #dfe6e9;
+            // white-space: wrap; 
+            // width: 40%;
+            // overflow: hidden;
+            font-size: small;
+
+
+
 
             .userName-caption {
                 color: white;
@@ -144,6 +187,13 @@
         .content {
             height: 300px;
             width: 400px;
+            .likedImg{
+                height: 300px;
+                position: absolute;
+                top:15px;
+                left: 12%;
+                transform: translate(-50%,-50%);
+            }
         }
         .footer{
             .likes-comments{
@@ -175,7 +225,17 @@
     .Post {
         .content {
             height: 200px;
-            width: 320px;
+            width: 300px;
+            .likedImg{
+                height: 200px;
+                position: absolute;
+                top:10px;
+                left: 18%;
+                transform: translate(-50%,-50%);
+            }
+        }
+        .footer{
+            width: 260px;
         }
     }
 
@@ -184,9 +244,39 @@
 @media only screen and (max-width: 320px) {
 
     .Post {
-        .content {
+        .content {  
             height: 160px;
-            width: 280px;
+            width: 260px;
+             .likedImg{
+                height: 130px;
+                position: absolute;
+                top:10px;
+                left: 25%;
+                transform: translate(-50%,-50%);
+            }
+        }
+        .footer{
+            width: 220px;
+        }
+    }
+
+}
+@media only screen and (max-width: 270px) {
+
+    .Post {
+        .content {  
+            height: 110px;
+            width: 210px;
+             .likedImg{
+                height: 90px;
+                position: absolute;
+                top:0px;
+                left: 30%;
+                transform: translate(-50%,-50%);
+            }
+        }
+        .footer{
+            width: 170px;
         }
     }
 

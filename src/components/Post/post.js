@@ -57,7 +57,6 @@ const handleCancel = () => {
   const feedData = useSelector(state => state.feedDataReducer.feedData)
   var index = feedData?.bookmarks?.find((item) => item._id === post?._id)
   var findPost = feedData?.posts?.findIndex((item) => item._id === post?._id)
- 
 
   const dispatch = useDispatch()
   async function handlePostLikes(){
@@ -80,7 +79,22 @@ const handleCancel = () => {
     }))
   }
   
+  const [iscaptionModalOpen, setCaptionIsModalOpen] = useState(false);
 
+  const showCaptionModal = () => {
+    if(post?.caption?.length > 60){
+      setCaptionIsModalOpen(true);
+    }
+  }
+  
+  const handleCaptionOk = () => {
+    setCaptionIsModalOpen(false);
+  };
+  
+  const handleCaptionCancel = () => {
+    setCaptionIsModalOpen(false);
+  };
+  
   
   return (
     <div className='Post' style={{backgroundColor: mode? '' : 'whitesmoke', border: mode ? '' : '1px solid #2d3436'}}>
@@ -88,15 +102,16 @@ const handleCancel = () => {
        
         <div style={{backgroundColor: mode ? '' : 'white'}} className="heading2" onClick={() => navigate(`/profile/${post.owner._id}`)}>
            <div className='userImg'>
-             {/* <Avatar  src={post?.owner?.avatar?.url}/> */}
              <img src={post?.owner?.avatar?.url} alt="" />
 
            </div>
              
             <h4 style={{color: mode ? '' : 'black'}}  className='userName'>{post?.owner?.name}</h4>
         </div>
-        <div className="content" style={{backgroundColor: mode ? '#263238': 'white'}}>
-            <img src={post?.image?.url} alt="content image" />
+        <div className="content" style={{backgroundColor: mode ? '#263238': 'white'}} onDoubleClick={handlePostLikes}>
+            <img className='contentImg' src={post?.image?.url} alt="content image"  />  
+            {post?.isLiked ? <img className='likedImg' id='likedImg' src={Heart_like} alt="" /> : ''}
+
         </div>
         <div style={{backgroundColor: mode ? '' : 'white'}} className="footer">
           <div>
@@ -111,7 +126,7 @@ const handleCancel = () => {
               <h5 style={{color: mode ? '' : 'black'}} className="comments-text">{post?.comments?.length}</h5>
         </div>
         </div>
-        <p style={{color: mode ? '' : 'black'}}  className='caption'> <span style={{color: mode ? '' : 'black'}}  className=' '> {post?.owner?.name}</span>  {post?.caption}</p>
+        <p style={{color: mode ? '' : 'black'}}  className='caption' onClick={showCaptionModal}> <span style={{color: mode ? '' : 'black'}}  className=' '> {post?.owner?.name}</span> {post?.caption?.length > 60 ? `${post?.caption?.substring(0, 40)}. . .` : post?.caption}</p>
         <h5 style={{color: mode ? '' : '#cccccc'}}  className='caption-time'>{post?.timeAgo}</h5>
           </div>
           <div  onClick={bookmarkMyPost} >
@@ -125,7 +140,6 @@ const handleCancel = () => {
     }))} className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: mode ? 'white' : 'black'}} />}
           </div>
 
-
         
         </div>
         <Modal okText='Post' closable={false} okButtonProps={{disabled: comment === '' ?  true : false, style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={OpenComment} onOk={postComment} onCancel={handleCancel} cancelButtonProps={{ style: {borderRadius: '30px',width: '80px'}}}>
@@ -137,6 +151,9 @@ const handleCancel = () => {
           <h4>comment as {feedData?.name} </h4>
         <input placeholder='Add a comment...' id='commentsInput' className='commentsInput' type="text" value={comment} onChange={(e) => setComment(e.target.value)} />
         </div>
+      </Modal>
+      <Modal closable={false} okButtonProps={{style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={iscaptionModalOpen} onOk={handleCaptionOk} onCancel={handleCaptionCancel} cancelButtonProps={{ style: {display: 'none'}}}>
+        {post?.caption}
       </Modal>
     </div>
   )

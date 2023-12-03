@@ -7,6 +7,9 @@ import { KEY_ACCESS_TOKEN, setItem } from '../../Utils/localStoregeManager';
 import Bg from '../../assets/Signup.gif'
 import user from '../../assets/user.png'
 import { FaRegEye, FaRegEyeSlash  } from "react-icons/fa";
+import { useDispatch } from 'react-redux';
+import { showToast } from '../../redux/slices/appConfigSlice';
+import { TOAST_FAILURE } from '../../App';
 
 
 
@@ -20,6 +23,7 @@ function Signup() {
     const [password, setPassword] = useState('')
     const navigate = useNavigate()
 
+    const dispatch = useDispatch()
 
     async function handleSubmit(e){
         try {
@@ -33,6 +37,10 @@ function Signup() {
             console.log(response);
         } catch (error) {
             console.log(error);
+            dispatch(showToast({
+                type: TOAST_FAILURE,
+                message: error
+              }))
         }
     }
 
@@ -69,7 +77,7 @@ function Signup() {
                 <p className='heading-p'>We'll create an account if you <div></div> don't have one</p>
                 <form className='sign-up-form' onSubmit={handleSubmit}>
                     {/* <label style={{ fontWeight: '650', marginBottom: '10px' }} htmlFor="email">Name</label> */}
-                    <input type="name" required={true} className='name' id='name' placeholder='Name' onChange={(e)=>setName(e.target.value)}/>
+                    <input type="name" required={true} className='name' id='name' placeholder='Name' maxLength={12} onChange={(e)=>setName(e.target.value)}/>
                     
                     {/* <label style={{ fontWeight: '650', marginBlock: '10px' }} htmlFor="email">Email</label> */}
                     <input type="email" className='email' id='email' placeholder='Email' onChange={(e)=>setEmail(e.target.value)}/>

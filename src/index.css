@@ -34,7 +34,7 @@ h3,h6{
   outline: none;
   background-color: var(--button-color);
   color: #ffffff;
-  box-shadow: 1px 2px 7px gray;
+  /* box-shadow: 1px 2px 7px gray; */
   border-radius: 30px;
   padding: 10px 20px;
   
@@ -44,7 +44,7 @@ h3,h6{
   outline: none;
   background-color: #ffffff;
   color: var(--button-color);
-  box-shadow: 1px 2px 7px gray;
+  /* box-shadow: 1px 2px 7px gray; */
   border-radius: 30px;
   padding: 10px 20px;
   border: 2px solid var(--button-color);

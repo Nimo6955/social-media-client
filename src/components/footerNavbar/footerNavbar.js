@@ -1,11 +1,11 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import './footerNavbar.scss'
 import {BsBookmark, BsFillMoonFill, BsFillSunFill, BsSearch} from 'react-icons/bs'
 import {VscThreeBars} from 'react-icons/vsc'
 import {MdOutlineLogout} from 'react-icons/md'
 import { FaHouse } from 'react-icons/fa6'
 import {FaRegUser} from 'react-icons/fa'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { Button, Modal, Popover } from 'antd';
 import ProfileFollowerFollowing from '../profileFollowerFollowing/profileFollowerFollowing'
@@ -73,6 +73,7 @@ function FooterNavbar() {
 
 
    const showSearchModal = () => {
+    dispatch(getFeedData())
     setSearchOpen(true);
   }
 
@@ -87,8 +88,8 @@ function FooterNavbar() {
     const Data = feedData?.AllUsers
     // const newData = Data.json()
     const result =
-    Data.filter((user) => {
-          return e && user.name?.toLowerCase().includes(e)
+    Data?.filter((user) => {
+          return e && user?.name?.toLowerCase().includes(e)
       });
       setResults(result)
   }
@@ -97,11 +98,14 @@ function FooterNavbar() {
     setSearch(e)
     fetchData(e)
  }
+ const location = useLocation()
+//  console.log(location.pathname);
+
   return (
     <div className='FooterNavbar'>
         <ul className="FooterNavbarBox" style={{backgroundColor: mode ? 'black' : ''}}>
-            <li className='hover-link' onClick={() =>navigate('/')}><FaHouse  style={{color: mode ? 'white' : 'black'}}/></li>
-            <li className='hover-link'  onClick={() =>navigate(`/profile/${myProfile?._id}`)}><FaRegUser  style={{color: mode ? 'white' : 'black'}}/></li>
+            <li className='hover-link' onClick={() =>navigate('/')}><FaHouse id='home' style={{color: location.pathname === '/' ? '#ee7837' : mode ? 'white' : 'black'}}/></li>
+            <li className='hover-link'  onClick={() =>navigate(`/profile/${myProfile?._id}`)}><FaRegUser id='profile' style={{color: location.pathname === `/profile/${myProfile?._id}` ? '#ee7837' : mode ? 'white' : 'black'}}/></li>
             <li className='hover-link' id='searchBtnM' onClick={showSearchModal}><BsSearch  style={{color: mode ? 'white' : 'black'}}/></li>
             <li className='hover-link' id='bookmarkBtnM' onClick={showModal}><BsBookmark  style={{color: mode ? 'white' : 'black'}}/></li>
             <div style={{ whiteSpace: 'nowrap' }} id='more-IconM'>
@@ -115,7 +119,7 @@ function FooterNavbar() {
         <Modal okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' }}} cancelButtonProps={{style: {display: 'none'}}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
       <h2>{feedData?.bookmarks?.length === 0 && 'No bookmarks to display'}</h2>
       <h2>{feedData?.bookmarks?.length === 0 || 'Your Bookmarks'}</h2>
-      <div className='book-post' style={{ overflowY: 'scroll',height: feedData?.bookmarks?.length === 0 ? '100px' : '70vh'}} >
+      <div className='book-post' style={{ overflowY: 'scroll',height: feedData?.bookmarks?.length === 0 ? '100px' : '70vh',display:'flex',justifyContent: 'center'}} >
     {feedData?.bookmarks?.map((post) => <BookmarkPost key={post._id} post={post}/>)}
       </div>
         
@@ -124,7 +128,7 @@ function FooterNavbar() {
         <input className='searchInput' type="text" value={search}  onChange={(e) => handleChange(e.target.value)} placeholder='Search User...'/>
         <div className='searchBox' style={{height: "250px", overflowY: 'scroll'}}>
 
-        <h4>{results.map((result, user) => <ProfileFollowerFollowing key={user._id}  user={result}/>)}</h4>
+        <h4>{results?.map((result, user) => <ProfileFollowerFollowing key={user._id}  user={result}/>)}</h4>
         </div>
       </Modal>
     </div>

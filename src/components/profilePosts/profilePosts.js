@@ -142,7 +142,21 @@ function bookmarkMyPost(){
     postId: post._id
   }))
 }
+const [iscaptionModalOpen, setCaptionIsModalOpen] = useState(false);
 
+const showCaptionModal = () => {
+  if(post?.caption?.length > 60){
+    setCaptionIsModalOpen(true);
+  }
+}
+
+const handleCaptionOk = () => {
+  setCaptionIsModalOpen(false);
+};
+
+const handleCaptionCancel = () => {
+  setCaptionIsModalOpen(false);
+};
   
   return (
     <>
@@ -166,8 +180,10 @@ function bookmarkMyPost(){
 </div>
              
         </div>
-        <div className="contentProfilePost" >
-            <img src={post?.image?.url} alt="content image" />
+        <div className="contentProfilePost"  onDoubleClick={handlePostLikes}>
+            <img className='contentImg' src={post?.image?.url} alt="content image" />
+            {post?.isLiked ? <img className='likedImg' id='likedImg' src={Heart_like} alt="" /> : ''}
+
         </div>
         <div style={{backgroundColor: mode ? '' : 'white'}} className="footerProfilePost">
         <div>
@@ -182,12 +198,18 @@ function bookmarkMyPost(){
               <h5 style={{color: mode ? '' : 'black'}} className="comments-text">{post?.comments?.length}</h5>
         </div>
         </div>
-        <p style={{color: mode ? '' : 'black'}}  className='caption'> <span style={{color: mode ? '' : 'black'}}  className='userName-caption'> {post?.owner?.name}</span>  {post?.caption}</p>
+        <p style={{color: mode ? '' : 'black'}}  className='caption' onClick={showCaptionModal}> <span style={{color: mode ? '' : 'black'}}  className='userName-caption'> {post?.owner?.name}</span>{post?.caption?.length > 60 ? `${post?.caption?.substring(0, 40)}. . .` : post?.caption}</p>
         <h5 style={{color: mode ? '' : '#cccccc'}}  className='caption-time'>{post?.timeAgo}</h5>
           </div>
           <div  onClick={bookmarkMyPost} >
             
-        {index ? <PiBookmarkSimpleFill className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: 'black'}}/> :   <PiBookmarkSimple className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: mode ? 'white' : 'black'}} />}
+        {index ? <PiBookmarkSimpleFill onClick={() => dispatch(showToast({
+      type: TOAST_SUCCESS,
+      message: 'Post removed from Bookmarks'
+    }))}  className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: 'black'}}/> :   <PiBookmarkSimple onClick={() => dispatch(showToast({
+      type: TOAST_SUCCESS,
+      message: 'Post Added to Bookmarks'
+    }))} className='hover-link' style={{fontSize:'1.7rem', marginRight:'10px',color: mode ? 'white' : 'black'}} />}
           </div>   
           
        </div>
@@ -203,13 +225,16 @@ function bookmarkMyPost(){
 </div>
 </Modal>
     </div>
-    <Modal okText='Post' okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} cancelButtonProps={{ style: { borderRadius: '30px', color: 'black' } }} id='modal' style={{zIndex: '10'}} title="update your post" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
+    <Modal key={seed} okText='Update' okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} cancelButtonProps={{ style: { borderRadius: '30px', color: 'black',width: '80px' } }} id='modal' style={{zIndex: '10'}} title="update your post" open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
       <label className='labelImg' htmlFor="updateInputImg" style={{height: '300px'}}>
                        <img id='updateBeforeImg' style={{aspectRatio: '16/9',width:'100%'}} src={post?.image?.url} alt="" />
                        <img id='updateAfterImg' style={{aspectRatio: '16/9',width:'100%', display:'none'}} src={postImg} alt="" />
                         </label>
       <input className='inputImg' id='updateInputImg' style={{display:'none'}} type="file" accept='image/*' onChange={handleImageChange} />
       <input id='updateInput' placeholder='update caption ?' type="text" value={caption} onChange={(e) => setCaption(e.target.value)} />
+      </Modal>
+      <Modal closable={false} okButtonProps={{style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={iscaptionModalOpen} onOk={handleCaptionOk} onCancel={handleCaptionCancel} cancelButtonProps={{ style: {display: 'none'}}}>
+        {post?.caption}
       </Modal>
     </>
   )

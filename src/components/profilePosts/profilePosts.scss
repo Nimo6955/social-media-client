@@ -63,12 +63,50 @@ border-radius: 10px;
     .contentProfilePost{
         height: 400px;
         width: 500px;
-        img{
+        position: relative;
+
+        .contentImg {
             height: 100%;
             width: 100%;
         }
+        .likedImg{
+            position: absolute;
+            top: 50px;
+            left: 15%;
+            transform: translate(-50%,-50%);
+            filter: drop-shadow(2px 5px 10px black);
+            animation: like 1s  ;
+            // display: none;
+            opacity: 0;
+
+        }
+        @keyframes like {
+            0%{
+                transform: scale(1);
+            opacity: 1;
+
+            }
+            33%{
+                transform: scale(1.5);
+                opacity: 1;
+
+            }
+
+            66%{
+                transform: scale(1);
+            opacity: 1;
+
+            }
+            100%{
+                transform: scale(1);
+            opacity: 0;
+
+            }
+          }
     }
-    .footerProfilePost{display: flex;
+    .footerProfilePost{
+        
+        display: flex;
         justify-content: space-between;
         align-items: center;
         padding: 20px;
@@ -109,10 +147,18 @@ border-radius: 10px;
             .caption{
                 margin: 12px;
                 color: #dfe6e9;
+                font-size: small;
+                
+                // word-wrap: break-word;
+                // white-space: pre-wrap;
+                // word-break: break-word;
+                // text-overflow: ellipsis;
+                // max-width: 400px;
 
                 .userName-caption{
                     color: white;
                     font-weight: 600;
+                    margin-right: 5px;
                 }
              }
 
@@ -146,7 +192,9 @@ border-radius: 10px;
 
     .PostProfile {
         .headingProfilePost {
-            .userImg {
+            .header-details{
+
+                .userImg {
                 width: 40px;
                 height: 40px;
 
@@ -156,14 +204,27 @@ border-radius: 10px;
                     height: 100%;
                 }
             }
+        }
             .userName{
-                font-size: small;
+                font-size: x-small;
             }
         }
 
         .contentProfilePost {
             height: 300px;
             width: 400px;
+            .contentImg {
+                height: 100%;
+                width: 100%;
+            }
+            .likedImg{
+                height: 300px;
+                position: absolute;
+                top:15px;
+                left: 12%;
+                transform: translate(-50%,-50%);
+            }
+            
         }
         .footerProfilePost{
             .likes-comments{
@@ -194,7 +255,17 @@ border-radius: 10px;
     .PostProfile {
         .contentProfilePost {
             height: 200px;
-            width: 320px;
+            width: 300px;
+            .likedImg{
+                height: 200px;
+                position: absolute;
+                top:10px;
+                left: 18%;
+                transform: translate(-50%,-50%);
+            }
+        }
+        .footerProfilePost{
+            width: 260px;
         }
     }
 
@@ -205,8 +276,42 @@ border-radius: 10px;
     .PostProfile {
         .contentProfilePost {
             height: 160px;
-            width: 280px;
+            width: 260px;
+            .likedImg{
+                height: 130px;
+                position: absolute;
+                top:10px;
+                left: 25%;
+                transform: translate(-50%,-50%);
+            }
+           
         }
+        .footerProfilePost{
+            width: 220px;
+        }
+        
+    }
+
+}
+@media only screen and (max-width: 270px) {
+
+    .PostProfile {
+        .contentProfilePost {
+            height: 110px;
+            width: 210px;
+            .likedImg{
+                height: 90px;
+                position: absolute;
+                top:0px;
+                left: 30%;
+                transform: translate(-50%,-50%);
+            }
+           
+        }
+        .footerProfilePost{
+            width: 170px;
+        }
+        
     }
 
 }
