@@ -18,8 +18,8 @@ function ProfileComments({comments, postId}) {
       commentsId: comments._id,
       postId: postId
     }))
-    console.log(comments._id);
-    console.log(postId);
+    // console.log(comments._id);
+    // console.log(postId);
   }
   
   const { mode } = useSelector((state) => state.darkMode)

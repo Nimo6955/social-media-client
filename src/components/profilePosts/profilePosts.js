@@ -17,6 +17,8 @@ import {PiBookmarkSimpleFill, PiBookmarkSimple} from 'react-icons/pi'
 import {FaRegComment} from 'react-icons/fa'
 import Comments from '../comments/comments'
 import ProfileComments from '../profileComments/profileComments'
+import deleteGif from '../../assets/Cancel.gif'
+
 
 
 
@@ -70,7 +72,7 @@ const myProfile = useSelector(state => state.appConfigReduser.myProfile)
         <div>
         <p onClick={showModal} className='hover-link edit-delete'><FiEdit/> <p> Edit</p></p>
         <hr style={{marginBlock:'8px'}} />
-        <p className='hover-link edit-delete' onClick={deleteMyPost}><ImBin2/> <p> Delete</p></p>
+        <p className='hover-link edit-delete' onClick={showPostDeleteModal}><ImBin2/> <p> Delete</p></p>
         </div>
         );
 
@@ -157,6 +159,23 @@ const handleCaptionOk = () => {
 const handleCaptionCancel = () => {
   setCaptionIsModalOpen(false);
 };
+
+const [isPostDeleteModalOpen, setIsPostDeleteModalOpen] = useState(false);
+
+    function showPostDeleteModal(){
+       setSeed(Math.random())
+        setIsPostDeleteModalOpen(true);
+    }
+  
+    function handlePostDeleteOk(){
+      deleteMyPost()
+      setIsPostDeleteModalOpen(false);
+
+    };
+  
+    function handlePostDeleteCancel(){
+      setIsPostDeleteModalOpen(false);
+    };
   
   return (
     <>
@@ -235,6 +254,10 @@ const handleCaptionCancel = () => {
       </Modal>
       <Modal closable={false} okButtonProps={{style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={iscaptionModalOpen} onOk={handleCaptionOk} onCancel={handleCaptionCancel} cancelButtonProps={{ style: {display: 'none'}}}>
         {post?.caption}
+      </Modal>
+      <Modal closable={false} okText='Delete' okButtonProps={{style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' } }} open={isPostDeleteModalOpen} onOk={handlePostDeleteOk} onCancel={handlePostDeleteCancel} cancelButtonProps={{ style: {borderRadius: '30px',width: '80px'}}}>
+                <h2 style={{textAlign: 'center'}}>Are you sure you want to delete this post ??</h2>
+                <img style={{height: '300px', display:'flex', marginInline: 'auto'}} src={deleteGif} alt="" />
       </Modal>
     </>
   )

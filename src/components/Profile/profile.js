@@ -181,7 +181,7 @@ const driverObj = driver({
         driverObj.destroy();
         setTimeout(() =>{
           navigate('/')
-        },200)  
+        },500)  
     }
   
     if(popover.title.innerText === 'App tour'){

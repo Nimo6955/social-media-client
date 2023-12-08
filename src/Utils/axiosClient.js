@@ -41,7 +41,7 @@ axiosClient.interceptors.response.use(
             const response = await axios.create({
                 withCredentials: true,
             }).get(`${process.env.REACT_APP_SERVER_BASE_URL}/auth/refresh`);
-            console.log('respons from backend' , response);
+            // console.log('respons from backend' , response);
 
             if(response.data.status === "ok"){
                 setItem(KEY_ACCESS_TOKEN, response.data.result.accessToken)

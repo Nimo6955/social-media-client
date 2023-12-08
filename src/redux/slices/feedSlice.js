@@ -8,10 +8,10 @@ export const  getFeedData = createAsyncThunk('user/getFeedData', async (_, thank
     try {
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.get('user/getFeedData')
-        console.log('user Profile',response);
+        // console.log('user Profile',response);
         return response.result
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return Promise.reject(e)
     }finally{
         thankAPI.dispatch(setLoading(false));
@@ -22,10 +22,10 @@ export const folloAndUnfollowUser = createAsyncThunk('user/followAndUnfollow', a
     try {
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.post('user/follow', body)
-        console.log('follow data',response);
+        // console.log('follow data',response);
         return response.result.user
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return Promise.reject(e)
     }finally{
         thankAPI.dispatch(setLoading(false));
@@ -35,7 +35,7 @@ export const bookmarkPost = createAsyncThunk("post/bookmarkPost", async(body, th
     try {
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.post('posts/bookmarkPost', body)
-        console.log(response);
+        // console.log(response);
             return response.result.post
             
         } catch (e) {
@@ -49,7 +49,7 @@ export const commentOnPost = createAsyncThunk("post/commentOnPost", async(body, 
     try {
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.post('posts/commentOnPost', body)
-        console.log('comment', response);
+        // console.log('comment', response);
         thankAPI.dispatch(getFeedData())
             return response.result.post
             
@@ -65,8 +65,8 @@ export const deleteMyComment = createAsyncThunk("post/deleteMyComment", async(bo
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.delete('posts/deleteComment',{data: body})
         
-        console.log('Body', body);
-        console.log('comment', response);
+        // console.log('Body', body);
+        // console.log('comment', response);
             return response.result.post
             
         } catch (e) {
@@ -100,8 +100,8 @@ const feedSlice = createSlice({
          const user = action?.payload;
          const index = state?.feedData?.followings?.findIndex(item => item._id === user._id)
          const index2 = state?.feedData?.signUpSuggestions?.findIndex(item => item._id === user._id)
-         console.log('slice' , user._id);
-         console.log('indexSlice' , index2);
+        //  console.log('slice' , user._id);
+        //  console.log('indexSlice' , index2);
             if(index !== -1){
                 state?.feedData?.followings?.splice(index, 1)
                 
@@ -124,7 +124,7 @@ const feedSlice = createSlice({
     .addCase(commentOnPost.fulfilled, (state, action)=> {
         const post = action.payload;
         const comment = action?.meta?.arg;
-        console.log(post);
+        // console.log(post);
         const index = state?.feedData?.posts?.findIndex((item) => item._id === post?._id)
 
         const customPost = {
@@ -132,7 +132,7 @@ const feedSlice = createSlice({
             commentsName: comment?.commentsName,
             commentsImage: comment?.commentsImage
         }
-        console.log(index);
+        // console.log(index);
         if(index !== -1){
             state?.feedData?.posts?.[index]?.comments?.push(customPost)
             
@@ -152,13 +152,13 @@ const feedSlice = createSlice({
 
         
         const comment = action?.meta?.arg;
-        console.log('comment',comment);
+        // console.log('comment',comment);
 
         const currentPost = state?.feedData?.posts?.findIndex((item) => item._id === post?._id)
-        console.log('currentPost',currentPost);
+        // console.log('currentPost',currentPost);
 
         const index = state?.feedData?.posts?.[currentPost]?.comments?.findIndex(item => item._id === comment.commentsId)
-        console.log('index',index);
+        // console.log('index',index);
         if(index !== -1){
             state?.feedData?.posts?.[currentPost]?.comments?.splice(index, 1)
         }

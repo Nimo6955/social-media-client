@@ -46,7 +46,7 @@ function CreatePost() {
                     caption,
                     postImg
                 });
-                console.log('post', result);
+                // console.log('post', result);
                 dispatch(getUserProfile({
                     userId: myProfile?._id
                 }))

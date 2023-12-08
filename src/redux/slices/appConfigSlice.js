@@ -18,10 +18,10 @@ export const updateMyProfile = createAsyncThunk('user/updateMyProfile', async (b
     try {
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.put('/user/', body)
-        console.log(response);
+        // console.log(response);
         return response.result
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return Promise.reject(e)
     }finally{
         thankAPI.dispatch(setLoading(false));

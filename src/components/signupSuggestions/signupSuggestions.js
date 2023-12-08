@@ -23,7 +23,7 @@ function SignupSuggestions({user}) {
     dispatch(folloAndUnfollowUser({
       userIdToFollow: user._id
     }));
-    console.log( 'signup',user._id)
+    // console.log( 'signup',user._id)
     
   }
   return (

@@ -6,7 +6,7 @@ export const  getUserProfile = createAsyncThunk('user/getUserProfile', async (bo
     try {
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.post('user/getUserProfile', body)
-        console.log('user Profile',response);
+        // console.log('user Profile',response);
         return response.result
     } catch (e) {
         // console.log(e);
@@ -34,12 +34,12 @@ export const deletePost = createAsyncThunk("post/deletePost", async(body, thankA
     try {
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.delete('/posts/delete',{data: body})
-        console.log(response);
+        // console.log(response);
         return response.result.post
 
         
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return Promise.reject(e)
     }finally{
         thankAPI.dispatch(setLoading(false));
@@ -49,12 +49,12 @@ export const updatePost = createAsyncThunk("post/updatePost", async(body, thankA
     try {
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.put('/posts/', body)
-        console.log(response);
+        // console.log(response);
         return response.result.post
 
         
     } catch (e) {
-        console.log(e);
+        // console.log(e);
         return Promise.reject(e)
     }finally{
         thankAPI.dispatch(setLoading(false));
@@ -65,8 +65,8 @@ export const deleteMyPostComment = createAsyncThunk("post/deleteMyComment", asyn
         thankAPI.dispatch(setLoading(true));
         const response = await axiosClient.delete('posts/deleteComment',{data: body})
         
-        console.log('Body', body);
-        console.log('comment', response);
+        // console.log('Body', body);
+        // console.log('comment', response);
             return response.result.post
             
         } catch (e) {
@@ -115,13 +115,13 @@ const postsSlice = createSlice({
     
             
             const comment = action?.meta?.arg;
-            console.log('comment',comment);
+            // console.log('comment',comment);
     
             const currentPost = state?.userProfile?.posts?.findIndex((item) => item._id === post?._id)
-            console.log('currentPost',currentPost);
+            // console.log('currentPost',currentPost);
     
             const index = state?.userProfile?.posts?.[currentPost]?.comments?.findIndex(item => item._id === comment.commentsId)
-            console.log('index',index);
+            // console.log('index',index);
             if(index !== -1){
                 state?.userProfile?.posts?.[currentPost]?.comments?.splice(index, 1)
             }

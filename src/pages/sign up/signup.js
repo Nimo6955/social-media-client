@@ -34,7 +34,7 @@ function Signup() {
             setItem(KEY_ACCESS_TOKEN, response.result.accessToken)
             navigate(`/userInfoSelect/${response?.result?.user?._id}`)
             
-            console.log(response);
+            // console.log(response);
         } catch (error) {
             console.log(error);
             dispatch(showToast({

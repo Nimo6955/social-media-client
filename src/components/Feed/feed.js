@@ -60,7 +60,7 @@ function Feed() {
     <div className='Feed'>
         <div  className="container">
             <div className="left-part">
-              <h5>{feedData?.posts?.length === 0 && 'Follow people to see there posts'}</h5>
+              <h5 style={{color: mode? 'white' :'black', marginTop: '10px'}}>{feedData?.posts?.length === 0 && 'Follow people to see there posts'}</h5>
               {feedData?.posts?.map((post) => <Post key={post._id} post={post}/>)}
             </div>
             <div className="right-part">
