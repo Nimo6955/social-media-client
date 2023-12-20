@@ -13,12 +13,17 @@
     .comment-details{
         display: flex;
         align-items: center;
+        
+        .name-and-comment{
+            display: flex;
+            flex-direction: column;
     .commentsName{
         margin-left: 10px;
         font-weight: 550;
     }
     .comment{
-        margin-left: 5px;
+        margin-left: 10px;
     }
+}
 }
 }

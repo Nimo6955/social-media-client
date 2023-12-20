@@ -37,9 +37,10 @@ const myProfile = useSelector(state => state.appConfigReduser.myProfile)
     <div className='AllComments'>
       <div className='comment-details'>
         <Avatar  src={comments?.commentsImage?.url}/>
+        <div className='name-and-comment'>
         <h3 className='commentsName'>{comments?.commentsName}</h3>
         <h5 className='comment'>{comments?.comment}</h5>
-
+        </div>
       </div>
       {myProfile?.name === comments?.commentsName ? <div style={{ whiteSpace: 'nowrap' }}>
 <Popover key={seed}  className='more-icon' placement="top" content={content} trigger="click">

@@ -90,7 +90,7 @@ const handleCancel = () => {
     // const newData = Data.json()
     const result =
     Data.filter((user) => {
-          return e && user.name?.toLowerCase().includes(e)
+          return e && user.name?.includes(e)
       });
       setResults(result)
   }

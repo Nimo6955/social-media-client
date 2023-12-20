@@ -126,7 +126,7 @@ const handleCancel = () => {
               <h5 style={{color: mode ? '' : 'black'}} className="comments-text">{post?.comments?.length}</h5>
         </div>
         </div>
-        <p style={{color: mode ? '' : 'black'}}  className='caption' onClick={showCaptionModal}> <span style={{color: mode ? '' : 'black'}}  className=' '> {post?.owner?.name}</span> {post?.caption?.length > 60 ? `${post?.caption?.substring(0, 40)}. . .` : post?.caption}</p>
+        <p style={{color: mode ? '' : 'black'}}  className='caption' onClick={showCaptionModal}> <span style={{color: mode ? '' : 'black'}}  className='userName-caption'> {post?.owner?.name}</span> {post?.caption?.length > 60 ? `${post?.caption?.substring(0, 40)}. . .` : post?.caption}</p>
         <h5 style={{color: mode ? '' : '#cccccc'}}  className='caption-time'>{post?.timeAgo}</h5>
           </div>
           <div  onClick={bookmarkMyPost} >
