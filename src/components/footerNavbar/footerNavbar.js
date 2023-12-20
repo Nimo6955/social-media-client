@@ -119,7 +119,7 @@ function FooterNavbar() {
         <Modal okButtonProps={{ style: { backgroundColor: '#ee7837', borderRadius: '30px', color: 'black' }}} cancelButtonProps={{style: {display: 'none'}}} open={isModalOpen} onOk={handleOk} onCancel={handleCancel}>
       <h2>{feedData?.bookmarks?.length === 0 && 'No bookmarks to display'}</h2>
       <h2>{feedData?.bookmarks?.length === 0 || 'Your Bookmarks'}</h2>
-      <div className='book-post' style={{ overflowY: 'scroll',height: feedData?.bookmarks?.length === 0 ? '100px' : '70vh',display:'flex',justifyContent: 'center'}} >
+      <div className='book-post' style={{ overflowY: 'scroll',height: feedData?.bookmarks?.length === 0 ? '100px' : '70vh',display: 'flex',marginInline: 'auto',flexDirection: 'column',alignItems: 'center'}} >
     {feedData?.bookmarks?.map((post) => <BookmarkPost key={post._id} post={post}/>)}
       </div>
         

@@ -20,6 +20,8 @@
         border-top-left-radius: 10px;
         cursor: pointer;
         background-color: #263238;
+        width: 310px;
+
 
         .userImg{
             width: 30px;
@@ -73,6 +75,9 @@
 }
 @media only screen and (max-width :500px) {
     .bookmarkPost{
+        .heading2{
+            width: 260px;
+        }
         .content{
             height: 250px;
             width: 300px;
@@ -84,6 +89,9 @@
 }
 @media only screen and (max-width :400px) {
     .bookmarkPost{
+        .heading2{
+            width: 210px;
+        }
         .content{
             height: 200px;
             width: 250px;
@@ -95,6 +103,9 @@
 }
 @media only screen and (max-width :330px) {
     .bookmarkPost{
+        .heading2{
+            width: 160px;
+        }
         .content{
             height: 150px;
             width: 200px;
