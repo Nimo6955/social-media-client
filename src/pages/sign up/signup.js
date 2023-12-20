@@ -74,7 +74,7 @@ function Signup() {
             <div className="sign-up-box">
                 <img draggable='false' className='user' src={user} alt="" />
                 <h2 className="heading">Sign Up</h2>
-                <p className='heading-p'>We'll create an account if you <div></div> don't have one</p>
+                <p className='heading-p' style={{fontSize: 'small'}}>We'll create an account if you <div></div> don't have one !</p>
                 <form className='sign-up-form' onSubmit={handleSubmit}>
                     {/* <label style={{ fontWeight: '650', marginBottom: '10px' }} htmlFor="email">Name</label> */}
                     <input type="name" required={true} className='name' id='name' placeholder='Name' maxLength={12} onChange={(e)=>setName(e.target.value)}/>
